@@ -1,0 +1,50 @@
+@import "./fonts.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  overflow-x: hidden;
+  background: #000;
+}
+
+.container {
+  max-width: 1140px;
+  width: 100%;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.text-semi-bold {
+  font-family: "SemiBold";
+}
+.text-medium-italic {
+  font-family: "Medium-italic";
+}
+.text-regular {
+  font-family: "Regular";
+}
+.text-regular-italic {
+    font-family: "Regular-italic";
+}
+.text-medium {
+  font-family: "Medium";
+}
+
+.text-white {
+  color: #ffffff;
+}
+.bg-black {
+  background-color: #000000;
+}
+.bg-red {
+    background-color: #D8004E;
+}
+.text-red {
+    color: #D8004E;
+}
+.text-gray {
+    color: #999999;
+}

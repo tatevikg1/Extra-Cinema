@@ -1,32 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <transition name="urlChanged" mode="out-in">
+      <router-view>
+        <home />
+      </router-view>
+    </transition>
   </div>
 </template>
 
+<script>
+import Home from "@/views/Home.vue";
+export default {
+  name: "app",
+  components: { Home },
+};
+</script>
+
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  background: #000000;
+}
+.urlChanged-enter-active,
+.urlChanged-leave-active {
+  transition: opacity 0.3s;
+}
+.urlChanged-enter,
+.urlChanged-leave-to {
+  opacity: 0;
 }
 
-#nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.slide-enter-active,
+.slide-leave-active {
+  transition:  .5s;
+  transform: translateX(0);
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(100%);
 }
 </style>
