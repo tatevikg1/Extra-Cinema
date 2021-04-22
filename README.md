@@ -1,4 +1,4 @@
-# extra
+# Extra vue 2 / SCSS template
 
 ## Project setup
 ```
