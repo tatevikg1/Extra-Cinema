@@ -30,19 +30,7 @@ export default {
   components: { Header, Footer },
   mounted() {
     document.title = "Extra Cinema | Загрузка документов";
-  },
-  data() {
-    return {
-      items: {
-        simple: [
-          { name: "Название юр. лица", input: "Введите название", docs: false },
-          { name: "Уставные документы", input: "Прикрепите документы", docs: true },
-          { name: "Населенный пункт", input: "Ваш населенный пункт", docs: false },
-        ],
-        
-      },
-    };
-  },
+  }
 };
 </script>
 
