@@ -20,6 +20,29 @@ export default {
 #app {
   background: #000000;
 }
+/* width */
+*::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 15px;
+  margin-right: 20px;
+  transform: translateX(20px);
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+  background: #1d1d1d;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  background: #a1a1a1;
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: #858585;
+}
 .urlChanged-enter-active,
 .urlChanged-leave-active {
   transition: opacity 0.3s;
@@ -29,10 +52,9 @@ export default {
   opacity: 0;
 }
 
-
 .slide-enter-active,
 .slide-leave-active {
-  transition:  .5s;
+  transition: 0.5s;
   transform: translateX(0);
 }
 .slide-enter,

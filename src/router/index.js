@@ -1,9 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home";
-import ECHome from "@/views/cinema/Home"; // EC - Extra Cinema
+ // EC - Extra Cinema
+import ECHome from "@/views/cinema/Home";
 import ECForHalls from "@/views/cinema/ForHalls";
 import ECUploadDocs from "@/views/cinema/UploadDocs";
+import ECOrderEquipment from "@/views/cinema/OrderEquipment";
 
 Vue.use(VueRouter);
 
@@ -28,6 +30,11 @@ const routes = [
     name: "upload-docs", //extra cinema for-hall-upload-docs-page
     component: ECUploadDocs,
   },
+  {
+    path: "/cinema/for-halls/order-equipment",
+    name: "order-equipment",
+    component: ECOrderEquipment
+  }
 ];
 
 const router = new VueRouter({

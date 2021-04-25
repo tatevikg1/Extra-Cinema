@@ -3,15 +3,7 @@
     <Header />
     <section class="wrap">
       <div class="container">
-        <router-link
-          :to="{ name: 'for-halls' }"
-          class="text-white text-regular arrow-back"
-          ><img
-            src="../../assets/images/cinema-for-halls-page/arrow_back.svg"
-            alt="Назад"
-          />
-          Вернуться назад</router-link
-        >
+        <arrow-back href="for-halls"/>
         <h1 class="text-white text-regular">
           Введите данные и прикрепите фото
         </h1>
@@ -25,9 +17,10 @@
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ArrowBack from '@/components/ArrowBack.vue';
 export default {
   name: "UploadDocs",
-  components: { Header, Footer },
+  components: { Header, Footer, ArrowBack },
   mounted() {
     document.title = "Extra Cinema | Загрузка документов";
   }

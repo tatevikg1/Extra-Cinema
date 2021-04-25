@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="" class="link text-white text-semi-bold">
+          <router-link :to="{name: 'order-equipment'}" class="link text-white text-semi-bold">
             <div class="btn-decor">
               <img
                 src="../../assets/images/cinema-for-halls-page/order_icon.svg"

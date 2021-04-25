@@ -2,8 +2,6 @@
   <div>
     <div class="preload bg-black" :class="{ 'preload-hide': loaded }">
       <Preload />
-      <!-- <img src="../../assets/images/logo.svg" alt="Логотип" />
-      <span class="text-white text-medium">ExtraCinema</span> -->
     </div>
     <Header />
     <section class="wrap bg-black">
