@@ -31,31 +31,35 @@
         </div>
         <div class="equip-list-wrap">
           <h2 class="text-white text-medium">Перечень оборудования</h2>
-          <div class="scroll">
-            <ul>
-              <li v-for="(item, idx) in equipment" :key="idx">
-                <div class="form-group">
-                  <input
-                    type="checkbox"
-                    @click="calc(item)"
-                    class="my-checkbox"
-                    :id="idx"
-                  />
-                  <label :for="idx" class="text-white text-regular">{{
-                    item.name
-                  }}</label>
-                </div>
-                <div class="price">
-                  <span class="text-semi-bold">{{ item.price }} ₽</span>
-                  <router-link to="/" class="text-regular-italic"
-                    >Подробно о товаре
-                    <div class="arrow"></div
-                  ></router-link>
-                </div>
-              </li>
-            </ul>
+          <div class="scroll-wrap">
+            <div class="scroll">
+              <ul>
+                <li v-for="(item, idx) in equipment" :key="idx">
+                  <div class="form-group">
+                    <input
+                      type="checkbox"
+                      @click="calc(item)"
+                      class="my-checkbox"
+                      :id="idx"
+                    />
+                    <label :for="idx" class="text-white text-regular">{{
+                      item.name
+                    }}</label>
+                  </div>
+                  <div class="price">
+                    <span class="text-semi-bold">{{ item.price }} ₽</span>
+                    <router-link to="/" class="text-regular-italic"
+                      >Подробно о товаре
+                      <div class="arrow"></div
+                    ></router-link>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
-          <span class="total text-white text-semi-bold">Итого: {{total}} ₽</span>
+          <span class="total text-white text-semi-bold"
+            >Итого: {{ total }} ₽</span
+          >
           <router-link to="" class="order-link text-white text-semi-bold"
             >Оплатить</router-link
           >
@@ -90,22 +94,70 @@ export default {
       equipment: [
         { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
         { name: "Полотно для киноэкрана", price: 5000, checked: false },
-        { name: "Апаратно-программный комплекс кассира", price: 30000, checked: false },
-        { name: "Коммутационная и вспомогательная техника", price: 20000, checked: false },
-        { name: "Оборудование видеомониторинга зала", price: 90000, checked: false },
-        { name: "Настройка и пусконаладочные работы", price: 10000, checked: false },
-         { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
+        {
+          name: "Апаратно-программный комплекс кассира",
+          price: 30000,
+          checked: false,
+        },
+        {
+          name: "Коммутационная и вспомогательная техника",
+          price: 20000,
+          checked: false,
+        },
+        {
+          name: "Оборудование видеомониторинга зала",
+          price: 90000,
+          checked: false,
+        },
+        {
+          name: "Настройка и пусконаладочные работы",
+          price: 10000,
+          checked: false,
+        },
+        { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
         { name: "Полотно для киноэкрана", price: 5000, checked: false },
-        { name: "Апаратно-программный комплекс кассира", price: 30000, checked: false },
-        { name: "Коммутационная и вспомогательная техника", price: 20000, checked: false },
-        { name: "Оборудование видеомониторинга зала", price: 90000, checked: false },
-        { name: "Настройка и пусконаладочные работы", price: 10000, checked: false },
-         { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
+        {
+          name: "Апаратно-программный комплекс кассира",
+          price: 30000,
+          checked: false,
+        },
+        {
+          name: "Коммутационная и вспомогательная техника",
+          price: 20000,
+          checked: false,
+        },
+        {
+          name: "Оборудование видеомониторинга зала",
+          price: 90000,
+          checked: false,
+        },
+        {
+          name: "Настройка и пусконаладочные работы",
+          price: 10000,
+          checked: false,
+        },
+        { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
         { name: "Полотно для киноэкрана", price: 5000, checked: false },
-        { name: "Апаратно-программный комплекс кассира", price: 30000, checked: false },
-        { name: "Коммутационная и вспомогательная техника", price: 20000, checked: false },
-        { name: "Оборудование видеомониторинга зала", price: 90000, checked: false },
-        { name: "Настройка и пусконаладочные работы", price: 10000, checked: false },
+        {
+          name: "Апаратно-программный комплекс кассира",
+          price: 30000,
+          checked: false,
+        },
+        {
+          name: "Коммутационная и вспомогательная техника",
+          price: 20000,
+          checked: false,
+        },
+        {
+          name: "Оборудование видеомониторинга зала",
+          price: 90000,
+          checked: false,
+        },
+        {
+          name: "Настройка и пусконаладочные работы",
+          price: 10000,
+          checked: false,
+        },
       ],
     };
   },
@@ -129,68 +181,6 @@ export default {
 
     .new {
       padding: 50px;
-    }
-
-    .form-group {
-      display: flex;
-      align-items: center;
-      label {
-        cursor: pointer;
-      }
-      input[type="checkbox"] {
-        &.my-checkbox {
-          display: grid;
-          place-items: center;
-          width: 18px !important;
-          height: 18px !important;
-          padding: 0;
-          margin: 0;
-          color: #ffffff;
-          position: relative;
-          cursor: pointer;
-          appearance: none;
-          margin-right: 10px;
-          &:before {
-            content: "";
-            width: 100%;
-            height: 100%;
-            line-height: 1;
-            color: inherit;
-            border-width: 2px;
-            border-style: solid;
-            border-color: #ffffff;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-          }
-          &:after {
-            content: "";
-            width: calc(100% - 10px);
-            height: calc(100% - 15px);
-            border-width: 0px 0px 2px 2px;
-            border-style: solid;
-            border-color: transparent;
-            transform: rotate(-45deg);
-            position: absolute;
-            top: 6px;
-            left: 4px;
-            transition: all 0.2s ease;
-          }
-          &:checked {
-            &:before {
-              background: #d8004e;
-              border-color: #d8004e;
-            }
-            &::after {
-              border-color: #ffffff;
-            }
-          }
-          &.focus,
-          &:focus {
-            outline: none;
-            box-shadow: none;
-          }
-        }
-      }
     }
 
     .buttons {
@@ -244,65 +234,134 @@ export default {
         font-size: 24px;
         margin-bottom: 33px;
       }
-      .scroll {
-        overflow-y: scroll;
-        margin-bottom: 33px;
-        height: 427px;
-        border-radius: 15px;
+      .scroll-wrap {
         box-shadow: inset 0px 0px 14px 25px rgba(0, 0, 0, 0.57);
-        ul {
-          list-style-type: none;
-          background: #101010;
-          li {
-            padding: 22px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 16px;
-            &:last-child:after {
-              display: none;
-            }
-            &:after {
-              content: "";
-              position: absolute;
-              bottom: 0;
-              display: block;
-              height: 1px;
-              width: calc(100% - 50px);
-              background: #434343;
-              margin: auto;
-            }
-            .price {
+        .scroll {
+          margin-bottom: 33px;
+          height: 427px;
+          border-radius: 15px;
+          overflow-y: scroll;
+
+          ul {
+            list-style-type: none;
+            background: #101010;
+            li {
+              padding: 22px;
+              position: relative;
               display: flex;
               align-items: center;
-
-              span {
-                color: #8d8d8d;
-                font-size: 16px;
-                min-width: 80px;
-                text-align: center;
-              }
-              a {
-                margin-left: 50px;
-                font-size: 16px;
-                color: #ffffff;
+              justify-content: space-between;
+              width: 100%;
+              font-size: 16px;
+              .form-group {
                 display: flex;
                 align-items: center;
-                .arrow {
-                  display: block;
-                  width: 7.4px;
-                  height: 12px;
-                  background: url("../../assets/images/cinema-order-equipment-page/arrow_white.svg")
-                    no-repeat center;
-                  background-size: contain;
-                  margin-left: 9px;
+                label {
+                  cursor: pointer;
                 }
-                &:hover {
-                  color: #27ae60;
+                input[type="checkbox"] {
+                  &.my-checkbox {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 20px;
+                    height: 15px;
+                    padding: 0;
+                    margin: 0;
+                    color: #ffffff;
+                    position: relative;
+                    cursor: pointer;
+                    appearance: none;
+                    margin-right: 10px;
+                    &:before {
+                      content: "";
+                      width: 100%;
+                      height: 100%;
+                      line-height: 1;
+                      color: inherit;
+                      border-width: 2px;
+                      border-style: solid;
+                      border-color: #ffffff;
+                      border-radius: 4px;
+                      transition: all 0.2s ease;
+                    }
+                    &:after {
+                      content: "";
+                      width: calc(100% - 12px);
+                      height: calc(100% - 10px);
+                      border-width: 0px 0px 2px 2px;
+                      border-style: solid;
+                      border-color: transparent;
+                      transform: rotate(-45deg);
+                      position: absolute;
+                      top: 3px;
+                      left: 5px;
+                      transition: all 0.2s ease;
+                    }
+                    &:checked {
+                      &:before {
+                        background: #d8004e;
+                        border-color: #d8004e;
+                      }
+                      &::after {
+                        border-color: #ffffff;
+                      }
+                    }
+                    &.focus,
+                    &:focus {
+                      outline: none;
+                      box-shadow: none;
+                    }
+                  }
+                }
+              }
+
+              &:last-child:after {
+                display: none;
+              }
+              &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                right: 25px;
+                display: block;
+                height: 1px;
+                width: calc(100% - 50px);
+                background: #434343;
+                margin: auto;
+              }
+              .price {
+                display: flex;
+                align-items: center; 
+                margin-left: auto; //for IE
+
+                span {
+                  color: #8d8d8d;
+                  font-size: 16px;
+                  min-width: 80px;
+                  text-align: center;
+                }
+                a {
+                  margin-left: 50px;
+                  font-size: 16px;
+                  color: #ffffff;
+                  display: flex;
+                  align-items: center;
                   .arrow {
-                    background: url("../../assets/images/cinema-order-equipment-page/arrow_green.svg")
+                    display: block;
+                    width: 7.4px;
+                    height: 12px;
+                    background: url("../../assets/images/cinema-order-equipment-page/arrow_white.svg")
                       no-repeat center;
+                    background-size: contain;
+                    margin-left: 9px;
+                  }
+                  &:hover {
+                    color: #27ae60;
+                    .arrow {
+                      background: url("../../assets/images/cinema-order-equipment-page/arrow_green.svg")
+                        no-repeat center;
+                    }
                   }
                 }
               }
