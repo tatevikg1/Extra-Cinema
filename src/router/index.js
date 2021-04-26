@@ -6,6 +6,7 @@ import ECHome from "@/views/cinema/Home";
 import ECForHalls from "@/views/cinema/ForHalls";
 import ECUploadDocs from "@/views/cinema/UploadDocs";
 import ECOrderEquipment from "@/views/cinema/OrderEquipment";
+import ECOrderEquipmentPay from '@/views/cinema/OrderEquipmentPay'
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,11 @@ const routes = [
     path: "/cinema/for-halls/order-equipment",
     name: "order-equipment",
     component: ECOrderEquipment
+  },
+  {
+    path: "/cinema/for-halls/order-equipment/pay",
+    name: "order-equipment-pay",
+    component: ECOrderEquipmentPay
   }
 ];
 
