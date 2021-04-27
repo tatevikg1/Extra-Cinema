@@ -1,0 +1,145 @@
+<template>
+  <div class="dropdown">
+    <span class="title text-regular">Выбрать платежную систему</span>
+    <div class="select" @click="btnClicked = !btnClicked">
+      <div class="wrap">
+        <img :src="activeOption.icon" alt="" />
+        <span class="text-white text-semi-bold">{{ activeOption.name }}</span>
+      </div>
+      <div class="toggle-btn">
+        <img
+          :class="{ btn_active: btnClicked }"
+          src="../../assets/images/arrow_drop.svg"
+          alt=""
+        />
+      </div>
+    </div>
+    <transition name="urlChanged">
+      <ul v-if="btnClicked">
+        <li v-for="(option, idx) in options" :key="idx" @click="select(option)">
+          <img :src="option.icon" alt="" />
+          <span class="text-white text-semi-bold">{{ option.name }}</span>
+        </li>
+      </ul>
+    </transition>
+  </div>
+</template>
+
+<script>
+import Extra from "@/assets/images/common/extra.svg";
+import Paypal from "@/assets/images/common/paypal.svg";
+import AdvCash from "@/assets/images/common/advcash.svg";
+import Payeer from "@/assets/images/common/payeer.svg";
+
+export default {
+  name: "PaymentSystem",
+  mounted() {},
+  data() {
+    return {
+      btnClicked: false,
+      activeOption: {
+        name: "ExtraFinTach",
+        icon: Extra,
+      },
+      options: [
+        {
+          name: "ExtraFinTach",
+          icon: Extra,
+        },
+        {
+          name: "PayPal",
+          icon: Paypal,
+        },
+        {
+          name: "Payeer",
+          icon: Payeer,
+        },
+        {
+          name: "AdvCash",
+          icon: AdvCash,
+        },
+      ],
+    };
+  },
+  methods: {
+    select(option) {
+      this.activeOption = option;
+      this.btnClicked = !this.btnClicked;
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.dropdown {
+  width: 100%;
+  position: relative;
+  .title {
+    color: #777777;
+    font-size: 14px;
+  }
+  .select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 42px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-top: 10px;
+    .wrap {
+      display: flex;
+      align-items: center;
+      background: #262626;
+      padding: 13px 18px;
+      width: calc(100% - 46px);
+      img {
+        margin-right: 17px;
+      }
+      span {
+        font-size: 14px;
+      }
+    }
+    .toggle-btn {
+      background: #777777;
+      width: 46px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        transform: rotate(180deg);
+        transition: 0.2s;
+      }
+      .btn_active {
+        transform: rotate(0);
+      }
+    }
+  }
+  ul {
+    position: absolute;
+    left: 0;
+    top: 71px;
+    width: calc(100% - 46px);
+    list-style-type: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+    z-index: 10;
+
+    li {
+      padding: 12px 18px;
+      background: #292929;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      img {
+        margin-right: 17px;
+      }
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+}
+</style>

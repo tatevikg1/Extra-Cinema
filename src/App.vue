@@ -61,4 +61,16 @@ export default {
 .slide-leave-to {
   transform: translateX(100%);
 }
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: .2s;
+  opacity: 1;
+  height: 42px;
+}
+.dropdown-enter,
+.dropdown-leave-to {
+  height: 0;
+  opacity: 0;
+}
 </style>

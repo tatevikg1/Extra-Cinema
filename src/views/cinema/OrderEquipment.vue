@@ -1,5 +1,10 @@
 <template>
   <div>
+    <!-- MODAL: will be show after "details" link -->
+    <transition name="urlChanged">
+      <product-details v-if="modal" @closeModal="modal = false" />
+    </transition>
+
     <Header />
     <section class="wrap bg-black">
       <div class="container">
@@ -13,10 +18,7 @@
               src="../../assets/images/cinema-order-equipment-page/wallet.svg"
               alt="Купить"
             />
-            <span class="text-white text-semi-bold"
-              >Купить <br />
-              оборудование</span
-            >
+            <span class="text-white text-semi-bold">Купить оборудование</span>
           </router-link>
           <router-link to="/" class="btn btn-credit">
             <img
@@ -24,8 +26,7 @@
               alt="Купить в кредит"
             />
             <span class="text-white text-semi-bold"
-              >Купить оборудование <br />
-              в кредит</span
+              >Купить оборудование в кредит</span
             >
           </router-link>
         </div>
@@ -35,22 +36,28 @@
             <ul>
               <li v-for="(item, idx) in equipment" :key="idx">
                 <div class="form-group">
-                  <input
-                    type="checkbox"
-                    @click="calc(item)"
-                    class="my-checkbox"
-                    :id="idx"
-                  />
-                  <label :for="idx" class="text-white text-regular">{{
-                    item.name
-                  }}</label>
+                  <div class="checkbox-wrap">
+                    <input
+                      type="checkbox"
+                      @click="calc(item)"
+                      class="my-checkbox"
+                      :id="idx"
+                    />
+                    <label :for="idx" class="text-white text-regular">{{
+                      item.name
+                    }}</label>
+                  </div>
+                  <span class="text-semi-bold">{{ item.price }} ₽</span>
                 </div>
                 <div class="price">
                   <span class="text-semi-bold">{{ item.price }} ₽</span>
-                  <router-link to="/" class="text-regular-italic"
-                    >Подробно о товаре
-                    <div class="arrow"></div
-                  ></router-link>
+                  <button
+                    @click.prevent="showModal"
+                    class="text-regular-italic"
+                  >
+                    Подробно о товаре
+                    <div class="arrow"></div>
+                  </button>
                 </div>
               </li>
             </ul>
@@ -76,10 +83,11 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArrowBack from "@/components/ArrowBack";
+import ProductDetails from "@/components/modals/ProductDetails";
 
 export default {
   name: "OrderEquipment",
-  components: { Header, Footer, ArrowBack },
+  components: { Header, Footer, ArrowBack, ProductDetails },
   methods: {
     calc(item) {
       item.checked = !item.checked;
@@ -97,6 +105,9 @@ export default {
         this.btnDisabled = true;
       }
     },
+    showModal() {
+      this.modal = true;
+    },
   },
   mounted() {
     document.title = "Extra Cinema | Заказать оборудование";
@@ -105,6 +116,7 @@ export default {
     return {
       total: 0,
       btnDisabled: true,
+      modal: false,
       equipment: [
         { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
         { name: "Полотно для киноэкрана", price: 5000, checked: false },
@@ -213,6 +225,9 @@ export default {
         width: 367px;
         height: 100px;
         margin: 0 11px;
+        span {
+          max-width: 100px;
+        }
         img {
           margin-right: 22px;
         }
@@ -267,63 +282,71 @@ export default {
             width: 100%;
             font-size: 16px;
             .form-group {
-              display: flex;
-              align-items: center;
-              label {
-                cursor: pointer;
+              span {
+                display: none;
               }
-              input[type="checkbox"] {
-                &.my-checkbox {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  width: 20px;
-                  height: 15px;
-                  padding: 0;
-                  margin: 0;
-                  color: #ffffff;
-                  position: relative;
+              .checkbox-wrap {
+                display: flex;
+                align-items: center;
+
+                label {
                   cursor: pointer;
-                  appearance: none;
-                  margin-right: 10px;
-                  &:before {
-                    content: "";
-                    width: 100%;
-                    height: 100%;
-                    line-height: 1;
-                    color: inherit;
-                    border-width: 2px;
-                    border-style: solid;
-                    border-color: #ffffff;
-                    border-radius: 4px;
-                    transition: all 0.2s ease;
-                  }
-                  &:after {
-                    content: "";
-                    width: calc(100% - 12px);
-                    height: calc(100% - 10px);
-                    border-width: 0px 0px 2px 2px;
-                    border-style: solid;
-                    border-color: transparent;
-                    transform: rotate(-45deg);
-                    position: absolute;
-                    top: 3px;
-                    left: 5px;
-                    transition: all 0.2s ease;
-                  }
-                  &:checked {
+                }
+                input[type="checkbox"] {
+                  &.my-checkbox {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 20px;
+                    min-height: 15px;
+                    width: 20px;
+                    height: 15px;
+                    padding: 0;
+                    margin: 0;
+                    color: #ffffff;
+                    position: relative;
+                    cursor: pointer;
+                    appearance: none;
+                    margin-right: 10px;
                     &:before {
-                      background: #d8004e;
-                      border-color: #d8004e;
-                    }
-                    &::after {
+                      content: "";
+                      width: 100%;
+                      height: 100%;
+                      line-height: 1;
+                      color: inherit;
+                      border-width: 2px;
+                      border-style: solid;
                       border-color: #ffffff;
+                      border-radius: 4px;
+                      transition: all 0.2s ease;
                     }
-                  }
-                  &.focus,
-                  &:focus {
-                    outline: none;
-                    box-shadow: none;
+                    &:after {
+                      content: "";
+                      width: calc(100% - 12px);
+                      height: calc(100% - 10px);
+                      border-width: 0px 0px 2px 2px;
+                      border-style: solid;
+                      border-color: transparent;
+                      transform: rotate(-45deg);
+                      position: absolute;
+                      top: 3px;
+                      left: 5px;
+                      transition: all 0.2s ease;
+                    }
+                    &:checked {
+                      &:before {
+                        background: #d8004e;
+                        border-color: #d8004e;
+                      }
+                      &::after {
+                        border-color: #ffffff;
+                      }
+                    }
+                    &.focus,
+                    &:focus {
+                      outline: none;
+                      box-shadow: none;
+                    }
                   }
                 }
               }
@@ -354,12 +377,17 @@ export default {
                 min-width: 80px;
                 text-align: center;
               }
-              a {
+              button {
                 margin-left: 50px;
                 font-size: 16px;
                 color: #ffffff;
                 display: flex;
                 align-items: center;
+                width: 182px;
+                padding: 0;
+                border: 0;
+                background: transparent;
+                outline: 0;
                 .arrow {
                   display: block;
                   width: 7.4px;
@@ -402,6 +430,105 @@ export default {
       &:disabled,
       &[disabled] {
         background: #7fa48e;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .wrap {
+    .container {
+      .equip-list-wrap {
+        padding: 46px 15px 59px 15px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 834px) {
+  .wrap {
+    .container {
+      padding: 91px 15px 79px 15px;
+      h1 {
+        font-size: 24px;
+      }
+      .buttons {
+        .btn {
+          padding: 10px 21px;
+          border-radius: 50px;
+          height: 63px;
+          max-width: 317px;
+          width: 100%;
+
+          span {
+            max-width: 100%;
+            font-size: 16px;
+          }
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+      .equip-list-wrap {
+        padding: 0;
+        background: transparent;
+        h2 {
+          font-size: 18px;
+          margin-bottom: 24px;
+        }
+
+        .scroll {
+          margin-bottom: 62px;
+          height: 654px;
+          border-radius: 15px;
+          ul {
+            li {
+              align-items: flex-start;
+              .form-group {
+                span {
+                  display: inline;
+                  color: #8d8d8d;
+                  margin-left: 33px;
+                }
+                .checkbox-wrap {
+                  margin-bottom: 10px;
+                }
+              }
+              .price {
+                span {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .wrap {
+    .container {
+      h1 {
+        font-size: 18px;
+      }
+      .equip-list-wrap {
+        .scroll {
+          ul {
+            li {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-stat;
+              .price {
+                margin-left: 0;
+                margin-top: 10px;
+                a {
+                  margin-left: 34px;
+                }
+              }
+              // justify-content: flex-start;
+            }
+          }
+        }
       }
     }
   }

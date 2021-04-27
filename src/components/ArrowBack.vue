@@ -24,7 +24,7 @@ export default {
 .arrow-back {
   position: absolute;
   top: 11px;
-  left: 0;
+  left: 15px;
   display: flex;
   align-items: center;
   text-decoration: none;
