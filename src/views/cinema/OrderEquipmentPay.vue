@@ -179,58 +179,58 @@ export default {
           &:first-child {
             margin-top: 0;
           }
-        }
-        [type="radio"]:checked,
-        [type="radio"]:not(:checked) {
-          position: absolute;
-          left: -9999px;
-        }
-        [type="radio"]:checked + label,
-        [type="radio"]:not(:checked) + label {
-          position: relative;
-          padding-left: 31px;
-          cursor: pointer;
-          line-height: 20px;
-          display: inline-block;
-        }
-        [type="radio"]:checked + label:before,
-        [type="radio"]:not(:checked) + label:before {
-          content: "";
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 15px;
-          height: 15px;
-          border: 2.5px solid #ddd;
-          border-radius: 100%;
-          background: transparent;
-        }
-        [type="radio"]:checked + label:after,
-        [type="radio"]:not(:checked) + label:after {
-          content: "";
-          width: 7.7px;
-          height: 7.2px;
-          background: #d8004e;
-          position: absolute;
-          top: 6.3px;
-          left: 6px;
-          border-radius: 100%;
-          -webkit-transition: all 0.2s ease;
-          transition: all 0.2s ease;
-        }
-        [type="radio"]:checked + label:before {
-          background: transparent;
-          border: 2.5px solid #d8004e;
-        }
-        [type="radio"]:not(:checked) + label:after {
-          opacity: 0;
-          -webkit-transform: scale(0);
-          transform: scale(0);
-        }
-        [type="radio"]:checked + label:after {
-          opacity: 1;
-          -webkit-transform: scale(1);
-          transform: scale(1);
+          [type="radio"]:checked,
+          [type="radio"]:not(:checked) {
+            position: absolute;
+            left: -9999px;
+          }
+          [type="radio"]:checked + label,
+          [type="radio"]:not(:checked) + label {
+            position: relative;
+            padding-left: 31px;
+            cursor: pointer;
+            line-height: 20px;
+            display: inline-block;
+          }
+          [type="radio"]:checked + label:before,
+          [type="radio"]:not(:checked) + label:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            min-width: 15px;
+            min-height: 15px;
+            border: 2.5px solid #ddd;
+            border-radius: 100%;
+            background: transparent;
+          }
+          [type="radio"]:checked + label:after,
+          [type="radio"]:not(:checked) + label:after {
+            content: "";
+            min-width: 9px;
+            min-height: 9px;
+            background: #d8004e;
+            position: absolute;
+            top: 5.5px;
+            left: 5.5px;
+            border-radius: 100%;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+          }
+          [type="radio"]:checked + label:before {
+            background: transparent;
+            border: 2.5px solid #d8004e;
+          }
+          [type="radio"]:not(:checked) + label:after {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+          }
+          [type="radio"]:checked + label:after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+          }
         }
       }
       .pay-btn {
@@ -250,6 +250,54 @@ export default {
         &:disabled,
         &[disabled] {
           background: #7fa48e;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .wrap {
+    .container {
+      h1 {
+        font-size: 24px;
+        margin-bottom: 45px;
+      }
+      form {
+        max-width: 100%;
+
+        h2 {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .wrap {
+    .container {
+      h1 {
+        font-size: 18px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      form {
+        background: transparent;
+        padding: 0 15px;
+
+        h2 {
+          font-size: 16px;
+        }
+        .radio {
+          .radio-btn {
+            font-size: 14px;
+            margin-top: 10px;
+          }
+        }
+        .pay-btn {
+          width: 130px;
+          padding: 10px 0;
+          font-size: 14px !important;
         }
       }
     }

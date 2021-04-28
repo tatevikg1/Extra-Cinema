@@ -25,14 +25,14 @@
           <label for="kpp" class="text-regular">КПП</label>
           <input type="text" id="kpp" class="text-medium" />
         </div>
-        <div class="input-group">
+        <div class="input-group bic">
           <label for="bic" class="text-regular">БИК</label>
           <input type="text" id="bic" class="text-medium" />
         </div>
       </div>
 
       <div class="row">
-        <div class="input-group">
+        <div class="input-group total">
           <label for="total" class="text-regular" v-bind="0"
             >Сумма платежа</label
           >
@@ -90,7 +90,7 @@ export default {
         position: relative;
         &::focus {
           label {
-              color: #ffffff;
+            color: #ffffff;
           }
         }
         label {
@@ -113,7 +113,7 @@ export default {
             border: 0.5px solid #ffffff;
           }
           &:focus {
-              border: 0.5px solid #ffffff;
+            border: 0.5px solid #ffffff;
           }
 
           &::placeholder {
@@ -128,6 +128,10 @@ export default {
       .inn {
         width: 157%;
       }
+      .total {
+        max-width: 85% !important;
+        width: 90%;
+      }
       span {
         color: #777777;
         font-size: 12px;
@@ -138,26 +142,37 @@ export default {
         text-align: right;
       }
     }
-    // button {
-    //   font-size: 16px;
-    //   text-decoration: none;
-    //   margin-top: 52px;
-    //   width: 100%;
-    //   padding: 13px 92px;
-    //   background: #27ae60;
-    //   border-radius: 10px;
-    //   transition: 0.1s;
-    //   border: 0;
-    //   outline: 0;
-    //   font-size: 16px;
-    //   &:hover {
-    //     background: #279e48;
-    //   }
-    //   &:disabled,
-    //   &[disabled] {
-    //     background: #7fa48e;
-    //   }
-    // }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wrap {
+    background: transparent;
+    .container {
+      .row {
+        flex-wrap: wrap;
+        .inn {
+          display: block;
+        }
+        .kpp {
+          max-width: 148px;
+          margin-left: 0;
+          margin-top: 15px;
+          width: 50%;
+        }
+        .bic {
+          max-width: 148px;
+          margin-top: 15px;
+          width: 40% !important;
+
+        }
+        span {
+          margin-left: 0;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
   }
 }
 </style>

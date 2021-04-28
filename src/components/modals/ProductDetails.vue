@@ -6,7 +6,7 @@
         <img src="../../assets/images/common/close.svg" alt="Закрыть" />
       </div>
       <h2 class="text-medium text-white">Подробнее о товаре</h2>
-      <div class="carousel"></div>
+      <carousel />
       <div class="row">
         <div class="info">
           <ul>
@@ -92,7 +92,9 @@
 </template>
 
 <script>
+import Carousel from "@/components/Carousel";
 export default {
+  components: { Carousel },
   name: "ProductDetails",
   data() {
     return {
@@ -156,7 +158,7 @@ export default {
       font-size: 24px;
       padding-bottom: 31px;
       border-bottom: 1px solid #444444;
-      margin-bottom: 31px;
+      margin-bottom: 46px;
     }
     .carousel {
     }

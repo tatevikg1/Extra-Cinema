@@ -73,7 +73,7 @@ export default {
 <style lang="scss" scoped>
 .dropdown {
   max-width: 365px;
-  width: 365px;
+  width: 100%;
   position: relative;
   .title {
     color: #777777;

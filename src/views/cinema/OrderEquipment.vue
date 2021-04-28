@@ -13,14 +13,14 @@
           Заказать оборудование для кинозала
         </h1>
         <div class="buttons">
-          <router-link to="/" class="btn btn-order">
+          <button class="btn btn-order">
             <img
               src="../../assets/images/cinema-order-equipment-page/wallet.svg"
               alt="Купить"
             />
             <span class="text-white text-semi-bold">Купить оборудование</span>
-          </router-link>
-          <router-link to="/" class="btn btn-credit">
+          </button>
+          <button class="btn btn-credit">
             <img
               src="../../assets/images/cinema-order-equipment-page/card.svg"
               alt="Купить в кредит"
@@ -28,7 +28,7 @@
             <span class="text-white text-semi-bold"
               >Купить оборудование в кредит</span
             >
-          </router-link>
+          </button>
         </div>
         <div class="equip-list-wrap">
           <h2 class="text-white text-medium">Перечень оборудования</h2>
@@ -116,7 +116,7 @@ export default {
     return {
       total: 0,
       btnDisabled: true,
-      modal: false,
+      modal: true,
       equipment: [
         { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
         { name: "Полотно для киноэкрана", price: 5000, checked: false },
@@ -225,8 +225,11 @@ export default {
         width: 367px;
         height: 100px;
         margin: 0 11px;
+        border: 0;
+        outline: 0;
         span {
           max-width: 100px;
+          text-align: left;
         }
         img {
           margin-right: 22px;
@@ -505,13 +508,57 @@ export default {
     }
   }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
   .wrap {
     .container {
+      padding: 66px 15px 52px 15px;
       h1 {
         font-size: 18px;
       }
+      .buttons {
+        flex-direction: column;
+        .btn {
+          background: transparent;
+          border: 0;
+          padding: 0;
+          img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+          }
+          span {
+            max-width: 100%;
+          }
+          &-order {
+            border: 0;
+            &:hover {
+              filter: brightness(50%);
+              padding: 0;
+              border: 0;
+            }
+          }
+          &-credit {
+            padding: 0;
+            * {
+              filter: brightness(50%);
+            }
+            &:hover {
+              * {
+                filter: brightness(100%);
+              }
+              padding: 0;
+              border: 0;
+            }
+          }
+        }
+      }
       .equip-list-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h2 {
+          align-self: flex-start;
+        }
         .scroll {
           ul {
             li {
@@ -521,14 +568,20 @@ export default {
               .price {
                 margin-left: 0;
                 margin-top: 10px;
-                a {
+                button {
                   margin-left: 34px;
                 }
               }
-              // justify-content: flex-start;
             }
           }
         }
+        .total {
+          align-self: flex-start;
+        }
+      }
+      .order-link {
+        padding: 10px 30px;
+        font-size: 14px;
       }
     }
   }

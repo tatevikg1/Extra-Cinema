@@ -3,7 +3,11 @@
     <span class="title text-regular">Оплата картой VISA</span>
     <div class="select" @click="btnClicked = !btnClicked">
       <div class="wrap">
-        <img src="../../assets/images/common/visa.svg" alt="Карта виза" />
+        <img
+          src="../../assets/images/common/visa.svg"
+          class="visa"
+          alt="Карта виза"
+        />
         <span class="text-white text-semi-bold">{{ activeOption.name }}</span>
       </div>
       <div class="toggle-btn">
@@ -100,8 +104,8 @@ export default {
 
 <style lang="scss" scoped>
 .dropdown {
-  // max-width: 365px;
-  width: 365px;
+  max-width: 365px;
+  width: 100%;
   position: relative;
   .title {
     color: #777777;
@@ -201,6 +205,7 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      min-width: 134px;
       width: 100%;
       position: relative;
       input[type="password"] {
@@ -263,5 +268,35 @@ export default {
 .add-leave-to {
   height: 0;
   opacity: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .wrap {
+    // padding: 13px 15px;
+    img.visa {
+      margin-right: 10px !important;
+    }
+    span {
+      font-size: 13px !important;
+    }
+    label {
+      font-size: 12px !important;
+    }
+    .input-secret {
+      &::placeholder {
+        letter-spacing: 2px !important;
+        transform: translateY(-5px) !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 343px) {
+  .row {
+    flex-wrap: wrap;
+  }
+  .cvc {
+    margin-left: 0 !important;
+    margin-top: 15px !important;
+  }
 }
 </style>

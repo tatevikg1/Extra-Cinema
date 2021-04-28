@@ -18,10 +18,10 @@
 
         <div class="row">
           <div class="input-group">
-            <label for="name" class="text-regular">Срок действия карты</label>
-            <input type="text" id="name" placeholder="ММ/ГГ" />
+            <label for="date" class="text-regular">Срок действия карты</label>
+            <input type="text" id="date" placeholder="ММ/ГГ" />
           </div>
-          <div class="input-group">
+          <div class="input-group cvc">
             <label for="name" class="text-regular">CVV2/CVC2</label>
             <input
               type="password"
@@ -82,8 +82,10 @@ export default {
       display: flex;
       flex-wrap: wrap;
       padding: 21px 26px;
-      width: 256px;
-      height: 218px;
+      min-width: 256px;
+      min-height: 218px;
+      max-width: 256px;
+      max-height: 218px;
       background: #262626;
       border-radius: 20px;
       box-shadow: 0px 14px 25px rgba(0, 0, 0, 0.2);
@@ -112,18 +114,20 @@ export default {
           display: block;
           width: 24px;
           height: 24px;
-          background: url('../../assets/images/common/backspace.svg') no-repeat center;
+          background: url("../../assets/images/common/backspace.svg") no-repeat
+            center;
           background-size: contain;
           position: absolute;
           top: 7px;
           left: 9px;
         }
-         &:nth-child(12)::before {
+        &:nth-child(12)::before {
           content: "";
           display: block;
           width: 24px;
           height: 24px;
-          background: url('../../assets/images/common/check.svg') no-repeat center;
+          background: url("../../assets/images/common/check.svg") no-repeat
+            center;
           background-size: contain;
           position: absolute;
           top: 7px;
@@ -133,6 +137,7 @@ export default {
     }
     .input-groups {
       max-width: 365px;
+      width: 100%;
 
       .row {
         display: flex;
@@ -198,6 +203,116 @@ export default {
             text-transform: uppercase;
             letter-spacing: 3px;
             transform: translateY(-7px);
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 834px) {
+  .wrap {
+    width: 100%;
+    form {
+      .input-screen {
+        display: flex;
+      }
+      .input-groups {
+        max-width: 265px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 676px) {
+  .wrap {
+    form {
+      .input-screen {
+        display: flex;
+        padding: 10px 10px;
+        min-width: 226px;
+        min-height: 198px;
+        max-width: 226px;
+        max-height: 198px;
+        button {
+          &:hover {
+          }
+          &:nth-child(10),
+          &:nth-child(12) {
+          }
+          &:nth-child(10)::before {
+          }
+          &:nth-child(12)::before {
+          }
+        }
+      }
+      .input-groups {
+        max-width: 265px;
+        .row {
+          .input-group {
+            &:nth-child(1) {
+            }
+            &:nth-child(2) {
+            }
+          }
+        }
+        .input-group {
+          input#date {
+          }
+          input[type="password"] {
+          }
+          &::focus {
+            label {
+            }
+          }
+          label {
+          }
+          input {
+            &:hover {
+            }
+            &:focus {
+            }
+
+            &::placeholder {
+            }
+          }
+          .input-secret {
+            &::placeholder {
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 630px) {
+  .wrap {
+    form {
+      .input-screen {
+        display: none;
+      }
+      .input-groups {
+        max-width: 100%;
+      }
+      .cvc {
+        width: 100px !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .wrap {
+    form {
+      .input-groups {
+        input {
+          &::placeholder {
+            font-size: 15px !important;
+            letter-spacing: 2px !important;
+            font-family: "Regular";
+            transform: translateY(0) !important;
+          }
+          &[type="text"] {
+            // font-size: 20px;
+            letter-spacing: 2px;
           }
         }
       }
