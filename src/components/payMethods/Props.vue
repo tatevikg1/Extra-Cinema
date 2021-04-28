@@ -42,7 +42,6 @@
           >Комиссия будет расчитана согласно тарифу</span
         >
       </div>
-      <button class="text-white text-semi-bold">ОТПРАВИТЬ</button>
     </form>
   </div>
 </template>
@@ -139,26 +138,26 @@ export default {
         text-align: right;
       }
     }
-    button {
-      font-size: 16px;
-      text-decoration: none;
-      margin-top: 52px;
-      width: 100%;
-      padding: 13px 92px;
-      background: #27ae60;
-      border-radius: 10px;
-      transition: 0.1s;
-      border: 0;
-      outline: 0;
-      font-size: 16px;
-      &:hover {
-        background: #279e48;
-      }
-      &:disabled,
-      &[disabled] {
-        background: #7fa48e;
-      }
-    }
+    // button {
+    //   font-size: 16px;
+    //   text-decoration: none;
+    //   margin-top: 52px;
+    //   width: 100%;
+    //   padding: 13px 92px;
+    //   background: #27ae60;
+    //   border-radius: 10px;
+    //   transition: 0.1s;
+    //   border: 0;
+    //   outline: 0;
+    //   font-size: 16px;
+    //   &:hover {
+    //     background: #279e48;
+    //   }
+    //   &:disabled,
+    //   &[disabled] {
+    //     background: #7fa48e;
+    //   }
+    // }
   }
 }
 </style>

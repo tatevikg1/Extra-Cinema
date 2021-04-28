@@ -42,7 +42,7 @@
             </div>
             <div class="radio-btn">
               <input
-                @click="payMethod = 'saved-card'"
+                @click="payMethod = 'card'"
                 type="radio"
                 id="2"
                 name="radio-group"
@@ -78,14 +78,10 @@
           <transition name="dropdown">
             <saved-card v-if="payMethod == 'saved-card'" />
           </transition>
+          <card v-if="payMethod == 'card'" />
           <props v-if="payMethod == 'props'" />
 
-          <button
-            v-if="payMethod != 'props'"
-            class="pay-btn text-white text-semi-bold"
-          >
-            ОПЛАТИТЬ
-          </button>
+          <button class="pay-btn text-white text-semi-bold">ОПЛАТИТЬ</button>
         </form>
       </div>
     </section>
@@ -99,6 +95,7 @@ import ArrowBack from "@/components/ArrowBack";
 import PaymentSystem from "@/components/payMethods/PaymentSystem";
 import Props from "@/components/payMethods/Props";
 import SavedCard from "@/components/payMethods/SavedCard";
+import Card from "@/components/payMethods/Card";
 export default {
   name: "OrderEquipmentPay",
   components: {
@@ -108,6 +105,7 @@ export default {
     PaymentSystem,
     SavedCard,
     Props,
+    Card,
   },
   data() {
     return {

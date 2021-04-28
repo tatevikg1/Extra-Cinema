@@ -28,8 +28,19 @@
     <transition name="add">
       <form v-if="addCard">
         <div class="input-group">
-          <label for="number" class="text-regular">Номер карты</label>
-          <input type="password" id="number" />
+          <label for="name" class="text-regular">Введите имя и фамилию</label>
+          <input type="text" id="name" />
+        </div>
+        <div class="row">
+          <div class="input-group">
+            <label for="number" class="text-regular">Номер карты</label>
+            <input
+              type="password"
+              id="number"
+              class="input-secret"
+              placeholder="●●●● ●●●● ●●●● ●●●●"
+            />
+          </div>
         </div>
         <div class="row">
           <div class="input-group date">
@@ -38,7 +49,12 @@
           </div>
           <div class="input-group cvc">
             <label for="cvv" class="text-regular">CVV2/CVC2</label>
-            <input type="password" id="cvv" />
+            <input
+              type="password"
+              id="cvv"
+              class="input-secret"
+              placeholder="●●●"
+            />
           </div>
         </div>
       </form>
@@ -84,7 +100,8 @@ export default {
 
 <style lang="scss" scoped>
 .dropdown {
-  width: 100%;
+  // max-width: 365px;
+  width: 365px;
   position: relative;
   .title {
     color: #777777;
@@ -166,7 +183,7 @@ export default {
   }
   form {
     margin-top: 30px;
-    max-width: 336px;
+    // max-width: 336px;
     width: 100%;
     .row {
       display: flex;
@@ -225,6 +242,14 @@ export default {
           font-family: "Regular";
         }
       }
+      .input-secret {
+        &::placeholder {
+          font-size: 17px !important;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          transform: translateY(-7px);
+        }
+      }
     }
   }
 }
@@ -233,7 +258,7 @@ export default {
 .add-leave-active {
   transition: 0.2s;
   opacity: 1;
-  height: 155px;
+  height: 240px;
 }
 .add-enter,
 .add-leave-to {
