@@ -183,7 +183,6 @@ export default {
   }
   form {
     margin-top: 30px;
-    // max-width: 336px;
     width: 100%;
     .row {
       display: flex;
