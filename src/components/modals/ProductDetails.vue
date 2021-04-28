@@ -125,7 +125,7 @@ export default {
   z-index: 200;
   overflow-y: scroll;
   overflow-x: hidden;
-
+  padding: 40px;
   .blur {
     position: fixed;
     top: 0;
@@ -140,7 +140,7 @@ export default {
     max-width: 766px;
     width: 100%;
     padding: 40px 49px 63px 49px;
-    margin-top: 175px;
+    margin-top: 13  5px;
     background: #191919;
     margin: 100px auto 100px auto;
     border-radius: 20px;
