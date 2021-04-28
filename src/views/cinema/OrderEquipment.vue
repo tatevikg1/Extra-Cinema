@@ -116,7 +116,7 @@ export default {
     return {
       total: 0,
       btnDisabled: true,
-      modal: true,
+      modal: false,
       equipment: [
         { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
         { name: "Полотно для киноэкрана", price: 5000, checked: false },

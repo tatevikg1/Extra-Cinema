@@ -58,6 +58,7 @@
         </div>
       </div>
     </div>
+    <button class="add-btn add-btn2 text-white text-semi-bold">Добавить</button>
   </div>
 </template>
 
@@ -84,7 +85,20 @@ export default {
         arrows: false,
         dots: false,
         slidesToShow: 4,
-        responsive: [{ breakPoint: 600, slidesToShow: 1 }],
+        responsive: [
+          {
+            breakpoint: 795,
+            settings: {
+              slidesToShow: 3,
+            },
+          },
+          {
+            breakpoint: 643,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+        ],
       },
     };
   },
@@ -116,28 +130,37 @@ export default {
   padding-bottom: 46px;
   margin-bottom: 36px;
   border-bottom: 1px solid #777777;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .row {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
     h3 {
       font-size: 18px;
     }
     .preview {
-      width: 224px;
-      height: 224px;
+      max-width: 224px;
+      max-height: 224px;
+      width: 100%;
+      height: 100%;
+      margin-right: 20px;
       * {
         outline: 0;
         border: 0;
       }
       img {
-        width: 224px;
-        height: 224px;
+        max-width: 224px;
+        max-height: 224px;
+        width: 100%;
+        height: 100%;
         border-radius: 10px;
       }
     }
     .info {
-      margin-left: 20px;
       position: relative;
-      max-width: 100%;
+      max-width: 424px;
       width: 100%;
       .buttons {
         position: absolute;
@@ -198,26 +221,8 @@ export default {
             }
           }
         }
-        .add-btn {
-          display: block;
-          font-size: 16px;
-          text-decoration: none;
-          padding: 5px 55px;
-          height: 48px;
-          background: #27ae60;
-          border-radius: 10px;
-          transition: 0.1s;
-          border: 0;
-          outline: 0;
-          &:hover {
-            background: #279e48;
-          }
-          &:disabled,
-          &[disabled] {
-            background: #7fa48e;
-          }
-        }
       }
+
       .main {
         max-width: 367px;
         width: 100%;
@@ -247,5 +252,222 @@ export default {
       }
     }
   }
+  .add-btn {
+    display: block;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 5px 55px;
+    height: 48px;
+    background: #27ae60;
+    border-radius: 10px;
+    transition: 0.1s;
+    border: 0;
+    outline: 0;
+    &:hover {
+      background: #279e48;
+    }
+    &:disabled,
+    &[disabled] {
+      background: #7fa48e;
+    }
+  }
+  .add-btn2 {
+    display: none;
+    margin-top: 27px;
+    width: 100%;
+    padding: 5px;
+  }
 }
+
+@media screen and (max-width: 834px) {
+  .carousel {
+    padding-bottom: 46px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid #777777;
+    .row {
+      display: flex;
+      justify-content: space-between;
+      h3 {
+        font-size: 18px;
+      }
+      .preview {
+        width: 180px;
+        height: 180px;
+        * {
+          outline: 0;
+          border: 0;
+        }
+        img {
+          width: 180px;
+          height: 180px;
+          border-radius: 10px;
+        }
+      }
+      .info {
+        display: flex;
+        flex-direction: column;
+        max-width: 424px;
+        width: 100%;
+        .buttons {
+          position: absolute;
+          top: 70px;
+          left: 0;
+          z-index: 20;
+          max-width: 353px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          button {
+            background: transparent;
+            padding: 6px 9px;
+            border: 0;
+            outline: 0;
+            background: rgba(0, 0, 0, 0.8);
+            &:nth-child(1) {
+              border-radius: 0 5px 5px 0;
+              img {
+                transform: rotate(-180deg);
+              }
+            }
+            &:nth-child(2) {
+              border-radius: 5px 0 0 5px;
+            }
+          }
+        }
+        .add {
+          margin-top: 33px;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          width: 100%;
+          .input-group {
+            label {
+              color: rgba(255, 255, 255, 0.6);
+              font-size: 16px;
+            }
+            .calc {
+              display: flex;
+              align-items: center;
+              margin-top: 12px;
+              .screen {
+                padding: 10px 30px;
+                border: 1px solid rgba(255, 255, 255, 0.6);
+                margin: 0 10px;
+                text-align: center;
+                width: 71px;
+                font-size: 16px;
+              }
+              button {
+                background: transparent;
+                height: 36px;
+                border: 0;
+                outline: 0;
+                display: flex;
+                align-items: center;
+              }
+            }
+          }
+        }
+
+        .add-btn2 {
+        }
+        .main {
+          .slick-list {
+            .slick-track {
+              .slick-slide {
+                img {
+                }
+              }
+              .slick-current {
+                img {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 795px) {
+  .main {
+    max-width: 260px !important;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .buttons {
+    max-width: 251px !important;
+  }
+}
+@media screen and (max-width: 720px) {
+  .preview {
+    width: 150px !important;
+    height: 150px !important;
+    img {
+      width: 150px !important;
+      height: 150px !important;
+    }
+  }
+  .add-btn {
+    padding: 5px 30px !important;
+  }
+}
+@media screen and (max-width: 643px) {
+  .info h3 {
+    display: none !important;
+  }
+  .preview {
+    width: 180px !important;
+    height: 180px !important;
+    img {
+      width: 180px !important;
+      height: 180px !important;
+    }
+  }
+  .add-btn {
+    display: none !important;
+  }
+  .add-btn2 {
+    display: block !important;
+  }
+  .main {
+    max-width: 180px !important;
+    width: 100%;
+    margin-top: 0 !important;
+  }
+  .buttons {
+    max-width: 167px !important;
+    top: 25px !important;
+  }
+}
+
+@media screen and (max-width: 443px) {
+  .preview {
+    max-width: 100px !important;
+    max-height: 100px !important;
+    width: 100% !important;
+    height: 100%;
+    margin-right: 10px !important;
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+  .add {
+    justify-content: flex-end !important;
+    label {
+      font-size: 12px !important;
+    }
+  }
+}
+@media screen and (max-width: 350px) {
+  .preview {
+    display: none !important;
+  }
+  .add {
+    justify-content: center !important;
+  }
+}
+
 </style>

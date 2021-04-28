@@ -131,7 +131,7 @@ export default {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
     z-index: -1;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(5px);
@@ -140,7 +140,7 @@ export default {
     max-width: 766px;
     width: 100%;
     padding: 40px 49px 63px 49px;
-    margin-top: 13  5px;
+    margin-top: 13 5px;
     background: #191919;
     margin: 100px auto 100px auto;
     border-radius: 20px;
@@ -218,6 +218,35 @@ export default {
           margin-top: 30px;
           &:nth-child(1) {
             margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 540px) {
+  .modal {
+    padding: 15px !important;
+    .wrap {
+      margin-top: 0 !important;
+      padding: 40px 20px 63px 20px !important;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .modal {
+    .wrap {
+      .row {
+        .info {
+          flex-direction: column-reverse;
+          .price {
+            width: 100%;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #777777;
+            margin-bottom: 30px;
+            p:nth-child(2) {
+              margin-top: -10px;
+            }
           }
         }
       }
