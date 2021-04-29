@@ -368,23 +368,6 @@ export default {
             }
           }
         }
-
-        .add-btn2 {
-        }
-        .main {
-          .slick-list {
-            .slick-track {
-              .slick-slide {
-                img {
-                }
-              }
-              .slick-current {
-                img {
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
