@@ -164,7 +164,9 @@ export default {
         &:hover {
           padding: 40px 28px;
           border: 1px solid #fff;
+          animation: hover .2s ease-in-out forwards;
         }
+        
         img {
           width: 50px;
           height: 50px;
@@ -203,6 +205,14 @@ export default {
         }
       }
     }
+  }
+}
+@keyframes hover {
+  from {
+    background: #181818;
+  }
+  to {
+    background: #000;
   }
 }
 @media screen and (max-width: 1111px) {

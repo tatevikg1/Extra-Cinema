@@ -36,9 +36,11 @@
         <!-- <transition name="height"> -->
         <template v-if="item.active">
           <li v-for="(link, idx) in item.links" :key="idx">
-            <router-link :to="{name: link.link.name}" class="text-gray text-regular">{{
-              link.name
-            }}</router-link>
+            <router-link
+              :to="{ name: link.link.name }"
+              class="text-gray text-regular"
+              >{{ link.name }}</router-link
+            >
           </li>
         </template>
         <!-- </transition> -->
@@ -188,7 +190,7 @@ export default {
     }
     div {
       font-size: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 25px;
       display: flex;
       align-items: center;
       &:hover {
@@ -203,8 +205,15 @@ export default {
         transform: rotate(0);
       }
     }
-    li a {
-      font-size: 16px;
+    li {
+      margin-top: 5px;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+      a {
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
     }
   }
 }

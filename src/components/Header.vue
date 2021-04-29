@@ -126,11 +126,10 @@ header {
         font-size: 14px;
         transition: 0.2s;
         &:hover {
-          border: 1px solid #a5a5a5;
-          color: #a5a5a5;
-          text-decoration: underline;
+          color: #000000;
+          background: #ffffff;
           img {
-            filter: brightness(60%);
+            filter: brightness(0%);
           }
         }
         img {
@@ -207,7 +206,9 @@ header {
           font-size: 12px;
           margin-right: 0;
           padding: 0;
+          background: #000 !important;
           img {
+            filter: none;
             width: 25px;
             height: 25px;
             margin-left: 7px;

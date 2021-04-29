@@ -41,7 +41,10 @@
           </div>
         </div>
         <div class="row">
-          <router-link :to="{name: 'order-equipment'}" class="link text-white text-semi-bold">
+          <router-link
+            :to="{ name: 'order-equipment' }"
+            class="link text-white text-semi-bold"
+          >
             <div class="btn-decor">
               <img
                 src="../../assets/images/cinema-for-halls-page/order_icon.svg"
@@ -149,6 +152,7 @@ export default {
         &:hover {
           padding: 36px 54px;
           border: 1px solid #fff;
+          animation: hover .2s ease-in-out forwards;
         }
         img {
           width: 75px;
@@ -199,9 +203,9 @@ export default {
         border-radius: 10px;
         text-decoration: none;
         transition: 0.2s;
-        &:nth-child(2) {
-          background: #242424;
-        }
+        // &:nth-child(2) {
+          // background: #242424;
+        // }
         &:hover {
           background: #279e48;
           .btn-decor {
@@ -232,6 +236,15 @@ export default {
         }
       }
     }
+  }
+}
+
+@keyframes hover {
+  from {
+    background-color: #181818;
+  }
+  to {
+    background-color: #000000;
   }
 }
 @media screen and (max-width: 834px) {

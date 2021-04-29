@@ -78,6 +78,7 @@ export default {
         img {
           width: 55px;
           height: 41px;
+          margin-left: 19px;
         }
       }
     }
@@ -100,21 +101,24 @@ export default {
         text-decoration: none;
         font-size: 18px;
         position: absolute;
+        &:hover {
+          text-decoration: underline;
+        }
         &:nth-child(1) {
           top: calc(50% - 22px - 50px);
-          left: calc(50% - 98px - 40px);
+          left: calc(50% - 98px - 30px);
         }
         &:nth-child(2) {
           top: calc(50% - 22px - 50px);
-          right: calc(50% - 119px - 40px);
+          right: calc(50% - 119px - 30px);
         }
         &:nth-child(3) {
           bottom: calc(50% - 22px - 50px);
-          left: calc(50% - 85px - 40px);
+          left: calc(50% - 85px - 30px);
         }
         &:nth-child(4) {
           bottom: calc(50% - 22px - 50px);
-          right: calc(50% - 118px - 40px);
+          right: calc(50% - 118px - 30px);
         }
       }
     }
@@ -148,6 +152,7 @@ export default {
           img {
             width: 55px;
             height: 41px;
+            margin-left: 0;
           }
         }
       }
