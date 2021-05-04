@@ -13,8 +13,13 @@ body {
 .container {
   max-width: 1140px;
   width: 100%;
-  margin: auto;
+  margin: 0 auto;
   padding: 0 15px;
+}
+.container-fluid{
+  max-width: 100%;
+  width: 100%;
+  margin: auto;
 }
 
 .text-semi-bold {

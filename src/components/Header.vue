@@ -1,6 +1,6 @@
 <template>
   <header class="bg-black">
-    <nav class="container">
+    <nav :class="[{ 'container-fluid': fluid }, { container: !fluid }]">
       <router-link to="/" class="logo">
         <div>
           <img src="../assets/images/logo.svg" alt="Logo" />
@@ -42,6 +42,13 @@
 import Menu from "@/components/Menu";
 export default {
   name: "Header",
+  props: {
+    //somewhere header has 100% width, somewhere this value is limited
+    fluid: {
+      required: false,
+      type: Boolean,
+    },
+  },
   data() {
     return {
       routes: [
@@ -66,10 +73,10 @@ export default {
 <style lang="scss" scoped>
 header {
   border-bottom: 0.5px solid #777777;
-  nav.container {
+  nav {
     display: flex;
     justify-content: space-between;
-    padding: 20px 15px;
+    padding: 20px 30px;
     align-items: center;
     .logo {
       text-decoration: none;
@@ -165,7 +172,7 @@ header {
 }
 @media screen and (max-width: 834px) {
   header {
-    nav.container {
+    nav {
       padding: 20px 38px;
       .menu {
         display: none;
@@ -180,7 +187,7 @@ header {
 }
 @media screen and (max-width: 480px) {
   header {
-    nav.container {
+    nav {
       .logo {
         div {
           img {
@@ -197,7 +204,6 @@ header {
         }
       }
       .buttons {
-        // width: 100%;
         .enter-btn {
           position: absolute;
           top: 20px;

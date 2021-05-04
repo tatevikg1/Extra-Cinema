@@ -30,6 +30,7 @@ export default {
   text-decoration: none;
   color: #999999;
   transition: 0.2s;
+  outline: none;
   &:hover {
     color: #ffffff;
   }

@@ -452,5 +452,4 @@ export default {
     justify-content: center !important;
   }
 }
-
 </style>

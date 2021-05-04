@@ -1,12 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home";
- // EC - Extra Cinema
+// EC - Extra Cinema
 import ECHome from "@/views/cinema/Home";
 import ECForHalls from "@/views/cinema/ForHalls";
 import ECUploadDocs from "@/views/cinema/UploadDocs";
 import ECOrderEquipment from "@/views/cinema/OrderEquipment";
-import ECOrderEquipmentPay from '@/views/cinema/OrderEquipmentPay'
+import ECOrderEquipmentPay from '@/views/cinema/OrderEquipmentPay';
+import ECDashboard from '@/views/cinema/Dashboard';
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,11 @@ const routes = [
     path: "/cinema/for-halls/order-equipment/pay",
     name: "order-equipment-pay",
     component: ECOrderEquipmentPay
+  },
+  {
+    path: "/cinema/dashboard",
+    name: "dashboard",
+    component: ECDashboard
   }
 ];
 

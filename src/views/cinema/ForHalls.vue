@@ -3,15 +3,7 @@
     <Header />
     <section class="wrap bg-black">
       <div class="container">
-        <router-link
-          :to="{ name: 'ec-home' }"
-          class="text-white text-regular arrow-back"
-          ><img
-            src="../../assets/images/cinema-for-halls-page/arrow_back.svg"
-            alt="Назад"
-          />
-          Вернуться назад</router-link
-        >
+        <arrow-back href="ec-home" />
         <div class="row">
           <div class="card">
             <h2 class="text-white text-medium">Муниципальный кинозал</h2>
@@ -74,9 +66,11 @@
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ArrowBack from "@/components/ArrowBack";
+
 export default {
   name: "ForHalls",
-  components: { Header, Footer },
+  components: { Header, Footer, ArrowBack },
   mounted() {
     document.title = "Extra Cinema | Для кинозала";
   },
@@ -110,25 +104,12 @@ export default {
   z-index: -100;
 }
 .wrap {
-  padding: 12px 0 152px 0;
   .container {
+    padding: 30px 15px 151px 15px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    .arrow-back {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: #999999;
-      transition: 0.2s;
-      &:hover {
-        color: #ffffff;
-      }
-      img {
-        margin-right: 10px;
-        transform: translateY(2px);
-      }
-    }
+    position: relative;
     .row {
       margin-top: 78px;
       display: flex;
@@ -152,7 +133,7 @@ export default {
         &:hover {
           padding: 36px 54px;
           border: 1px solid #fff;
-          animation: hover .2s ease-in-out forwards;
+          animation: hover 0.2s ease-in-out forwards;
         }
         img {
           width: 75px;
@@ -203,9 +184,6 @@ export default {
         border-radius: 10px;
         text-decoration: none;
         transition: 0.2s;
-        // &:nth-child(2) {
-          // background: #242424;
-        // }
         &:hover {
           background: #279e48;
           .btn-decor {
@@ -249,8 +227,8 @@ export default {
 }
 @media screen and (max-width: 834px) {
   .wrap {
-    padding: 12px 0 92px 0;
     .container {
+      padding: 12px 15px 92px 15px;
       .row {
         flex-direction: column;
         &:nth-child(3) {
@@ -296,8 +274,9 @@ export default {
 }
 @media screen and (max-width: 480px) {
   .wrap {
-    padding: 12px 0 92px 0;
     .container {
+      padding: 12px 15px 92px 15px;
+
       .row {
         &:nth-child(2) {
           margin-top: 0;

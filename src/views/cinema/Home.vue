@@ -58,7 +58,9 @@
             />
             <h2 class="text-white text-medium">Для производителей контента</h2>
             <div class="buttons">
-              <router-link to="" class="btn text-white text-medium"
+              <router-link
+                :to="{ name: 'dashboard' }"
+                class="btn text-white text-medium"
                 >Перейти
                 <img
                   src="../../assets/images/cinema-home-page/arrow.svg"
@@ -160,13 +162,12 @@ export default {
         align-items: center;
         max-width: calc(50% - 10.5px);
         width: 100%;
-        // transition: 0.2s;
         &:hover {
           padding: 40px 28px;
           border: 1px solid #fff;
-          animation: hover .2s ease-in-out forwards;
+          animation: hover 0.2s ease-in-out forwards;
         }
-        
+
         img {
           width: 50px;
           height: 50px;
