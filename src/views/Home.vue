@@ -17,7 +17,6 @@
           <router-link to="/" class="text-medium text-white"
             >ExtraFinTach</router-link
           >
-          >
           <router-link to="/" class="text-medium text-white"
             >CashFree</router-link
           >
