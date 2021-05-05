@@ -75,13 +75,18 @@ export default {
 <style lang="scss" scoped>
 .sidebar {
   background: #000000;
-  border-right: 0.5px solid #777777;
+  height: 100%;
+  border-right: 1px solid #777777;
+
   * {
     transition: 0.2s;
   }
   li {
     padding: 19px 32px 19px 32px;
     border-bottom: 0.5px solid #777777;
+    &:last-child {
+      border-bottom: 0;
+    }
     &:hover {
       a {
         .icon {

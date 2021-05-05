@@ -81,7 +81,8 @@
           <card v-if="payMethod == 'card'" />
           <props v-if="payMethod == 'props'" />
 
-          <button class="pay-btn text-white text-semi-bold">ОПЛАТИТЬ</button>
+          <!-- <button class="pay-btn text-white text-semi-bold">ОПЛАТИТЬ</button> -->
+          <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid />
         </form>
       </div>
     </section>
@@ -96,6 +97,7 @@ import PaymentSystem from "@/components/payMethods/PaymentSystem";
 import Props from "@/components/payMethods/Props";
 import SavedCard from "@/components/payMethods/SavedCard";
 import Card from "@/components/payMethods/Card";
+import Btn from "@/components/Btn";
 export default {
   name: "OrderEquipmentPay",
   components: {
@@ -106,6 +108,7 @@ export default {
     SavedCard,
     Props,
     Card,
+    Btn,
   },
   data() {
     return {
@@ -234,23 +237,7 @@ export default {
         }
       }
       .pay-btn {
-        font-size: 16px;
-        text-decoration: none;
-        margin-top: 52px;
-        padding: 13px 92px;
-        background: #27ae60;
-        width: 100%;
-        border-radius: 10px;
-        transition: 0.1s;
-        border: 0;
-        outline: 0;
-        &:hover {
-          background: #279e48;
-        }
-        &:disabled,
-        &[disabled] {
-          background: #7fa48e;
-        }
+        margin-top: 52px !important;
       }
     }
   }
@@ -297,7 +284,6 @@ export default {
         .pay-btn {
           width: 130px;
           padding: 10px 0;
-          font-size: 14px !important;
         }
       }
     }

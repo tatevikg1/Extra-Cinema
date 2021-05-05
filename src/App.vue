@@ -64,7 +64,7 @@ export default {
 
 .modal-enter-active,
 .modal-leave-active {
-  transition: .2s;
+  transition: 0.2s;
   opacity: 1;
   height: 42px;
 }

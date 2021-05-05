@@ -65,13 +65,11 @@
           <span class="total text-white text-semi-bold"
             >Итого: {{ total }} ₽</span
           >
-          <router-link
-            :to="{ name: 'order-equipment-pay' }"
-            tag="button"
+          <link-btn
+            text="Оплатить"
             :disabled="btnDisabled"
-            class="order-link text-white text-semi-bold"
-            >Оплатить</router-link
-          >
+            href="order-equipment-pay"
+          />
         </div>
       </div>
     </section>
@@ -84,10 +82,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArrowBack from "@/components/ArrowBack";
 import ProductDetails from "@/components/modals/ProductDetails";
+import LinkBtn from "@/components/LinkBtn";
 
 export default {
   name: "OrderEquipment",
-  components: { Header, Footer, ArrowBack, ProductDetails },
+  components: { Header, Footer, ArrowBack, ProductDetails, LinkBtn },
   methods: {
     calc(item) {
       item.checked = !item.checked;
@@ -417,24 +416,6 @@ export default {
       display: block;
       margin-bottom: 52px;
     }
-    .order-link {
-      display: inline-block;
-      font-size: 16px;
-      text-decoration: none;
-      padding: 13px 92px;
-      background: #27ae60;
-      border-radius: 10px;
-      transition: 0.1s;
-      border: 0;
-      outline: 0;
-      &:hover {
-        background: #279e48;
-      }
-      &:disabled,
-      &[disabled] {
-        background: #7fa48e;
-      }
-    }
   }
 }
 @media screen and (max-width: 1024px) {
@@ -578,10 +559,6 @@ export default {
         .total {
           align-self: flex-start;
         }
-      }
-      .order-link {
-        padding: 10px 30px;
-        font-size: 14px;
       }
     }
   }

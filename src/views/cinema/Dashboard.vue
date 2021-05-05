@@ -39,6 +39,7 @@ export default {
   .wrap {
     position: relative;
     width: 100%;
+    // border-left: 1px solid #777777;
     .container {
       max-width: 1150px;
       .arrow {
