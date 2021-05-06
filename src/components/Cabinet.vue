@@ -5,20 +5,22 @@
         @click="currentView = 'createSession'"
         :class="{ disabled: currentView != 'createSession' }"
       >
-        Создать сеанс
+        <span>Создать сеанс</span>
         <img :src="roundPlusIcon" alt="" />
       </button>
       <button
         @click="currentView = 'lastSessions'"
         :class="{ disabled: currentView != 'lastSessions' }"
       >
-        Прошлые сеансы
+        <span>Прошлые сеансы</span>
+        <img :src="LastSessionIcon" alt="" />
       </button>
       <button
         @click="currentView = 'currentSession'"
         :class="{ disabled: currentView != 'currentSession' }"
       >
-        Действующий сеанс
+        <span>Действующий сеанс</span>
+        <img :src="CurrentSessionIcon" alt="" />
       </button>
     </div>
     <div class="form">
@@ -30,7 +32,9 @@
 </template>
 
 <script>
-import RoundPlusIcon from "@/assets/images/common/add_circle_white.svg";
+import RoundPlusIcon from "@/assets/images/common/add_circle_white.svg"; //icon for ADD_SESSION
+import LastSessionIcon from "@/assets/images/cabinet/last_session.svg";
+import CurrentSessionIcon from "@/assets/images/cabinet/current_session.svg";
 
 import CreateSession from "@/components/cabinet/createSession";
 import CurrentSession from "@/components/cabinet/currentSession";
@@ -43,6 +47,8 @@ export default {
     return {
       currentView: "currentSession",
       roundPlusIcon: RoundPlusIcon,
+      LastSessionIcon,
+      CurrentSessionIcon,
     };
   },
 };
@@ -78,6 +84,12 @@ export default {
         border-right: 1px solid #5c5e5d;
         border-left: 1px solid #5c5e5d;
       }
+      &:nth-child(2),
+      &:nth-child(3) {
+        img {
+          display: none;
+        }
+      }
       img {
         margin-left: 7px;
       }
@@ -109,6 +121,43 @@ export default {
   .cab-wrap .form {
     background: transparent;
     padding: 41px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .cab-wrap {
+    .buttons {
+      button {
+        padding: 5px !important;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        &:hover {
+          text-decoration: none;
+        }
+        span {
+          display: block !important;
+          font-size: 12px;
+          margin-right: 8px;
+        }
+        img {
+          display: block !important;
+          width: 20px;
+          height: 20px;
+          margin-left: 0;
+        }
+      }
+      .disabled {
+        width: 45px !important;
+        span {
+          display: none !important;
+        }
+        img {
+          filter: brightness(100%);
+        }
+      }
+    }
   }
 }
 </style>
