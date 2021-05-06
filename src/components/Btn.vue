@@ -1,5 +1,4 @@
 <template>
-  <!-- appears as a default -->
   <button
     v-if="!href"
     :disabled="disabled"

@@ -45,7 +45,7 @@ export default {
   components: { CreateSession, CurrentSession, LastSessions },
   data() {
     return {
-      currentView: "currentSession",
+      currentView: "createSession",
       roundPlusIcon: RoundPlusIcon,
       LastSessionIcon,
       CurrentSessionIcon,

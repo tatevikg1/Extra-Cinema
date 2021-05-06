@@ -160,8 +160,6 @@ export default {
       border-bottom: 1px solid #444444;
       margin-bottom: 46px;
     }
-    .carousel {
-    }
     .row {
       .info {
         display: flex;

@@ -1,6 +1,15 @@
 <template>
   <div class="createSession">
-    <button class="text-semi-bold text-white select">Выбрать фильм</button>
+    <transition name="urlChanged">
+      <films-modal
+        v-if="modal"
+        @onModalClick="selectFilm"
+        @onModalClose="modal = !modal"
+      />
+    </transition>
+    <button @click="modal = !modal" class="text-semi-bold text-white select">
+      {{ film }}
+    </button>
     <div class="row">
       <span class="text-white text-semi-bold">Назначить</span>
       <div class="time text-white text-regular">
@@ -29,18 +38,27 @@
 </template>
 
 <script>
-import PlusIcon from "@/assets/images/common/plus.svg";
 import Btn from "@/components/Btn";
+import FilmsModal from "@/components/modals/FilmsModal";
+
 import AttachmentIcon from "@/assets/images/common/attachment.svg";
+import PlusIcon from "@/assets/images/common/plus.svg";
 
 export default {
   name: "createSession",
-  components: { Btn },
+  components: { Btn, FilmsModal },
   data() {
     return {
+      modal: false,
+      film: "Выбрать фильм",
       PlusIcon,
       AttachmentIcon,
     };
+  },
+  methods: {
+    selectFilm(film) {
+      this.film = film;
+    },
   },
 };
 </script>
@@ -168,10 +186,10 @@ export default {
 @media screen and (max-width: 422px) {
   .createSession {
     .row {
-        flex-direction: column;
-        align-items: flex-start;
-      .time{
-          margin-top: 10px;
+      flex-direction: column;
+      align-items: flex-start;
+      .time {
+        margin-top: 10px;
         margin-left: 0 !important;
       }
     }

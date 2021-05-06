@@ -110,7 +110,7 @@ export default {
 .sidebar {
   background: #000000;
   height: 100%;
-  border-right: 1px solid #777777;
+  // border-right: 1px solid #777777;
   * {
     transition: 0.2s;
   }

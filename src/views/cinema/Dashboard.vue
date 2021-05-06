@@ -51,7 +51,8 @@ export default {
     max-width: 100%;
     width: 100%;
     transition: .3s;
-    // border-left: 1px solid #777777;
+    border-left: 1px solid #777777;
+    height: 100%;
     .container {
       max-width: 1150px;
       .arrow {
