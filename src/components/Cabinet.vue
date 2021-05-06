@@ -30,10 +30,10 @@
           <div class="row">
             <span class="text-white text-semi-bold">Назначить</span>
             <div class="time text-white text-regular">
-              Время: <input type="text" />
+              Время: <input type="text" placeholder="00:00" />
             </div>
             <div class="time text-white text-regular">
-              Дату: <input type="text" />
+              Дату: <input type="text" placeholder="01.01.2021"/>
             </div>
           </div>
           <div class="row">
@@ -153,6 +153,37 @@ export default {
         }
         .time {
           display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 14px;
+          &:nth-child(2) {
+            margin-left: auto;
+            input {
+              width: 89px;
+            }
+          }
+          &:nth-child(3) {
+            margin-left: 12px;
+            input {
+              width: 109px !important;
+            }
+          }
+          input {
+            background: transparent;
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            padding: 7px;
+            outline: 0;
+            margin-left: 12px;
+            &::placeholder,
+            & {
+              text-align: center;
+              font-family: "Regular";
+              font-size: 14px;
+              color: rgba(255, 255, 255, 0.6);
+            }
+            color: #ffffff !important;
+          }
         }
         .file {
           width: 100%;
@@ -169,6 +200,28 @@ export default {
           input {
             display: none;
           }
+        }
+      }
+
+      .add {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+          span {
+            background: #D8004E;
+          }
+        }
+        span {
+          margin-left: 10px;
+          background: #333333;
+          padding: 6px 8px;
+          border-radius: 10px;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.31);
+          display: flex;
+          align-items: center;
+          transition: .2s;
         }
       }
 
