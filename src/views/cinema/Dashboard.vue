@@ -1,12 +1,12 @@
 <template>
   <div>
     <Header fluid />
-    <div class="dashboard">
-      <Sidebar />
+    <div class="dashboard bg-black">
+      <Sidebar @sidebarClick="toggleView" />
       <section class="wrap">
         <div class="container">
           <arrow-back href="ec-home" class="arrow" />
-          <Cabinet />
+          <Cabinet v-if="currentView == 'cabinet'" />
         </div>
       </section>
     </div>
@@ -25,6 +25,16 @@ import Cabinet from "@/components/Cabinet";
 export default {
   name: "Dashboard",
   components: { Header, Footer, Sidebar, ArrowBack, Cabinet },
+  data() {
+    return {
+      currentView: "cabinet",
+    };
+  },
+  methods: {
+    toggleView(view) {
+      this.currentView = view;
+    },
+  },
   mounted() {
     document.title = "Extra Cinema | Кабинет";
   },
@@ -38,7 +48,9 @@ export default {
   width: 100%;
   .wrap {
     position: relative;
+    max-width: 100%;
     width: 100%;
+    transition: .3s;
     // border-left: 1px solid #777777;
     .container {
       max-width: 1150px;

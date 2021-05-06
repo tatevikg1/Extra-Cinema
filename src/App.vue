@@ -22,26 +22,26 @@ export default {
 }
 /* width */
 *::-webkit-scrollbar {
-  width: 4px;
-  border-radius: 15px;
-  margin-right: 20px;
-  transform: translateX(20px);
+  width: 4px !important;
+  border-radius: 15px !important;
+  margin-right: 20px !important;
+  transform: translateX(20px) !important;
 }
 
 /* Track */
 *::-webkit-scrollbar-track {
-  background: #1d1d1d;
+  background: #1d1d1d !important;
 }
 
 /* Handle */
 *::-webkit-scrollbar-thumb {
-  background: #a1a1a1;
-  border-radius: 15px;
+  background: #a1a1a1 !important;
+  border-radius: 15px !important;
 }
 
 /* Handle on hover */
 *::-webkit-scrollbar-thumb:hover {
-  background: #858585;
+  background: #858585 !important;
 }
 .urlChanged-enter-active,
 .urlChanged-leave-active {

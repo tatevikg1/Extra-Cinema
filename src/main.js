@@ -3,8 +3,6 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import './assets/scss/main.scss';
-import { Fragment } from "vue-fragment";
-Vue.use(Fragment)
 
 Vue.config.productionTip = false;
 

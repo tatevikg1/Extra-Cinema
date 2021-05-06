@@ -265,13 +265,12 @@ export default {
         font-size: 24px;
         margin-bottom: 33px;
       }
-
       .scroll {
         margin-bottom: 33px;
         height: 427px;
         overflow-y: scroll;
         border-radius: 20px;
-
+        
         ul {
           list-style-type: none;
           background: #101010;

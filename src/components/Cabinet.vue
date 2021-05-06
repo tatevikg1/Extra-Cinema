@@ -22,57 +22,27 @@
       </button>
     </div>
     <div class="form">
-      <transition name="urlChanged">
-        <div v-if="currentView == 'createSession'" class="createSession">
-          <button class="text-semi-bold text-white select">
-            Выбрать фильм
-          </button>
-          <div class="row">
-            <span class="text-white text-semi-bold">Назначить</span>
-            <div class="time text-white text-regular">
-              Время: <input type="text" placeholder="00:00" />
-            </div>
-            <div class="time text-white text-regular">
-              Дату: <input type="text" placeholder="01.01.2021"/>
-            </div>
-          </div>
-          <div class="row">
-            <span class="text-white text-semi-bold adv">Заказать рекламу</span>
-            <div class="file">
-              <label for="advert" class="text-regular"
-                >Прикрепить файл
-                <img :src="attachmentIcon" alt="" />
-              </label>
-              <input type="file" id="advert" />
-            </div>
-          </div>
-          <div class="add text-white text-semi-bold row">
-            Добавить сеанс
-            <span><img :src="plusIcon" alt="" /></span>
-          </div>
-          <Btn text="Создать сеанс" fluid class="createBtn" />
-        </div>
-      </transition>
+      <create-session v-if="currentView == 'createSession'" />
+      <current-session v-if="currentView == 'currentSession'" />
+      <last-sessions v-if="currentView == 'lastSessions'" />
     </div>
   </div>
 </template>
 
 <script>
 import RoundPlusIcon from "@/assets/images/common/add_circle_white.svg";
-import PlusIcon from "@/assets/images/common/plus.svg";
-import AttachmentIcon from "@/assets/images/common/attachment.svg";
 
-import Btn from "@/components/Btn";
+import CreateSession from "@/components/cabinet/createSession";
+import CurrentSession from "@/components/cabinet/currentSession";
+import LastSessions from "@/components/cabinet/lastSessions";
 
 export default {
   name: "Cabinet",
-  components: { Btn },
+  components: { CreateSession, CurrentSession, LastSessions },
   data() {
     return {
-      currentView: "createSession",
+      currentView: "currentSession",
       roundPlusIcon: RoundPlusIcon,
-      plusIcon: PlusIcon,
-      attachmentIcon: AttachmentIcon,
     };
   },
 };
@@ -81,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 .cab-wrap {
   max-width: 539px;
-  width: 100%;
+  width: auto;
   margin: 140px auto 45px auto;
   .buttons {
     display: flex;
@@ -126,109 +96,19 @@ export default {
     padding: 41px 50px 50px 50px;
     border-radius: 20px;
     margin-top: 15px;
-    .createSession {
-      button.select {
-        width: 100%;
-        background: transparent;
-        font-size: 14px;
-        padding: 7px;
-        border: 1px solid #ffffff;
-        border-radius: 10px;
-        outline: 0;
-      }
-      .row {
-        margin-top: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        span,
-        .add {
-          font-size: 16px;
-        }
-        span {
-          margin-right: 20px;
-          &.adv {
-            min-width: 156px;
-          }
-        }
-        .time {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 14px;
-          &:nth-child(2) {
-            margin-left: auto;
-            input {
-              width: 89px;
-            }
-          }
-          &:nth-child(3) {
-            margin-left: 12px;
-            input {
-              width: 109px !important;
-            }
-          }
-          input {
-            background: transparent;
-            border: 1px solid #ffffff;
-            border-radius: 10px;
-            padding: 7px;
-            outline: 0;
-            margin-left: 12px;
-            &::placeholder,
-            & {
-              text-align: center;
-              font-family: "Regular";
-              font-size: 14px;
-              color: rgba(255, 255, 255, 0.6);
-            }
-            color: #ffffff !important;
-          }
-        }
-        .file {
-          width: 100%;
-          label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 7px 15px;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.4);
-            border: 1px solid #ffffff;
-            border-radius: 12px;
-          }
-          input {
-            display: none;
-          }
-        }
-      }
+  }
+}
 
-      .add {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        &:hover {
-          text-decoration: underline;
-          span {
-            background: #D8004E;
-          }
-        }
-        span {
-          margin-left: 10px;
-          background: #333333;
-          padding: 6px 8px;
-          border-radius: 10px;
-          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.31);
-          display: flex;
-          align-items: center;
-          transition: .2s;
-        }
-      }
+@media screen and (max-width: 1024px) {
+  .cab-wrap {
+    margin: 87px auto 45px auto;
+  }
+}
 
-      .createBtn {
-        margin-top: 44px;
-      }
-    }
+@media screen and (max-width: 630px) {
+  .cab-wrap .form {
+    background: transparent;
+    padding: 41px 0 0 0;
   }
 }
 </style>
