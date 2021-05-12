@@ -36,9 +36,9 @@ import RoundPlusIcon from "@/assets/images/common/add_circle_white.svg"; //icon 
 import LastSessionIcon from "@/assets/images/cabinet/last_session.svg";
 import CurrentSessionIcon from "@/assets/images/cabinet/current_session.svg";
 
-import CreateSession from "@/components/cabinet/createSession";
-import CurrentSession from "@/components/cabinet/currentSession";
-import LastSessions from "@/components/cabinet/lastSessions";
+import CreateSession from "@/components/dashboard/createSession";
+import CurrentSession from "@/components/dashboard/currentSession";
+import LastSessions from "@/components/dashboard/lastSessions";
 
 export default {
   name: "Cabinet",

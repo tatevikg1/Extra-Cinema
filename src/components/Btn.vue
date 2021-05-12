@@ -1,6 +1,5 @@
 <template>
   <button
-    v-if="!href"
     :disabled="disabled"
     :class="[{ 'w-100': fluid }, className]"
     class="btn text-white text-semi-bold"
@@ -24,10 +23,6 @@ export default {
     disabled: {
       required: false,
       type: Boolean,
-    },
-    href: {
-      required: false,
-      type: String,
     },
     className: {
       required: false,

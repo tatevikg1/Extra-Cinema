@@ -50,13 +50,13 @@ export default {
         },
         {
           name: "Название компании",
-          url: "item1",
+          url: "company",
           imgUrl: item2,
           active: false,
         },
         {
           name: "Серийный номер проектора",
-          url: "item2",
+          url: "projector",
           imgUrl: item3,
           active: false,
         },

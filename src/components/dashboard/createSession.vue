@@ -8,15 +8,16 @@
       />
     </transition>
     <button @click="modal = !modal" class="text-semi-bold text-white select">
-      {{ film }}
+      {{ newFilm.name }}
     </button>
     <div class="row">
       <span class="text-white text-semi-bold">Назначить</span>
       <div class="time text-white text-regular">
-        Время: <input type="text" placeholder="00:00" />
+        Время:
+        <input v-model="newFilm.time" type="text" placeholder="00:00" />
       </div>
       <div class="time text-white text-regular">
-        Дату: <input type="text" placeholder="01.01.2021" />
+        Дату: <input :v-model="newFilm.date" placeholder="01.01.2021" />
       </div>
     </div>
     <div class="row">
@@ -29,35 +30,44 @@
         <input type="file" id="advert" />
       </div>
     </div>
-    <div class="add text-white text-semi-bold">
-      Добавить сеанс
-      <span><img :src="PlusIcon" alt="" /></span>
-    </div>
-    <Btn text="Создать сеанс" fluid class="createBtn" />
+    <add-btn text="Добавить сеанс" />
+    <Btn
+      @click="createSessionHandler"
+      text="Создать сеанс"
+      fluid
+      class="createBtn"
+    />
   </div>
 </template>
 
 <script>
 import Btn from "@/components/Btn";
+import AddBtn from "@/components/AddBtn";
 import FilmsModal from "@/components/modals/FilmsModal";
 
 import AttachmentIcon from "@/assets/images/common/attachment.svg";
-import PlusIcon from "@/assets/images/common/plus.svg";
 
 export default {
   name: "createSession",
-  components: { Btn, FilmsModal },
+  components: { Btn, FilmsModal, AddBtn },
   data() {
     return {
       modal: false,
-      film: "Выбрать фильм",
-      PlusIcon,
+      newFilm: {
+        name: "Выбрать фильм",
+        time: "",
+        date: "",
+        advertDoc: "",
+      },
       AttachmentIcon,
     };
   },
   methods: {
     selectFilm(film) {
-      this.film = film;
+      this.newFilm.name = film;
+    },
+    createSessionHandler() {
+      //work on it later....
     },
   },
 };
@@ -141,26 +151,8 @@ export default {
     }
   }
 
-  .add {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  .addBtn {
     margin-top: 25px;
-    &:hover {
-      span {
-        background: #d8004e;
-      }
-    }
-    span {
-      margin-left: 10px;
-      background: #333333;
-      padding: 6px 8px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.31);
-      display: flex;
-      align-items: center;
-      transition: 0.2s;
-    }
   }
 
   .createBtn {
