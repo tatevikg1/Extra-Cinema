@@ -21,14 +21,14 @@
 
 <script>
 import arrow from "@/assets/images/cinema-order-equipment-page/arrow_green.svg";
-import item1 from "@/assets/images/dashboard/item1.svg";
-import item2 from "@/assets/images/dashboard/item2.svg";
-import item3 from "@/assets/images/dashboard/item3.svg";
-import item4 from "@/assets/images/dashboard/item4.svg";
-import item5 from "@/assets/images/dashboard/item5.svg";
-import item6 from "@/assets/images/dashboard/item6.svg";
-import item7 from "@/assets/images/dashboard/item7.svg";
-import item8 from "@/assets/images/dashboard/item8.svg";
+import item1 from "@/assets/images/dashboard/sidebar/item1.svg";
+import item2 from "@/assets/images/dashboard/sidebar/item2.svg";
+import item3 from "@/assets/images/dashboard/sidebar/item3.svg";
+import item4 from "@/assets/images/dashboard/sidebar/item4.svg";
+import item5 from "@/assets/images/dashboard/sidebar/item5.svg";
+import item6 from "@/assets/images/dashboard/sidebar/item6.svg";
+import item7 from "@/assets/images/dashboard/sidebar/item7.svg";
+import item8 from "@/assets/images/dashboard/sidebar/item8.svg";
 
 export default {
   name: "Sidebar",
@@ -74,7 +74,7 @@ export default {
         },
         {
           name: "Начать сеанс",
-          url: "/",
+          url: "startSession",
           imgUrl: item6,
           active: false,
         },

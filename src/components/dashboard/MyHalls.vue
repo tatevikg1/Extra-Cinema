@@ -5,7 +5,7 @@
         <div class="row">
           <h3 class="name text-white text-semi-bold">{{ item.title }}</h3>
           <div class="buttons">
-            <button class="text-regular">
+            <button @click="$emit('onEdit')" class="text-regular">
               Изменить <img :src="EditIcon" alt="Изменить" />
             </button>
             <button @click="deleteHandler(item)" class="text-regular">
@@ -25,7 +25,9 @@
     </div>
     <add-btn @click.native="formActive = !formActive" text="Добавить Кинозал" />
     <div v-if="formActive" class="add-form">
-      <p class="text-medium text-white">ТУТ ДОЛЖНА БЫТЬ ФОРМА, НО ЕЕ ПОКА НЕТ</p>
+      <p class="text-medium text-white">
+        ТУТ ДОЛЖНА БЫТЬ ФОРМА, НО ЕЕ ПОКА НЕТ
+      </p>
       <Btn text="Добавить" fluid />
     </div>
   </div>
@@ -150,7 +152,7 @@ export default {
     }
   }
   .add-form {
-      margin-top: 40px;
+    margin-top: 40px;
     .btn {
       margin-top: 40px;
     }
@@ -162,7 +164,7 @@ export default {
 </style>
 
 <style lang="scss">
-//here I created not scoped styles, because its impossible to manage v-html under scoped styles
+//Here I created not scoped styles, because its impossible to manage v-html under scoped styles (vue bug)
 .content {
   p {
     margin-top: 17px;

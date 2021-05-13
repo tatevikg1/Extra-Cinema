@@ -9,7 +9,11 @@
           <Cabinet v-if="currentView == 'cabinet'" />
           <Company v-if="currentView == 'company'" />
           <Projector v-if="currentView == 'projector'" />
-          <my-halls v-if="currentView == 'myHalls'"/>
+          <my-halls
+            v-if="currentView == 'myHalls'"
+            @onEdit="currentView = 'company'"
+          />
+          <start-session v-if="currentView == 'startSession'"/>
         </div>
       </section>
     </div>
@@ -27,6 +31,7 @@ import Cabinet from "@/components/dashboard/Cabinet";
 import Company from "@/components/dashboard/Company";
 import Projector from "@/components/dashboard/Projector";
 import MyHalls from "@/components/dashboard/MyHalls";
+import StartSession from '@/components/dashboard/StartSession'
 
 export default {
   name: "Dashboard",
@@ -38,7 +43,8 @@ export default {
     Cabinet,
     Company,
     Projector,
-    MyHalls
+    MyHalls,
+    StartSession
   },
   data() {
     return {
