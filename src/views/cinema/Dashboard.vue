@@ -7,8 +7,9 @@
         <div class="container">
           <arrow-back href="ec-home" class="arrow" />
           <Cabinet v-if="currentView == 'cabinet'" />
-          <Company v-if="currentView == 'company'"/>
-          <Projector v-if="currentView == 'projector'"/>
+          <Company v-if="currentView == 'company'" />
+          <Projector v-if="currentView == 'projector'" />
+          <my-halls v-if="currentView == 'myHalls'"/>
         </div>
       </section>
     </div>
@@ -24,11 +25,21 @@ import ArrowBack from "@/components/ArrowBack";
 
 import Cabinet from "@/components/dashboard/Cabinet";
 import Company from "@/components/dashboard/Company";
-import Projector from '@/components/dashboard/Projector'
+import Projector from "@/components/dashboard/Projector";
+import MyHalls from "@/components/dashboard/MyHalls";
 
 export default {
   name: "Dashboard",
-  components: { Header, Footer, Sidebar, ArrowBack, Cabinet, Company, Projector },
+  components: {
+    Header,
+    Footer,
+    Sidebar,
+    ArrowBack,
+    Cabinet,
+    Company,
+    Projector,
+    MyHalls
+  },
   data() {
     return {
       currentView: "cabinet",

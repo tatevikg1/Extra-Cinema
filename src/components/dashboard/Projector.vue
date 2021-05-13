@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div class="top-block"></div>
-    <div class="scroll-wrap">
+    <div v-if="hardware" class="scroll-wrap">
       <ul>
         <li v-for="(item, idx) in hardware" :key="idx">
           <span class="type text-white text-regular">{{ item.type }}</span>
@@ -141,7 +141,7 @@ export default {
           align-items: center;
         }
         .type {
-          max-width: 100px;
+          width: 100px;
           word-wrap: break-word; /* IE 5.5-7 */
           white-space: pre-wrap;
         }
@@ -171,12 +171,12 @@ export default {
     padding: 32px 60px 0 60px;
     box-shadow: 10px -21px 25px rgba(0, 0, 0, 0.24);
     .addBtn {
-      margin-bottom: 32px;
     }
     .add-form {
       background: #252424;
       padding: 22px 26px 27px 26px;
       border-radius: 5px;
+      margin-top: 32px;
       .row {
         display: flex;
         align-items: center;

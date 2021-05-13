@@ -62,7 +62,7 @@ export default {
         },
         {
           name: "Мои кинозалы",
-          url: "item3",
+          url: "myHalls",
           imgUrl: item4,
           active: false,
         },

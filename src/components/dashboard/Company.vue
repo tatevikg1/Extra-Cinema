@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-      <!-- CONTENT TO BE ADDED -->
+      <p class="text-white text-medium">ТУТ ДОЛЖНА БЫТЬ ФОРМА, НО ЕЕ ПОКА НЕТ</p>
       <Btn text="Отправить" fluid/>
   </div>
 </template>
@@ -21,5 +21,8 @@ export default {
     max-width: 920px;
     width: 100%;
     min-height: 70vh;
+    .btn {
+      margin-top: 34px;
+    }
 }
 </style>
