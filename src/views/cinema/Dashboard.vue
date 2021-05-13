@@ -2,7 +2,7 @@
   <div>
     <Header fluid />
     <div class="dashboard bg-black">
-      <Sidebar @sidebarClick="toggleView" />
+      <Sidebar @sidebarClick="toggleView"/>
       <section class="wrap">
         <div class="container">
           <arrow-back href="ec-home" class="arrow" />

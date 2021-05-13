@@ -35,12 +35,19 @@ export default {
   methods: {
     clickHandler(item) {
       this.$emit("sidebarClick", item.url);
+
+      this.currentView = item.url; //local current view to manage active buttons
+      if (item.url === this.currentView) {
+        this.menuItems.forEach((el) => (el.active = false));
+        item.active = true;
+      }
     },
   },
   data() {
     return {
       arrow,
       closed: false,
+      currentView: "cabinet",
       menuItems: [
         {
           name: "Личный кабинет",
@@ -202,16 +209,15 @@ export default {
     display: flex;
   }
 }
-@media screen and (max-width: 480px) { 
+@media screen and (max-width: 480px) {
   .sidebar li button .icon,
   .sidebar .arrow div {
     min-width: 34px;
-    min-height: 34px; 
+    min-height: 34px;
     width: 34px;
     height: 34px;
   }
 }
-
 
 //work on this animation later
 .width-enter-active,
