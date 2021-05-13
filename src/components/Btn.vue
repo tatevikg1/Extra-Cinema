@@ -1,7 +1,7 @@
 <template>
   <button
     :disabled="disabled"
-    :class="[{ 'w-100': fluid }, className]"
+    :class="[{ 'w-100': fluid }, className, {centered: center}]"
     class="btn text-white text-semi-bold"
   >
     {{ text }}
@@ -28,6 +28,10 @@ export default {
       required: false,
       type: String,
     },
+    center: {
+      required: false,
+      type: Boolean
+    }
   },
 };
 </script>
@@ -52,6 +56,9 @@ export default {
 }
 .w-100 {
   width: 100%;
+}
+.centered {
+  margin: auto;
 }
 
 @media screen and (max-width: 500px) {

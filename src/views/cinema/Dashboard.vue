@@ -2,7 +2,7 @@
   <div>
     <Header fluid />
     <div class="dashboard bg-black">
-      <Sidebar @sidebarClick="toggleView"/>
+      <Sidebar @sidebarClick="toggleView" />
       <section class="wrap">
         <div class="container">
           <arrow-back href="ec-home" class="arrow" />
@@ -13,7 +13,8 @@
             v-if="currentView == 'myHalls'"
             @onEdit="currentView = 'company'"
           />
-          <start-session v-if="currentView == 'startSession'"/>
+          <start-session v-if="currentView == 'startSession'" />
+          <Documents v-if="currentView == 'documents'"/>
         </div>
       </section>
     </div>
@@ -31,7 +32,8 @@ import Cabinet from "@/components/dashboard/Cabinet";
 import Company from "@/components/dashboard/Company";
 import Projector from "@/components/dashboard/Projector";
 import MyHalls from "@/components/dashboard/MyHalls";
-import StartSession from '@/components/dashboard/StartSession'
+import StartSession from "@/components/dashboard/StartSession";
+import Documents from "@/components/dashboard/Documents";
 
 export default {
   name: "Dashboard",
@@ -44,7 +46,8 @@ export default {
     Company,
     Projector,
     MyHalls,
-    StartSession
+    StartSession,
+    Documents
   },
   data() {
     return {

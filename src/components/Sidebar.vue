@@ -87,7 +87,7 @@ export default {
         },
         {
           name: "Документы ЕАИС",
-          url: "/",
+          url: "documents",
           imgUrl: item7,
           active: false,
         },
@@ -171,7 +171,7 @@ export default {
       border: 0;
       text-align: left;
       width: 100%;
-
+      cursor: pointer;
       .icon {
         min-width: 40px;
         min-height: 40px;
