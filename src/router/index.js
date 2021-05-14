@@ -8,6 +8,7 @@ import ECUploadDocs from "@/views/cinema/UploadDocs";
 import ECOrderEquipment from "@/views/cinema/OrderEquipment";
 import ECOrderEquipmentPay from '@/views/cinema/OrderEquipmentPay';
 import ECDashboard from '@/views/cinema/Dashboard';
+import ECForHolders from '@/views/cinema/ForHolders';
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,11 @@ const routes = [
     path: "/cinema/dashboard",
     name: "dashboard",
     component: ECDashboard
+  },
+  {
+    path: '/cinema/forHolders',
+    name: 'for-holders',
+    component: ECForHolders
   }
 ];
 

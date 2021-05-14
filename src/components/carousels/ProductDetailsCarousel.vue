@@ -30,13 +30,13 @@
         <div class="buttons">
           <button @click="showPrev">
             <img
-              src="../assets/images/cinema-order-equipment-page/arrow_white.svg"
+              src="../../assets/images/cinema-order-equipment-page/arrow_white.svg"
               alt="Назад"
             />
           </button>
           <button @click="showNext">
             <img
-              src="../assets/images/cinema-order-equipment-page/arrow_white.svg"
+              src="../../assets/images/cinema-order-equipment-page/arrow_white.svg"
               alt="Вперед"
             />
           </button>
@@ -46,11 +46,11 @@
             <label class="text-regular">Количество</label>
             <div class="calc">
               <button @click="increment">
-                <img src="../assets/images/common/plus.svg" alt="Добавить" />
+                <img src="../../assets/images/common/plus.svg" alt="Добавить" />
               </button>
               <div class="screen text-white text-semi-bold">{{ amount }}</div>
               <button @click="decrement">
-                <img src="../assets/images/common/minus.svg" alt="Убавить" />
+                <img src="../../assets/images/common/minus.svg" alt="Убавить" />
               </button>
             </div>
           </div>

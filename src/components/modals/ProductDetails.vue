@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import Carousel from "@/components/Carousel";
+import Carousel from "@/components/carousels/ProductDetailsCarousel";
 export default {
   components: { Carousel },
   name: "ProductDetails",

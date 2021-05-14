@@ -18,7 +18,7 @@
             />
             <h2 class="text-white text-medium">Для зрителей</h2>
             <div class="buttons">
-              <router-link to="" class="btn text-white text-medium"
+              <router-link :to="{ name: 'dashboard' }" class="btn text-white text-medium"
                 >Фильмы онлайн
                 <img
                   src="../../assets/images/cinema-home-page/youtube.svg"
@@ -59,7 +59,7 @@
             <h2 class="text-white text-medium">Для производителей контента</h2>
             <div class="buttons">
               <router-link
-                :to="{ name: 'dashboard' }"
+                :to="{ name: 'for-holders' }"
                 class="btn text-white text-medium"
                 >Перейти
                 <img
