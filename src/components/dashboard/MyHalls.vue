@@ -8,9 +8,7 @@
             <button @click="$emit('onEdit')" class="text-regular">
               Изменить <img :src="EditIcon" alt="Изменить" />
             </button>
-            <button @click="deleteHandler(item)" class="text-regular">
-              Удалить <img :src="DeleteIcon" alt="Удалить" />
-            </button>
+            <delete-btn @click.native="deleteHandler(item)"/>
           </div>
         </div>
         <div class="row">
@@ -36,14 +34,13 @@
 <script>
 import AddBtn from "@/components/AddBtn";
 import Btn from "@/components/Btn";
+import DeleteBtn from '@/components/DeleteBtn'
 
-import DeleteIcon from "@/assets/images/dashboard/cancel.svg";
 import EditIcon from "@/assets/images/dashboard/edit.svg";
 export default {
-  components: { AddBtn, Btn },
+  components: { AddBtn, Btn, DeleteBtn },
   data() {
     return {
-      DeleteIcon,
       EditIcon,
       formActive: false,
       items: [

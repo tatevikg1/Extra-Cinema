@@ -94,7 +94,7 @@ export default {
     }
   }
   .content {
-    padding: 67px 42px 103px 97px;
+    padding: 67px 42px 103px 42px;
     background: #212121;
     border-radius: 0 10px 10px 10px;
     .fillForMe {
@@ -105,6 +105,8 @@ export default {
         color: #bcbcbc;
         font-size: 16px;
         margin-bottom: 90px;
+        max-width: 618px;
+        width: 100%;
       }
       .row {
         display: flex;
@@ -112,6 +114,9 @@ export default {
         .col {
           max-width: 170px;
           width: 100%;
+          &:nth-child(1) {
+            margin-left: 50px;
+          }
           h3 {
             color: #ffffff;
             position: relative;

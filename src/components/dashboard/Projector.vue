@@ -8,9 +8,7 @@
           <span class="serialNum text-white text-regular">{{
             item.serialNum
           }}</span>
-          <button @click="deleteHandler(item)" class="text-regular">
-            Удалить <img :src="DeleteIcon" alt="" />
-          </button>
+          <delete-btn @click.native="deleteHandler(item)"/>
         </li>
       </ul>
     </div>
@@ -51,13 +49,12 @@
 <script>
 import AddBtn from "@/components/AddBtn";
 import Btn from "@/components/Btn";
-import DeleteIcon from "@/assets/images/dashboard/cancel.svg";
+import DeleteBtn from '@/components/DeleteBtn'
 
 export default {
-  components: { AddBtn, Btn },
+  components: { AddBtn, Btn, DeleteBtn },
   data() {
     return {
-      DeleteIcon,
       btnDisabled: true,
       addHardwareActive: false,
       newHardware: {
@@ -151,27 +148,12 @@ export default {
           border-bottom: 1px solid #3d3c3c;
           justify-content: center;
         }
-        button {
-          background: transparent;
-          color: #27ae60;
-          border: 0;
-          outline: 0;
-          cursor: pointer;
-          &:hover {
-            text-decoration: underline;
-          }
-          img {
-            margin-left: 10px;
-          }
-        }
       }
     }
   }
   .actions-wrap {
     padding: 32px 60px 0 60px;
     box-shadow: 10px -21px 25px rgba(0, 0, 0, 0.24);
-    .addBtn {
-    }
     .add-form {
       background: #252424;
       padding: 22px 26px 27px 26px;

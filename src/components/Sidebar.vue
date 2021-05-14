@@ -75,7 +75,7 @@ export default {
         },
         {
           name: "Ответственные лица",
-          url: "/",
+          url: "persons",
           imgUrl: item5,
           active: false,
         },

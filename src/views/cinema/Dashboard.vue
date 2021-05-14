@@ -15,6 +15,7 @@
           />
           <start-session v-if="currentView == 'startSession'" />
           <Documents v-if="currentView == 'documents'"/>
+          <Persons v-if="currentView == 'persons'" @onEdit="currentView = 'company'"/>
         </div>
       </section>
     </div>
@@ -34,6 +35,7 @@ import Projector from "@/components/dashboard/Projector";
 import MyHalls from "@/components/dashboard/MyHalls";
 import StartSession from "@/components/dashboard/StartSession";
 import Documents from "@/components/dashboard/Documents";
+import Persons from '@/components/dashboard/Persons';
 
 export default {
   name: "Dashboard",
@@ -47,7 +49,8 @@ export default {
     Projector,
     MyHalls,
     StartSession,
-    Documents
+    Documents,
+    Persons,
   },
   data() {
     return {
