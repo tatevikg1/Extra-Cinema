@@ -22,7 +22,10 @@
                 ></span
               >
             </div>
-            <delete-btn @click.native="deleteHandler(person)" />
+            <delete-btn
+              @click.native="deleteHandler(person)"
+              :show-text="showBtnText"
+            />
           </li>
         </ul>
       </div>
@@ -37,6 +40,7 @@ export default {
   components: { AddBtn, DeleteBtn },
   data() {
     return {
+      showBtnText: true,
       halls: [
         {
           title: "ООО «Мой кинозал №1»",
@@ -69,6 +73,11 @@ export default {
         hall.people = hall.people.filter((el) => el !== person);
       });
     },
+  },
+  mounted() {
+    if (window.screen.width <= 700) {
+      this.showBtnText = false;
+    }
   },
 };
 </script>
@@ -127,6 +136,59 @@ export default {
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .form {
+    margin: 88px auto 65px auto;
+    padding: 30px 40px 30px 40px;
+    .scroll-wrap {
+      .scroll {
+        li {
+          .person {
+            span:nth-child(2) {
+              margin-left: 30px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .form {
+    .scroll-wrap {
+      .scroll {
+        li {
+          .person {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start !important;
+            span:nth-child(2) {
+              margin-left: 0 !important;
+              margin-top: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width:480px) {
+  .form {
+    padding: 0;
+    background: transparent;
+    .scroll-wrap {
+      background: transparent !important;
+      padding: 0 !important;
+      .scroll {
+        padding-right: 20px !important;
+        li {
+          align-items: flex-start !important;
         }
       }
     }

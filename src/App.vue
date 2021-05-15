@@ -23,6 +23,7 @@ export default {
 /* width */
 *::-webkit-scrollbar {
   width: 4px !important;
+  height: 4px !important;
   border-radius: 15px !important;
   margin-right: 20px !important;
   transform: translateX(20px) !important;

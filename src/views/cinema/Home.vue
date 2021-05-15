@@ -149,6 +149,7 @@ export default {
         font-size: 72px;
         max-width: 500px;
         width: 100%;
+        letter-spacing: normal;
         p {
           font-size: 20px;
         }

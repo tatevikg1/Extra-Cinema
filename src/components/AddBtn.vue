@@ -45,4 +45,10 @@ export default {
     transition: 0.2s;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .addBtn {
+    font-size: 14px;
+  }
+}
 </style>

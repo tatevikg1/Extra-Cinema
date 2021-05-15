@@ -8,7 +8,10 @@
           <span class="serialNum text-white text-regular">{{
             item.serialNum
           }}</span>
-          <delete-btn @click.native="deleteHandler(item)"/>
+          <delete-btn
+            @click.native="deleteHandler(item)"
+            :show-text="showText"
+          />
         </li>
       </ul>
     </div>
@@ -49,7 +52,7 @@
 <script>
 import AddBtn from "@/components/AddBtn";
 import Btn from "@/components/Btn";
-import DeleteBtn from '@/components/DeleteBtn'
+import DeleteBtn from "@/components/DeleteBtn";
 
 export default {
   components: { AddBtn, Btn, DeleteBtn },
@@ -57,6 +60,7 @@ export default {
     return {
       btnDisabled: true,
       addHardwareActive: false,
+      showText: true,
       newHardware: {
         type: "",
         serialNum: "",
@@ -72,6 +76,11 @@ export default {
         { type: "Проектор", serialNum: "00000 27" },
       ],
     };
+  },
+  mounted() {
+    if (window.screen.width < 500) {
+      this.showText = false;
+    }
   },
   methods: {
     changeHandler() {
@@ -145,6 +154,7 @@ export default {
         .serialNum {
           max-width: 163px;
           width: 100%;
+          margin: 0 20px;
           border-bottom: 1px solid #3d3c3c;
           justify-content: center;
         }
@@ -197,6 +207,66 @@ export default {
       }
       .btn {
         margin-top: 29px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .form {
+    margin: 88px auto 60px auto;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .form {
+    .scroll-wrap {
+      padding: 20px 30px;
+    }
+    .actions-wrap {
+      padding: 32px 30px 0 30px;
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .form {
+    background: transparent;
+    margin: 70px auto 60px auto;
+    .scroll-wrap {
+      padding: 0;
+      ul li {
+        span,
+        button {
+          padding: 15px 0 7.5px 0;
+        }
+        span {
+          font-size: 14px;
+        }
+        .serialNum {
+          margin: 0 10px;
+        }
+      }
+    }
+    .actions-wrap {
+      padding: 20px 0 0 0;
+      .add-form {
+        padding: 17px 21px;
+        margin-top: 26px;
+        .row {
+          flex-wrap: wrap;
+          .input-group {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            &:nth-child(1) {
+              margin-right: 0;
+              margin-bottom: 15px;
+            }
+            input {
+              width: 100%;
+            }
+          }
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <button class="text-regular">
-    Удалить <img :src="DeleteIcon" alt="" />
+    <template v-if="showText">Удалить</template> <img :src="DeleteIcon" alt="" />
   </button>
 </template>
 
@@ -13,6 +13,13 @@ export default {
       DeleteIcon,
     };
   },
+  props: {
+    showText: {
+      require: false,
+      type: Boolean,
+      default: true
+    }
+  }
 };
 </script>
 

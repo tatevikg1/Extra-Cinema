@@ -144,4 +144,70 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 834px) {
+  .wrap {
+    .container {
+      .buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        .link {
+          max-width: 269px;
+          width: 100%;
+          border-radius: 0;
+          height: 50px;
+          margin: 0 5px;
+          .btn-decor {
+            height: 50px;
+            width: 50px;
+            border-radius: 0;
+            img {
+              width: 30px;
+              height: 30px;
+            }
+          }
+          .btn-text {
+            text-align: left;
+            padding-left: 15px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 572px) {
+  .wrap {
+    .container {
+      position: relative;
+      padding: 50px 0 39px 0;
+      h1 {
+        text-align: center;
+      }
+      .buttons {
+        margin-top: 50px;
+      }
+      .links {
+        margin-top: 27px;
+        a {
+          background: #000000;
+          text-align: center;
+          width: 148px;
+          height: 128px;
+          &:nth-child(2) {
+            h3 {
+              transform: translateY(-10px);
+            }
+          }
+          h3 {
+            height: 20px;
+            margin-top: -20px;
+            font-size: 14px;
+            font-family: 'Regular' !important;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

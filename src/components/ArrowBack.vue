@@ -39,4 +39,14 @@ export default {
     transform: translateY(2px);
   }
 }
+@media screen and (max-width: 480px) {
+  .arrow-back {
+    font-size: 14px;
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 7px;
+    }
+  }
+}
 </style>

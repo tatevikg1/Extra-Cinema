@@ -17,7 +17,8 @@
         <input v-model="newFilm.time" type="text" placeholder="00:00" />
       </div>
       <div class="time text-white text-regular">
-        Дату: <input :v-model="newFilm.date" placeholder="01.01.2021" />
+        Дату:
+        <input :v-model="newFilm.date" type="text" placeholder="01.01.2021" />
       </div>
     </div>
     <div class="row">

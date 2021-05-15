@@ -16,30 +16,36 @@
         Заполнить самому
       </button>
     </div>
-    <div class="content">
+    <div class="content-wrap">
       <div v-if="currentView === 'fillForMe'" class="fillForMe">
-        <p class="text-regular">
-          Уважаемый клиент! Для удобства и экономии вашего времени мы готовы
-          предоставить услугу заполнения документов.
-        </p>
-        <div class="row">
-          <div class="col">
-            <h3 class="text-semi-bold">УДОБНО</h3>
+        <div class="content">
+          <div class="p-wrap">
             <p class="text-regular">
-              Берем функцию заполнения документов на себя
+              Уважаемый клиент! Для удобства и экономии вашего времени мы готовы
+              предоставить услугу заполнения документов.
             </p>
+            <Btn class="useBtn" text="Воспользоваться услугой" fluid />
           </div>
-          <div class="col">
-            <h3 class="text-semi-bold">КОРРЕКТНО</h3>
-            <p class="text-regular">
-              Корректно заполним все необходимые данные
-            </p>
-          </div>
-          <div class="col">
-            <h3 class="text-semi-bold">СВОЕВРЕМЕННО</h3>
-            <p class="text-regular">
-              Никогда не опоздаем со сроком отправки отчета
-            </p>
+
+          <div class="row">
+            <div class="col">
+              <h3 class="text-semi-bold">УДОБНО</h3>
+              <p class="text-regular">
+                Берем функцию заполнения документов на себя
+              </p>
+            </div>
+            <div class="col">
+              <h3 class="text-semi-bold">КОРРЕКТНО</h3>
+              <p class="text-regular">
+                Корректно заполним все необходимые данные
+              </p>
+            </div>
+            <div class="col">
+              <h3 class="text-semi-bold">СВОЕВРЕМЕННО</h3>
+              <p class="text-regular">
+                Никогда не опоздаем со сроком отправки отчета
+              </p>
+            </div>
           </div>
         </div>
         <Btn class="useBtn" text="Воспользоваться услугой" center />
@@ -93,7 +99,7 @@ export default {
       font-family: "SemiBold";
     }
   }
-  .content {
+  .content-wrap {
     padding: 67px 42px 103px 42px;
     background: #212121;
     border-radius: 0 10px 10px 10px;
@@ -101,47 +107,216 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      p {
-        color: #bcbcbc;
-        font-size: 16px;
-        margin-bottom: 90px;
-        max-width: 618px;
-        width: 100%;
-      }
-      .row {
+
+      .content {
         display: flex;
-        justify-content: space-between;
-        .col {
-          max-width: 170px;
-          width: 100%;
-          &:nth-child(1) {
-            margin-left: 50px;
-          }
-          h3 {
-            color: #ffffff;
-            position: relative;
-            &::before {
-              content: "";
-              display: block;
-              width: 35px;
-              height: 35px;
-              background: url("../../assets/images/dashboard/checked.svg")
-                no-repeat center;
-              background-size: contain;
-              position: absolute;
-              top: 0;
-              left: -50px;
-            }
-          }
+        flex-direction: column;
+        .p-wrap {
           p {
-            color: #7c7c7c;
-            font-size: 14px;
+            color: #bcbcbc;
+            font-size: 16px;
+            margin-bottom: 90px;
+            max-width: 618px;
+            width: 100%;
+          }
+          button {
+            display: none;
+          }
+        }
+        .row {
+          display: flex;
+          justify-content: space-between;
+          .col {
+            max-width: 170px;
+            width: 100%;
+            &:nth-child(1) {
+              margin-left: 50px;
+            }
+            h3 {
+              color: #ffffff;
+              position: relative;
+              &::before {
+                content: "";
+                display: block;
+                width: 35px;
+                height: 35px;
+                background: url("../../assets/images/dashboard/checked.svg")
+                  no-repeat center;
+                background-size: contain;
+                position: absolute;
+                top: 0;
+                left: -50px;
+              }
+            }
+            p {
+              color: #7c7c7c;
+              font-size: 14px;
+            }
           }
         }
       }
-      .useBtn {
+      button {
+        margin-top: 75px;
       }
     }
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .form {
+    margin: 87px auto 369px auto;
+    .content-wrap {
+      padding: 88px 45px 67px 45px;
+      .fillForMe {
+        .content {
+          flex-direction: row;
+          justify-content: space-between;
+          .p-wrap {
+            max-width: 244px;
+            p {
+              line-height: 22px;
+            }
+            button {
+              display: block;
+              padding: 12px;
+              font-size: 16px;
+            }
+          }
+          .row {
+            flex-direction: column;
+            .col {
+              max-width: 302px;
+              p {
+                margin-bottom: 20px;
+                margin-top: 10px;
+              }
+              &:nth-child(1) {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+
+        button {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .form {
+    margin: 87px auto 369px auto;
+    .content-wrap {
+      padding: 88px 45px 67px 45px;
+      .fillForMe {
+        .content {
+          flex-direction: row;
+          justify-content: space-between;
+          .p-wrap {
+            max-width: 244px;
+            p {
+              line-height: 22px;
+            }
+            button {
+              display: block;
+              padding: 12px;
+              font-size: 16px;
+            }
+          }
+          .row {
+            flex-direction: column;
+            .col {
+              max-width: 150px;
+              p {
+                margin-bottom: 20px;
+                margin-top: 10px;
+              }
+              &:nth-child(1) {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .form {
+    margin: 87px auto 369px auto;
+    .buttons {
+      button {
+        width: 180px;
+        font-size: 14px;
+      }
+    }
+    .content-wrap {
+      .fillForMe {
+        .content {
+          flex-wrap: wrap;
+          .p-wrap {
+            max-width: 100%;
+            p {
+              margin-bottom: 20px;
+            }
+            button {
+              display: none;
+            }
+          }
+          .row {
+            flex-direction: column;
+            padding-left: 50px;
+            .col {
+              max-width: 302px;
+              p {
+                margin-bottom: 20px;
+                margin-top: 10px;
+              }
+              &:nth-child(1) {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+
+        button {
+          display: block;
+          margin-top: 40px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .form {
+    margin: 71px auto 40px auto;
+    .buttons {
+      button {
+        padding: 10px;
+        border-radius: 10px;
+        width: 137px;
+        &:nth-child(1) {
+          margin-right: 10px;
+        }
+      }
+      .btnActive {
+        border: 0.5px solid #777777;
+      }
+    }
+    .content-wrap {
+      background: transparent !important;
+      padding: 40px 0 0 0;
+    }
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .form .buttons button {
+    max-width: 110px !important;
+    font-size: 11px;
   }
 }
 </style>

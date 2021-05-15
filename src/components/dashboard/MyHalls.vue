@@ -5,10 +5,14 @@
         <div class="row">
           <h3 class="name text-white text-semi-bold">{{ item.title }}</h3>
           <div class="buttons">
-            <button @click="$emit('onEdit')" class="text-regular">
-              Изменить <img :src="EditIcon" alt="Изменить" />
-            </button>
-            <delete-btn @click.native="deleteHandler(item)"/>
+            <edit-btn
+              @click.native="$emit('onEdit')"
+              :show-text="showBtnText"
+            />
+            <delete-btn
+              @click.native="deleteHandler(item)"
+              :show-text="showBtnText"
+            />
           </div>
         </div>
         <div class="row">
@@ -34,15 +38,15 @@
 <script>
 import AddBtn from "@/components/AddBtn";
 import Btn from "@/components/Btn";
-import DeleteBtn from '@/components/DeleteBtn'
+import DeleteBtn from "@/components/DeleteBtn";
+import EditBtn from "@/components/EditBtn";
 
-import EditIcon from "@/assets/images/dashboard/edit.svg";
 export default {
-  components: { AddBtn, Btn, DeleteBtn },
+  components: { AddBtn, Btn, DeleteBtn, EditBtn },
   data() {
     return {
-      EditIcon,
       formActive: false,
+      showBtnText: true,
       items: [
         {
           title: "ООО «Мой кинозал №1»",
@@ -69,6 +73,11 @@ export default {
     deleteHandler(item) {
       this.items = this.items.filter((el) => el !== item);
     },
+  },
+  mounted() {
+    if (window.screen.width <= 834) {
+      this.showBtnText = false;
+    }
   },
 };
 </script>
@@ -106,20 +115,6 @@ export default {
             display: flex;
             align-items: center;
             button {
-              display: flex;
-              align-items: center;
-              background: transparent;
-              font-size: 16px;
-              color: #27ae60;
-              border: 0;
-              outline: 0;
-              cursor: pointer;
-              &:hover {
-                text-decoration: underline;
-              }
-              img {
-                margin-left: 10px;
-              }
               &:nth-child(2) {
                 margin-left: 32px;
               }
@@ -130,7 +125,7 @@ export default {
         &:nth-child(3) {
           margin-top: 25px;
           .subtitle {
-            width: 166px;
+            min-width: 166px;
             color: #9a9a9a;
             font-size: 16px;
           }
@@ -156,6 +151,43 @@ export default {
   }
   .addBtn {
     margin-top: 67px;
+  }
+}
+@media screen and (max-width: 834px) {
+  .form {
+    padding: 41px 37px 49px 37px;
+    margin: 122px auto 66px auto;
+    .scroll-wrap {
+      .item {
+        .row:nth-child(2),
+        .row:nth-child(3) {
+          flex-wrap: wrap;
+          .subtitle {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form {
+    background: transparent;
+    padding: 0;
+    margin: 88px auto 47px auto;
+    .scroll-wrap {
+      padding-right: 20px;
+      .item {
+        .row:nth-child(2),
+        .row:nth-child(3) {
+          flex-wrap: wrap;
+        }
+      }
+    }
+    .addBtn {
+      margin-top: 50px;
+    }
   }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="wrap">
     <VueSlickCarousel
+      v-if="desktopCarousel"
       ref="c1"
       :focusOnSelect="true"
       :slidesToShow="4"
@@ -20,11 +21,29 @@
         <h3 class="text-white text-semi-bold">{{ item.title }}</h3>
       </router-link>
     </VueSlickCarousel>
-    <div @click="$refs.c1.prev()" class="prev">
+    <div v-if="desktopCarousel" @click="$refs.c1.prev()" class="prev">
       <img :src="ArrowIcon" alt="" />
     </div>
-    <div @click="$refs.c1.next()" class="next">
+    <div v-if="desktopCarousel" @click="$refs.c1.next()" class="next">
       <img :src="ArrowIcon" alt="" />
+    </div>
+
+    <!-- mobile carousel -->
+    <div v-if="!desktopCarousel" class="carousel-wrap">
+      <div class="carousel">
+        <router-link
+          v-for="(item, idx) in items"
+          :key="idx"
+          :to="item.url"
+          class="item"
+        >
+          <div class="image">
+            <img :src="item.img" alt="" />
+          </div>
+          <div class="line"></div>
+          <h3 class="text-white text-semi-bold">{{ item.title }}</h3>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +62,7 @@ export default {
   components: { VueSlickCarousel },
   data() {
     return {
+      desktopCarousel: true,
       ArrowIcon,
       items: [
         { img: item1, title: "Рейтинг Extracinema", url: "/" },
@@ -56,6 +76,11 @@ export default {
         { img: item4, title: "Отчеты и документы", url: "/" },
       ],
     };
+  },
+  mounted() {
+    if (window.screen.width < 834) {
+      this.desktopCarousel = false;
+    }
   },
 };
 </script>
@@ -125,5 +150,106 @@ export default {
   .next {
     right: 9px;
   }
+
+  //mobile carousel
+  .carousel-wrap {
+    padding: 0 40px;
+    background: transparent;
+    .carousel {
+      display: flex;
+      overflow-x: scroll;
+      margin-top: 148px;
+      padding-bottom: 90px;
+      a {
+        min-width: 266px;
+        width: 100%;
+        margin: 0 10px; //hack
+        height: 198px;
+        background: #000000;
+        border: 1px solid #ffffff;
+        border-radius: 10px;
+        padding: 25px 10px 25px 10px;
+        outline: 0;
+        text-align: center;
+        transition: 0.2s;
+        text-decoration: none;
+        &:first-child {
+          // margin-left: 90px;
+        }
+        &:last-child {
+          margin-right: 90px !important;
+        }
+        &:hover {
+          background: #181818;
+          border: 1px solid #181818;
+        }
+        .image {
+          height: 66px;
+          display: flex;
+          align-items: center;
+          img {
+            margin: auto;
+          }
+        }
+        .line {
+          width: 75px;
+          height: 7px;
+          background: #d8004e;
+          margin: 26px auto;
+        }
+        h3 {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 745px) {
+  .wrap {
+    .carousel-wrap {
+      padding: 0 15px;
+      .carousel {
+        padding-bottom: 40px;
+        a {
+          padding: 15px 15px 15px 15px;
+          min-width: 149px;
+          max-height: 127px;
+          margin: 0 9px;
+          &:first-child{ margin-left: 0;}
+          &:last-child{margin-right: 0;}
+          .image {
+            height: 30px;
+            width: 30px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+          .line {
+            margin: 15px auto;
+            width: 50px;
+          }
+          h3 {
+            font-size: 14px;
+            font-family: "Regular" !important;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width:480px) {
+  .wrap .carousel-wrap .carousel{
+    margin-top: 60px;
+  }
+}
+@media screen and (max-width: 350px)  {
+.carousel-wrap {
+  padding: 0 5px !important;
+}
 }
 </style>

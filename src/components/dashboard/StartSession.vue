@@ -130,4 +130,63 @@ export default {
     }
   }
 }
+@media screen and (max-width: 834px) {
+  .form {
+    margin: 81px auto 159px auto;
+    .buttons {
+      flex-direction: column;
+      margin-top: 58px;
+      button:nth-child(1) {
+        margin-right: 0;
+      }
+      button:nth-child(2) {
+        margin-top: 50px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 660px) {
+  .form {
+    margin: 78px auto 44px auto;
+    .row {
+      flex-wrap: wrap;
+      padding: 25px 0;
+      &:first-child {
+        padding: 0 0 25px 0;
+      }
+      .col {
+        h2 {
+          margin-bottom: 25px;
+        }
+        a {
+          margin-bottom: 15px;
+          font-size: 16px;
+        }
+      }
+      .player {
+        margin-top: 28px;
+      }
+    }
+    .buttons {
+      margin-top: 15px;
+      button {
+        font-size: 14px;
+        padding: 7px 18px;
+        img {
+          margin-right: 7px;
+        }
+        &:nth-child(2) {
+          margin-top: 35px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 373px) {
+  .buttons {
+    button {
+      font-size: 10px !important;
+    }
+  }
+}
 </style>
