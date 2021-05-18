@@ -110,8 +110,8 @@ export default {
 <style lang="scss" scoped>
 .menu {
   padding: 145px 158px 108px 108px;
-  max-width: 800px;
-  width: 100%;
+  // max-width: 800px;
+  width: 50vw;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -213,6 +213,9 @@ export default {
       a {
         font-size: 16px;
         letter-spacing: 1px;
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }

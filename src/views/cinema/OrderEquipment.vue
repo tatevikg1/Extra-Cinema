@@ -13,7 +13,8 @@
           Заказать оборудование для кинозала
         </h1>
         <div class="buttons">
-          <button class="btn btn-order">
+          <!-- WORK ON ACTIVE CLASS LATER -->
+          <button class="btn btn-order active">
             <img
               src="../../assets/images/cinema-order-equipment-page/wallet.svg"
               alt="Купить"
@@ -224,8 +225,10 @@ export default {
         width: 367px;
         height: 100px;
         margin: 0 11px;
-        border: 0;
+        border: 1px solid #1f1f1f;
         outline: 0;
+        filter: brightness(50%);
+        transition: 0.2s;
         span {
           max-width: 100px;
           text-align: left;
@@ -233,27 +236,14 @@ export default {
         img {
           margin-right: 22px;
         }
-        &-order {
+        &:hover {
           border: 1px solid #ffffff;
-          &:hover {
-            filter: brightness(50%);
-            padding: 17px 33px;
-            border: 0;
-          }
+          filter: brightness(100%);
         }
-        &-credit {
-          padding: 17px 33px;
-          * {
-            filter: brightness(50%);
-          }
-          &:hover {
-            * {
-              filter: brightness(100%);
-            }
-            padding: 16px 32px;
-            border: 1px solid #ffffff;
-          }
-        }
+      }
+      .active {
+        border: 1px solid #ffffff;
+        filter: brightness(100%);
       }
     }
     .equip-list-wrap {
@@ -267,15 +257,21 @@ export default {
       }
       .scroll {
         margin-bottom: 33px;
-        height: 427px;
-        overflow-y: scroll;
         border-radius: 20px;
-        
+        background: #101010;
+        padding: 22px;
         ul {
           list-style-type: none;
-          background: #101010;
+          height: 427px;
+          overflow-y: scroll;
           li {
-            padding: 22px;
+            padding: 22px 22px 22px 0;
+            &:nth-child(1) {
+              padding-top: 0;
+            }
+            &:last-child {
+              padding-bottom: 0;
+            }
             position: relative;
             display: flex;
             align-items: center;
@@ -382,6 +378,7 @@ export default {
                 margin-left: 50px;
                 font-size: 16px;
                 color: #ffffff;
+                text-decoration: underline;
                 display: flex;
                 align-items: center;
                 width: 182px;
