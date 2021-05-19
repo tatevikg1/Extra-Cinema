@@ -170,7 +170,7 @@ header {
     }
   }
 }
-@media screen and (max-width: 834px) {
+@media screen and (max-width: 835px) {
   header {
     nav {
       padding: 20px 38px;
@@ -180,6 +180,7 @@ header {
       .buttons {
         .enter-btn {
           margin-right: 25px;
+          height: 40px;
         }
       }
     }

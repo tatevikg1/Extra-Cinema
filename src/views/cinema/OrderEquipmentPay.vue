@@ -81,8 +81,6 @@
           <card v-if="payMethod == 'card'" />
           <props v-if="payMethod == 'props'" />
 
-          <!-- <button class="pay-btn text-white text-semi-bold">ОПЛАТИТЬ</button> -->
-          <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid />
         </form>
       </div>
     </section>
@@ -164,7 +162,6 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
-
       h2 {
         text-align: center;
       }
@@ -243,9 +240,11 @@ export default {
   }
 }
 
-@media screen and (max-width: 834px) {
+@media screen and (max-width: 835px) {
   .wrap {
+    min-height: calc(100vh - 181px - 70px);
     .container {
+      // padding: 88px 15px 93px 15px;
       h1 {
         font-size: 24px;
         margin-bottom: 45px;

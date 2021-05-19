@@ -116,8 +116,7 @@ export default {
 }
 .sidebar {
   background: #000000;
-  height: 100%;
-  // border-right: 1px solid #777777;
+  border-right: 1px solid #777777;
   * {
     transition: 0.2s;
   }
@@ -151,6 +150,19 @@ export default {
     border-bottom: 0.5px solid #777777;
     &:last-child {
       border-bottom: 0;
+      position: relative;
+      //hack
+      &::before {
+        content: "";
+        display: block;
+        height: 50vh;
+        width: .5px;
+        background: #777777;
+        position: absolute;
+        right: -0.5px;
+        bottom: -50vh;
+        z-index: 0;
+      }
     }
     &:hover {
       button {

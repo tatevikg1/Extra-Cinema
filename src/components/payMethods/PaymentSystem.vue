@@ -22,6 +22,7 @@
         </li>
       </ul>
     </transition>
+    <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid />
   </div>
 </template>
 
@@ -30,10 +31,11 @@ import Extra from "@/assets/images/common/extra.svg";
 import Paypal from "@/assets/images/common/paypal.svg";
 import AdvCash from "@/assets/images/common/advcash.svg";
 import Payeer from "@/assets/images/common/payeer.svg";
+import Btn from "@/components/Btn";
 
 export default {
   name: "PaymentSystem",
-  mounted() {},
+  components: { Btn },
   data() {
     return {
       btnClicked: false,
@@ -102,7 +104,7 @@ export default {
       }
     }
     .toggle-btn {
-      background: #302F2F;
+      background: #302f2f;
       width: 46px;
       height: 100%;
       display: flex;
@@ -138,6 +140,7 @@ export default {
       align-items: center;
       justify-content: flex-start;
       cursor: pointer;
+      margin-top: -1px; //hack
       img {
         margin-right: 17px;
       }
@@ -145,6 +148,9 @@ export default {
         font-size: 14px;
       }
     }
+  }
+  .pay-btn {
+    margin-top: 60px;
   }
 }
 </style>

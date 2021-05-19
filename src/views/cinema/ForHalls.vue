@@ -225,14 +225,18 @@ export default {
     background-color: #000000;
   }
 }
-@media screen and (max-width: 834px) {
+@media screen and (max-width: 835px) {
   .wrap {
+    background: url("../../assets/images/cinema-for-halls-page/bg.png")
+      no-repeat center;
+    background-size: cover;
     .container {
       padding: 12px 15px 92px 15px;
       .row {
         flex-direction: column;
+        margin-top: 30px;
         &:nth-child(3) {
-          margin-top: 146px;
+          margin-top: 100px;
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -240,6 +244,7 @@ export default {
 
         .card {
           background-color: transparent;
+          background-image: none;
           max-width: 560px;
           margin-top: 81px;
           &:hover {
@@ -250,9 +255,11 @@ export default {
           }
         }
         .link {
+          max-width: 269px;
           width: 100%;
           border-radius: 0;
           height: 50px;
+          margin: 0 7px;
           .btn-decor {
             height: 50px;
             width: 50px;
@@ -272,6 +279,12 @@ export default {
     }
   }
 }
+@media screen and (max-width: 620px) {
+  .wrap {
+    background-image: none;
+    background-color: #000000;
+  }
+}
 @media screen and (max-width: 480px) {
   .wrap {
     .container {
@@ -288,7 +301,6 @@ export default {
 
         .card {
           margin-top: 50px;
-          background: transparent;
           img {
             order: -1;
           }

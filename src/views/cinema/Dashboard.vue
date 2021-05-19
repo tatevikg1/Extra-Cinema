@@ -14,12 +14,15 @@
             @onEdit="currentView = 'company'"
           />
           <start-session v-if="currentView == 'startSession'" />
-          <Documents v-if="currentView == 'documents'"/>
-          <Persons v-if="currentView == 'persons'" @onEdit="currentView = 'company'"/>
+          <Documents v-if="currentView == 'documents'" />
+          <Persons
+            v-if="currentView == 'persons'"
+            @onEdit="currentView = 'company'"
+          />
         </div>
       </section>
     </div>
-    <Footer fluid/>
+    <Footer fluid />
   </div>
 </template>
 
@@ -35,7 +38,7 @@ import Projector from "@/components/dashboard/Projector";
 import MyHalls from "@/components/dashboard/MyHalls";
 import StartSession from "@/components/dashboard/StartSession";
 import Documents from "@/components/dashboard/Documents";
-import Persons from '@/components/dashboard/Persons';
+import Persons from "@/components/dashboard/Persons";
 
 export default {
   name: "Dashboard",
@@ -73,12 +76,16 @@ export default {
   display: flex;
   align-items: flex-start;
   width: 100%;
+  min-height: calc(100vh - 80px);
+  height: 100%;
+  overflow: hidden;
   .wrap {
     position: relative;
     max-width: 100%;
     width: 100%;
+    height: 100%;
     transition: 0.3s;
-    border-left: 1px solid #777777;
+    // border-left: 1px solid #777777;
     height: 100%;
     .container {
       max-width: 1150px;

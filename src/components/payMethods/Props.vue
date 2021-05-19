@@ -1,33 +1,38 @@
 <template>
-  <div class="wrap">
+  <div>
     <h3 class="text-white text-semi-bold">Заполнение реквезитов</h3>
-    <form @submit.prevent>
+    <form @submit.prevent @input="changeHandler">
       <div class="row">
         <div class="input-group">
           <label for="name" class="text-regular"
             >Название организации получателя</label
           >
-          <input type="text" id="name" class="text-medium" />
+          <input v-model="name" type="text" id="name" class="text-medium" />
         </div>
       </div>
       <div class="row">
         <div class="input-group">
           <label for="account" class="text-regular">Счет получателя</label>
-          <input type="text" id="account" class="text-medium" />
+          <input
+            v-model="wallet"
+            type="text"
+            id="account"
+            class="text-medium"
+          />
         </div>
       </div>
       <div class="row">
         <div class="input-group inn">
           <label for="inn" class="text-regular">ИНН</label>
-          <input type="text" id="inn" class="text-medium" />
+          <input v-model="inn" type="text" id="inn" class="text-medium" />
         </div>
         <div class="input-group kpp">
           <label for="kpp" class="text-regular">КПП</label>
-          <input type="text" id="kpp" class="text-medium" />
+          <input v-model="kpp" type="text" id="kpp" class="text-medium" />
         </div>
         <div class="input-group bic">
           <label for="bic" class="text-regular">БИК</label>
-          <input type="text" id="bic" class="text-medium" />
+          <input v-model="bic" type="text" id="bic" class="text-medium" />
         </div>
       </div>
 
@@ -43,17 +48,47 @@
         >
       </div>
     </form>
+    <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid :disabled="btnDisabled" />
   </div>
 </template>
 
 <script>
+import Btn from "@/components/Btn";
+
 export default {
   name: "Props",
+  components: { Btn },
+  data() {
+    return {
+      btnDisabled: true,
+      name: "",
+      wallet: "",
+      inn: "",
+      kpp: "",
+      bic: "",
+    };
+  },
+  methods: {
+    changeHandler() {
+      //set it up
+      if (
+        this.name.length >= 5 &&
+        this.wallet.length >= 8 &&
+        this.inn.length >= 5 &&
+        this.kpp.length >= 3 &&
+        this.bic.length >= 3
+      ) {
+        this.btnDisabled = false;
+      } else {
+        this.btnDisabled = true;
+      }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.wrap {
+div {
   background: #191919;
   .container {
     display: flex;
@@ -68,7 +103,6 @@ export default {
       max-width: 560px;
       justify-content: space-between;
       width: 100%;
-
       &:nth-child(4) .input-group {
         max-width: 156px;
         width: 100%;
@@ -116,7 +150,6 @@ export default {
           &:focus {
             border: 0.5px solid #ffffff;
           }
-
           &::placeholder {
             color: #ffffff;
             font-family: "Regular";
@@ -143,11 +176,13 @@ export default {
         text-align: left;
       }
     }
+    .pay-btn {
+      margin-top: 60px;
+    }
   }
 }
-
 @media screen and (max-width: 480px) {
-  .wrap {
+  div {
     background: transparent;
     .container {
       .row {
@@ -165,7 +200,6 @@ export default {
           max-width: 148px;
           margin-top: 15px;
           width: 40% !important;
-
         }
         span {
           margin-left: 0;

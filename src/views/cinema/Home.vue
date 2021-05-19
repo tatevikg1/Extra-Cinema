@@ -265,7 +265,7 @@ export default {
 }
 @media screen and (max-width: 910px) {
   .wrap {
-    padding: 80px 0 80px 0;
+    padding: 25px 0 25px 0;
     .container {
       flex-direction: column;
       .row {
@@ -276,7 +276,7 @@ export default {
           }
         }
         .card {
-          margin-bottom: 144px;
+          margin-bottom: 20px;
           background-color: transparent;
           max-width: 502px !important;
           width: 100%;

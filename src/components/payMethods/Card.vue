@@ -1,10 +1,10 @@
 <template>
-  <div class="wrap">
-    <form>
+  <div>
+    <form @input="inputHandler">
       <div class="input-groups">
         <div class="input-group">
           <label for="name" class="text-regular">Введите имя и фамилию</label>
-          <input type="text" id="name" />
+          <input v-model="name" type="text" id="name" />
         </div>
         <div class="input-group">
           <label for="number" class="text-regular">Номер карты</label>
@@ -20,7 +20,7 @@
         <div class="row">
           <div class="input-group">
             <label for="date" class="text-regular">Срок действия карты</label>
-            <input type="text" id="date" placeholder="ММ/ГГ" />
+            <input v-model="date" type="text" id="date" placeholder="ММ/ГГ" />
           </div>
           <div class="input-group cvc">
             <label for="cvv" class="text-regular">CVV2/CVC2</label>
@@ -46,16 +46,23 @@
         </button>
       </div>
     </form>
+    <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid :disabled="btnDisabled" />
   </div>
 </template>
 
 <script>
+import Btn from "@/components/Btn";
+
 export default {
   name: "Card",
+  components: { Btn },
   data() {
     return {
+      btnDisabled: true,
       card: "",
       cvv: "",
+      date: "",
+      name: "",
       buttons: [
         "1",
         "2",
@@ -71,12 +78,26 @@ export default {
         "enter",
       ],
     };
-  }
+  },
+  methods: {
+    inputHandler() {
+      if (
+        this.card.length >= 16 &&
+        this.cvv.length >= 3 &&
+        this.name.length > 5 &&
+        this.date.length >= 4
+      ) {
+        this.btnDisabled = false;
+      } else {
+        this.btnDisabled = true;
+      }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.wrap {
+div {
   // max-width: 634px;
   width: 100%;
   form {
@@ -213,11 +234,17 @@ export default {
       }
     }
   }
+  .pay-btn {
+    margin-top: 60px;
+  }
 }
 @media screen and (max-width: 834px) {
-  .wrap {
+  div {
     width: 100%;
     form {
+      #date {
+        transform: translateY(-9px);
+      }
       .input-screen {
         display: flex;
       }
@@ -229,7 +256,7 @@ export default {
 }
 
 @media screen and (max-width: 676px) {
-  .wrap {
+  div {
     form {
       .input-screen {
         display: flex;
@@ -290,7 +317,7 @@ export default {
   }
 }
 @media screen and (max-width: 630px) {
-  .wrap {
+  div {
     form {
       .input-screen {
         display: none;
@@ -305,7 +332,7 @@ export default {
   }
 }
 @media screen and (max-width: 480px) {
-  .wrap {
+  div {
     form {
       .input-groups {
         input {

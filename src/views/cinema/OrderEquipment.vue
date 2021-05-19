@@ -426,7 +426,7 @@ export default {
 @media screen and (max-width: 834px) {
   .wrap {
     .container {
-      padding: 91px 15px 79px 15px;
+      padding: 91px 90px 79px 90px;
       h1 {
         font-size: 24px;
       }
@@ -453,14 +453,15 @@ export default {
         background: transparent;
         h2 {
           font-size: 18px;
-          margin-bottom: 24px;
+          margin-bottom: 35px;
         }
 
         .scroll {
           margin-bottom: 62px;
-          height: 654px;
           border-radius: 15px;
           ul {
+            height: 654px;
+
             li {
               align-items: flex-start;
               .form-group {

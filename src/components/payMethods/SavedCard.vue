@@ -63,13 +63,15 @@
         </div>
       </form>
     </transition>
+    <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid />
   </div>
 </template>
 
 <script>
+import Btn from "@/components/Btn";
 export default {
   name: "SavedCard",
-  mounted() {},
+  components: { Btn },
   data() {
     return {
       btnClicked: false,
@@ -260,6 +262,9 @@ export default {
         }
       }
     }
+  }
+  .pay-btn {
+    margin-top: 35px;
   }
 }
 

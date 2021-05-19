@@ -82,12 +82,10 @@ export default {
     selectFilm(film) {
       this.selectedItem.name = film;
 
-      this.films = this.films.map((el) => {
-        if (el === this.selectedItem) {
-          return (el = this.selectedItem);
-        }
-        return el;
-      });
+      this.films = this.films.map((el) =>
+        el === this.selectedItem ? (el = this.selectedItem) : el
+      );
+
       this.selectedItem = null;
     },
     createSessionHandler() {

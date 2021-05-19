@@ -125,8 +125,12 @@ export default {
 }
 @media screen and (max-width: 834px) {
   .home-view {
+    min-height: calc(100vh - 40px);
+    display: flex;
+    align-items: center;
+    background-position: center;
     .container {
-      padding: 120px 15px 160px 15px;
+      padding: 40px 15px 0 15px;
     }
   }
 }

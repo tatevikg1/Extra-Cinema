@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="footer-first bg-black">
-      <div class="container" :class="{'container-fluid': fluid}">
+      <div class="container" :class="{ 'container-fluid': fluid }">
         <div class="contact">
           <a href="tel:+79951317777" class="text-medium text-white"
             ><img src="../assets/images/footer/phone.svg" alt="icon" />+7 995
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="footer-second">
-      <div class="container" :class="{'container-fluid': fluid}">
+      <div class="container" :class="{ 'container-fluid': fluid }">
         <div class="markets">
           <a class="g-play">
             <img
@@ -99,9 +99,9 @@ export default {
   props: {
     fluid: {
       required: false,
-      type: Boolean
-    }
-  }
+      type: Boolean,
+    },
+  },
 };
 </script>
 
@@ -265,6 +265,29 @@ footer {
           font-size: 14px;
           max-width: 173px;
         }
+      }
+    }
+  }
+}
+@media screen and (max-width: 835px) {
+  footer {
+    .footer-first {
+      .container {
+        .contact {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+    .footer-second {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 0;
+      p {
+        text-align: right;
+        font-size: 14px;
       }
     }
   }
