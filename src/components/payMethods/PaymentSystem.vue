@@ -87,6 +87,7 @@ export default {
     overflow: hidden;
     cursor: pointer;
     margin-top: 10px;
+    border-radius: 10px;
     .wrap {
       display: flex;
       align-items: center;
@@ -101,12 +102,15 @@ export default {
       }
     }
     .toggle-btn {
-      background: #777777;
+      background: #302F2F;
       width: 46px;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      &:hover img {
+        filter: brightness(50%);
+      }
       img {
         transform: rotate(180deg);
         transition: 0.2s;

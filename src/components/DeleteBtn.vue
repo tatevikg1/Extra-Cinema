@@ -32,6 +32,7 @@ button {
   cursor: pointer;
   display: flex;
   align-items: center;
+  font-size: 16px;
   &:hover {
     text-decoration: underline;
   }

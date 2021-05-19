@@ -381,7 +381,7 @@ export default {
                 text-decoration: underline;
                 display: flex;
                 align-items: center;
-                width: 182px;
+                width: 190px;
                 padding: 0;
                 border: 0;
                 background: transparent;

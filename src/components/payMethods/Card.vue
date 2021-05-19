@@ -7,11 +7,12 @@
           <input type="text" id="name" />
         </div>
         <div class="input-group">
-          <label for="name" class="text-regular">Номер карты</label>
+          <label for="number" class="text-regular">Номер карты</label>
           <input
             type="password"
-            id="name"
+            id="number"
             class="input-secret"
+            v-model="card"
             placeholder="●●●● ●●●● ●●●● ●●●●"
           />
         </div>
@@ -22,10 +23,11 @@
             <input type="text" id="date" placeholder="ММ/ГГ" />
           </div>
           <div class="input-group cvc">
-            <label for="name" class="text-regular">CVV2/CVC2</label>
+            <label for="cvv" class="text-regular">CVV2/CVC2</label>
             <input
               type="password"
-              id="name"
+              id="cvv"
+              v-model="cvv"
               class="input-secret"
               placeholder="●●●"
             />
@@ -52,6 +54,8 @@ export default {
   name: "Card",
   data() {
     return {
+      card: "",
+      cvv: "",
       buttons: [
         "1",
         "2",
@@ -67,7 +71,7 @@ export default {
         "enter",
       ],
     };
-  },
+  }
 };
 </script>
 
@@ -185,6 +189,7 @@ export default {
           transition: 0.1s;
           padding: 17px 23px;
           color: #ffffff;
+          border-radius: 10px;
           &:hover {
             border: 0.5px solid #ffffff;
           }

@@ -30,6 +30,7 @@ export default {
   align-items: center;
   cursor: pointer;
   &:hover {
+    text-decoration: underline;
     span {
       background: #d8004e;
     }

@@ -7,7 +7,7 @@
       </div>
       <div class="row">
         <span class="text-white text-medium">Дата</span>
-        <div class="text-regular info date">{{ film.date }}</div>
+        <div class="text-regular info ">{{ film.date }}</div>
 
         <div class="row-inside">
           <span class="text-white text-medium">Время</span>
@@ -16,7 +16,7 @@
       </div>
       <div class="row">
         <span class="text-white text-medium">Количество зрителей</span>
-        <div class="text-regular info" style="max-width: 139px; width: 100%">
+        <div class="text-regular info" style="max-width: 200px; width: 100%">
           <img :src="Icon" alt="" /> {{ film.watchers }}
         </div>
       </div>
@@ -110,6 +110,7 @@ export default {
       .row-inside {
         margin-left: 10px;
         display: flex;
+        width: 100%;
         align-items: center;
       }
       &:first-child {
@@ -132,7 +133,7 @@ export default {
         font-size: 16px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 10px;
-        padding: 7px;
+        padding: 4px 7px;
         img {
           margin-right: 10px;
         }

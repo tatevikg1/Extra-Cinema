@@ -109,6 +109,7 @@ export default {
           transition: 0.1s;
           padding: 17px 23px;
           color: #ffffff;
+          border-radius: 10px;
           &:hover {
             border: 0.5px solid #ffffff;
           }
@@ -129,8 +130,8 @@ export default {
         width: 157%;
       }
       .total {
-        max-width: 85% !important;
-        width: 90%;
+        max-width: 228px !important;
+        width: 100%;
       }
       span {
         color: #777777;
@@ -139,7 +140,7 @@ export default {
         align-items: center;
         transform: translateY(10px);
         margin-left: 50px;
-        text-align: right;
+        text-align: left;
       }
     }
   }

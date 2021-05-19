@@ -42,7 +42,7 @@
             </div>
             <div class="radio-btn">
               <input
-                @click="payMethod = 'card'"
+                @click="payMethod = 'saved-card'"
                 type="radio"
                 id="2"
                 name="radio-group"

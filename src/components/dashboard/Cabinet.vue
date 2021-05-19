@@ -67,7 +67,7 @@ export default {
       color: #ffffff;
       font-family: "Medium";
       width: 33.3%;
-      padding: 12px;
+      padding: 11px;
       background: #5c5e5d;
       border: 0;
       outline: 0;
@@ -77,6 +77,9 @@ export default {
       align-items: center;
       text-align: center;
       transition: 0.2s;
+      span {
+        letter-spacing: 0.02em;
+      }
       &:hover {
         text-decoration: underline;
       }

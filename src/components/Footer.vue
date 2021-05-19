@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="footer-first bg-black">
-      <div class="container">
+      <div class="container" :class="{'container-fluid': fluid}">
         <div class="contact">
           <a href="tel:+79951317777" class="text-medium text-white"
             ><img src="../assets/images/footer/phone.svg" alt="icon" />+7 995
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="footer-second">
-      <div class="container">
+      <div class="container" :class="{'container-fluid': fluid}">
         <div class="markets">
           <a class="g-play">
             <img
@@ -96,10 +96,19 @@ export default {
       year: new Date().getFullYear(),
     };
   },
+  props: {
+    fluid: {
+      required: false,
+      type: Boolean
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.container-fluid {
+  max-width: 100%;
+}
 footer {
   .footer-first {
     border-top: 1px solid #777777;

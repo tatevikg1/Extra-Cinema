@@ -5,7 +5,7 @@
       <div @click="$emit('closeModal')" class="close">
         <img src="../../assets/images/common/close.svg" alt="Закрыть" />
       </div>
-      <h2 class="text-medium text-white">Подробнее о товаре</h2>
+      <h2 class="text-semi-bold text-white">Подробнее о товаре</h2>
       <carousel />
       <div class="row">
         <div class="info">

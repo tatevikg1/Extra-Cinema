@@ -19,7 +19,7 @@
         </div>
       </section>
     </div>
-    <Footer />
+    <Footer fluid/>
   </div>
 </template>
 
