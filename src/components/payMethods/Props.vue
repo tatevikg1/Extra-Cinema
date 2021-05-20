@@ -41,7 +41,7 @@
           <label for="total" class="text-regular" v-bind="0"
             >Сумма платежа</label
           >
-          <input type="text" id="total" value="0,00" disabled />
+          <div id="total" class="text-regular">0,00</div>
         </div>
         <span class="text-regular"
           >Комиссия будет расчитана согласно тарифу</span
@@ -143,7 +143,8 @@ div {
           color: #777777;
           font-size: 14px;
         }
-        input {
+        
+        input, div#total {
           height: 42px;
           background: transparent;
           border: 0.5px solid #777777;
@@ -156,6 +157,8 @@ div {
           padding: 17px 23px;
           color: #ffffff;
           border-radius: 10px;
+          font-size: 14px;
+
           &:hover {
             border: 0.5px solid #ffffff;
           }
@@ -165,6 +168,14 @@ div {
           &::placeholder {
             color: #ffffff;
             font-family: "Regular";
+          }
+        }
+        div#total {
+          align-items: center;
+          padding: 12px 15px;
+          color: #777777;
+          &::first-letter {
+            color: #ffffff;
           }
         }
       }
@@ -199,7 +210,7 @@ div {
     .container {
       .row {
         flex-wrap: wrap;
-        input {
+        input, div#total {
           border-radius: 7px !important;
         }
         .inn {

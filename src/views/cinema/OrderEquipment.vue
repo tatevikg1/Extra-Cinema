@@ -113,6 +113,7 @@ export default {
   },
   mounted() {
     document.title = "Extra Cinema | Заказать оборудование";
+    console.log(this.$store);
   },
   data() {
     return {
