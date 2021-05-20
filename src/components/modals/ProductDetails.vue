@@ -224,7 +224,7 @@ export default {
 }
 @media screen and (max-width: 540px) {
   .modal {
-    padding: 15px !important;
+    padding: 15px;
     .wrap {
       margin-top: 0 !important;
       padding: 40px 20px 63px 20px !important;
@@ -233,8 +233,12 @@ export default {
 }
 @media screen and (max-width: 500px) {
   .modal {
+    padding: 120px 15px 15px 15px;
     .wrap {
       .row {
+        .text {
+          height: 275px;
+        }
         .info {
           flex-direction: column-reverse;
           .price {

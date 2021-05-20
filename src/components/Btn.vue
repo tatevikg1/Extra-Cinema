@@ -58,12 +58,15 @@ export default {
   width: 100%;
 }
 .centered {
-  margin: auto;
+  display: flex;
+  // place-self: center;
+  margin: 0 auto;
+
 }
 
 @media screen and (max-width: 500px) {
   .btn {
-    padding: 10px 30px;
+    padding: 6px 30px;
     font-size: 14px;
   }
 }

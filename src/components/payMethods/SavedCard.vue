@@ -63,7 +63,7 @@
         </div>
       </form>
     </transition>
-    <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid />
+    <Btn className="pay-btn" text="ОПЛАТИТЬ" :fluid="fluid" :center="!fluid"/>
   </div>
 </template>
 
@@ -74,6 +74,7 @@ export default {
   components: { Btn },
   data() {
     return {
+      fluid: true,
       btnClicked: false,
       addCard: false,
       activeOption: {
@@ -95,6 +96,11 @@ export default {
       ],
     };
   },
+  mounted() {
+    if (window.screen.width <= 480) {
+      this.fluid = false;
+    }
+  },
   methods: {
     select(option) {
       this.activeOption = option;
@@ -105,6 +111,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.m-auto {
+  margin: 50px auto 0 auto;
+}
 .dropdown {
   max-width: 365px;
   width: 100%;
@@ -157,7 +166,7 @@ export default {
   ul {
     position: absolute;
     left: 0;
-    top: 71px;
+    top: 70px;
     width: calc(100% - 46px);
     list-style-type: none;
     border-bottom-left-radius: 10px;
@@ -171,6 +180,7 @@ export default {
       align-items: center;
       justify-content: flex-start;
       cursor: pointer;
+      margin-top: -1px;
       span {
         font-size: 14px;
       }

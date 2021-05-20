@@ -7,7 +7,7 @@
       </div>
       <div class="row">
         <span class="text-white text-medium">Время</span>
-        <div class="text-regular info">{{ film.time }}</div>
+        <div class="text-regular info time">{{ film.time }}</div>
         <div class="inside-row">
           <span class="text-white text-medium">Дата</span>
           <div class="text-regular info">
@@ -17,7 +17,7 @@
       </div>
       <div class="row">
         <span class="text-white text-medium">Количество проданных мест</span>
-        <div class="text-regular info">
+        <div class="text-regular info amount">
           {{ film.watchers }}
         </div>
       </div>
@@ -107,6 +107,7 @@ export default {
       display: flex;
       align-items: center;
       margin-top: 25px;
+      max-width: 370px;
       .inside-row {
         display: flex;
         align-items: center;
@@ -132,9 +133,14 @@ export default {
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 10px;
         padding: 7px 16px;
+        width: 100%;
         img {
           margin-right: 10px;
         }
+      }
+      .amount {
+        width: 95px;
+        margin-left: auto;
       }
     }
   }
@@ -142,14 +148,39 @@ export default {
 
 @media screen and (max-width: 480px) {
   .currentSession {
+    padding-right: 15px !important;
     .item {
       .row {
-        flex-wrap: wrap;
-
+        // flex-wrap: wrap;
+        .time {
+          max-width: 60px;
+        }
         &:last-child {
           flex-wrap: nowrap;
           .info {
-              min-width: 108px;
+            min-width: 108px;
+          }
+        }
+        .inside-row {
+          margin-left: 0;
+          // margin-top: 25px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 420px) {
+  .currentSession {
+    .item {
+      .row {
+        // flex-wrap: wrap;
+        &:nth-child(2) {
+          flex-wrap: wrap;
+        }
+        &:last-child {
+          flex-wrap: nowrap;
+          .info {
+            min-width: 108px;
           }
         }
         .inside-row {
@@ -161,3 +192,4 @@ export default {
   }
 }
 </style>
+

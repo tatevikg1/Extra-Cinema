@@ -15,6 +15,7 @@
         <div class="buttons">
           <!-- WORK ON ACTIVE CLASS LATER -->
           <button class="btn btn-order active">
+            <div class="radio"><div class="dot"></div></div>
             <img
               src="../../assets/images/cinema-order-equipment-page/wallet.svg"
               alt="Купить"
@@ -22,6 +23,7 @@
             <span class="text-white text-semi-bold">Купить оборудование</span>
           </button>
           <button class="btn btn-credit">
+            <div class="radio"><div class="dot"></div></div>
             <img
               src="../../assets/images/cinema-order-equipment-page/card.svg"
               alt="Купить в кредит"
@@ -429,13 +431,15 @@ export default {
       padding: 91px 90px 79px 90px;
       h1 {
         font-size: 24px;
+        margin-bottom: 42px;
       }
       .buttons {
+        margin-right: auto;
+        margin: 0 auto 42px 0;
         .btn {
           padding: 10px 21px;
           border-radius: 50px;
-          height: 63px;
-          max-width: 317px;
+          height: 40px;
           width: 100%;
 
           span {
@@ -492,41 +496,52 @@ export default {
       padding: 66px 15px 52px 15px;
       h1 {
         font-size: 18px;
+        margin-bottom: 30px;
       }
       .buttons {
         flex-direction: column;
+        .active {
+          .radio {
+            border: 2px solid #d8004e !important;
+            .dot {
+              display: block;
+              height: 8.5px;
+              width: 8.5px;
+              background: #d8004e;
+              border-radius: 50%;
+            }
+          }
+        }
         .btn {
           background: transparent;
           border: 0;
           padding: 0;
+          .radio {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 16.5px;
+            min-height: 16.5px;
+            background: transparent;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+          }
           img {
             width: 20px;
             height: 20px;
             margin-right: 5px;
+            margin-left: 10px;
           }
           span {
             max-width: 100%;
           }
-          &-order {
+          &:hover {
             border: 0;
-            &:hover {
-              filter: brightness(50%);
-              padding: 0;
-              border: 0;
-            }
           }
-          &-credit {
-            padding: 0;
-            * {
-              filter: brightness(50%);
-            }
-            &:hover {
-              * {
-                filter: brightness(100%);
-              }
-              padding: 0;
-              border: 0;
-            }
+        }
+        .active {
+          span {
+            text-decoration: underline;
           }
         }
       }
@@ -538,7 +553,10 @@ export default {
           align-self: flex-start;
         }
         .scroll {
+          padding: 11px;
+          margin-bottom: 30px;
           ul {
+            height: 315px;
             li {
               display: flex;
               flex-direction: column;
@@ -555,6 +573,7 @@ export default {
         }
         .total {
           align-self: flex-start;
+          margin-bottom: 35px;
         }
       }
     }

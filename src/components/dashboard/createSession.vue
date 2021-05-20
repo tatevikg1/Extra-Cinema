@@ -19,7 +19,12 @@
         </div>
         <div class="time text-white text-regular">
           Дату:
-          <input :v-model="newFilm.date" type="text" placeholder="01.01.2021" />
+          <input
+            :v-model="newFilm.date"
+            id="date"
+            type="text"
+            placeholder="01.01.2021"
+          />
         </div>
       </div>
       <div class="row">
@@ -202,6 +207,15 @@ export default {
         .file {
           margin: 0 auto 0 0;
         }
+        .time {
+          input {
+            width: 64px !important;
+            margin-right: 10px;
+          }
+          #date {
+            width: 113px !important;
+          }
+        }
         span {
           width: 100%;
           margin-bottom: 20px;
@@ -218,8 +232,8 @@ export default {
   .createSession {
     .film-item {
       .row {
-        flex-direction: column;
-        align-items: flex-start;
+        // flex-direction: column;
+        // align-items: flex-start;
         .time {
           margin-top: 10px;
           margin-left: 0 !important;

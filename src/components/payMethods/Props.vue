@@ -41,14 +41,20 @@
           <label for="total" class="text-regular" v-bind="0"
             >Сумма платежа</label
           >
-          <input type="text" id="total" placeholder="0,00" disabled />
+          <input type="text" id="total" value="0,00" disabled />
         </div>
         <span class="text-regular"
           >Комиссия будет расчитана согласно тарифу</span
         >
       </div>
     </form>
-    <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid :disabled="btnDisabled" />
+    <Btn
+      className="pay-btn"
+      text="ОПЛАТИТЬ"
+      :fluid="fluid"
+      :center="!fluid"
+      :disabled="btnDisabled"
+    />
   </div>
 </template>
 
@@ -61,12 +67,18 @@ export default {
   data() {
     return {
       btnDisabled: true,
+      fluid: true,
       name: "",
       wallet: "",
       inn: "",
       kpp: "",
       bic: "",
     };
+  },
+  mounted() {
+    if (window.screen.width <= 480) {
+      this.fluid = false;
+    }
   },
   methods: {
     changeHandler() {
@@ -187,6 +199,9 @@ div {
     .container {
       .row {
         flex-wrap: wrap;
+        input {
+          border-radius: 7px !important;
+        }
         .inn {
           display: block;
         }

@@ -288,11 +288,12 @@ export default {
 @media screen and (max-width: 480px) {
   .wrap {
     .container {
-      padding: 12px 15px 92px 15px;
+      padding: 12px 15px 37px 15px;
 
       .row {
+        margin-top: 40px;
         &:nth-child(2) {
-          margin-top: 0;
+          // margin-top: 0;
         }
         &:nth-child(3) {
           margin-top: 62px;
@@ -301,6 +302,7 @@ export default {
 
         .card {
           margin-top: 50px;
+          padding: 0;
           img {
             order: -1;
           }
@@ -308,17 +310,21 @@ export default {
             order: 0;
             margin-top: 25px;
             text-align: center;
+            font-size: 16px;
           }
           .btn {
             order: 1;
             width: 100% !important;
             height: 100% !important;
-            padding: 10px 15px;
-            font-size: 12px !important;
+            padding: 7px 10px;
+            font-size: 14px !important;
           }
         }
         .link {
           max-width: 269px;
+          &:nth-child(2) {
+            margin-top: 9px;
+          }
         }
       }
     }

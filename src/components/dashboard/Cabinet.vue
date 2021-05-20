@@ -108,7 +108,7 @@ export default {
   }
   .form {
     background: #191919;
-    padding: 41px 50px 50px 50px;
+    padding: 41px 25px 50px 50px;
     border-radius: 20px;
     margin-top: 15px;
   }
@@ -116,7 +116,7 @@ export default {
 
 @media screen and (max-width: 1024px) {
   .cab-wrap {
-    margin: 87px auto 45px auto;
+    margin: 75px auto 45px auto;
   }
 }
 
@@ -136,6 +136,7 @@ export default {
         display: flex;
         justify-content: center;
         width: 100%;
+        margin-bottom: 10px;
         &:hover {
           text-decoration: none;
         }
@@ -160,6 +161,11 @@ export default {
           filter: brightness(100%);
         }
       }
+    }
+    .form {
+      border-radius: 0;
+      border-top: 1px solid #474747;
+      padding-top: 26px;
     }
   }
 }

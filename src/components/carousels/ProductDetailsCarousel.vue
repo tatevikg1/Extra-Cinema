@@ -54,11 +54,13 @@
               </button>
             </div>
           </div>
-          <button class="add-btn text-white text-semi-bold">Добавить</button>
+          <!-- <button class="add-btn text-white text-semi-bold">Добавить</button> -->
+          <Btn class="add-btn" text="Добавить"/>
         </div>
       </div>
     </div>
-    <button class="add-btn add-btn2 text-white text-semi-bold">Добавить</button>
+    <!-- <button class="add-btn add-btn2 text-white text-semi-bold">Добавить</button> -->
+    <Btn class="add-btn add-btn2" text="Добавить" fluid/>
   </div>
 </template>
 
@@ -66,10 +68,11 @@
 import VueSlickCarousel from "vue-slick-carousel";
 import "vue-slick-carousel/dist/vue-slick-carousel.css";
 import Slide from "@/assets/images/slide_example.png";
+import Btn from "@/components/Btn";
 
 export default {
   name: "Carousel",
-  components: { VueSlickCarousel },
+  components: { VueSlickCarousel, Btn },
   data() {
     return {
       // urls to images, you can get them from backend in the future
@@ -253,29 +256,12 @@ export default {
     }
   }
   .add-btn {
-    display: block;
-    font-size: 16px;
-    text-decoration: none;
     padding: 5px 55px;
     height: 48px;
-    background: #27ae60;
-    border-radius: 10px;
-    transition: 0.1s;
-    border: 0;
-    outline: 0;
-    &:hover {
-      background: #279e48;
-    }
-    &:disabled,
-    &[disabled] {
-      background: #7fa48e;
-    }
   }
   .add-btn2 {
-    display: none;
     margin-top: 27px;
-    width: 100%;
-    padding: 5px;
+    display: none;
   }
 }
 
@@ -413,6 +399,7 @@ export default {
   }
   .add-btn2 {
     display: block !important;
+    height: 35px !important;
   }
   .main {
     max-width: 180px !important;
@@ -427,8 +414,8 @@ export default {
 
 @media screen and (max-width: 443px) {
   .preview {
-    max-width: 100px !important;
-    max-height: 100px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
     width: 100% !important;
     height: 100%;
     margin-right: 10px !important;

@@ -155,12 +155,12 @@ export default {
       &::before {
         content: "";
         display: block;
-        height: 50vh;
+        height: 200vh;
         width: .5px;
         background: #777777;
         position: absolute;
         right: -0.5px;
-        bottom: -50vh;
+        bottom: -200vh;
         z-index: 0;
       }
     }
@@ -222,6 +222,9 @@ export default {
   }
 }
 @media screen and (max-width: 480px) {
+  .sidebar li {
+    padding: 14px 8px;
+  }
   .sidebar li button .icon,
   .sidebar .arrow div {
     min-width: 34px;

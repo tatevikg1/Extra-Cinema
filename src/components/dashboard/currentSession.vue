@@ -7,11 +7,11 @@
       </div>
       <div class="row">
         <span class="text-white text-medium">Дата</span>
-        <div class="text-regular info ">{{ film.date }}</div>
+        <div class="text-regular info" id="date">{{ film.date }}</div>
 
         <div class="row-inside">
           <span class="text-white text-medium">Время</span>
-          <div class="text-regular info">{{ film.time }}</div>
+          <div class="text-regular info" id="time">{{ film.time }}</div>
         </div>
       </div>
       <div class="row">
@@ -89,7 +89,7 @@ export default {
 
 <style lang="scss" scoped>
 .currentSession {
-  height: 426px;
+  height: 526px;
   overflow-y: scroll;
   padding-right: 25px;
   .item {
@@ -141,7 +141,34 @@ export default {
     }
   }
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 480px) {
+  .currentSession {
+    padding-right: 15px !important;
+    .row {
+      #date {
+        max-width: 100px;
+      }
+      #time {
+        max-width: 50px;
+      }
+      // &:nth-child(2) {
+      //   flex-wrap: wrap;
+      //   justify-content: flex-start;
+      //   .date {
+      //     width: 50%;
+      //   }
+      //   .row-inside {
+      //     margin-left: 0;
+      //     margin-top: 25px;
+      //   }
+      // }
+      .info {
+        font-size: 14px !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 360px) {
   .currentSession {
     .row {
       &:nth-child(2) {
@@ -154,9 +181,6 @@ export default {
           margin-left: 0;
           margin-top: 25px;
         }
-      }
-      .info {
-        font-size: 14px !important;
       }
     }
   }

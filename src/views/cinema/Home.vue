@@ -332,6 +332,8 @@ export default {
           }
           h2 {
             text-align: center;
+            font-size: 16px;
+            font-family: "Regular" !important;
             &::before,
             &::after {
               display: none;
@@ -342,7 +344,7 @@ export default {
             flex-wrap: wrap;
             justify-content: center;
             .btn {
-              padding: 10px 14px !important;
+              padding: 8px 10px !important;
               font-size: 14px;
               width: 170px !important;
               display: flex;

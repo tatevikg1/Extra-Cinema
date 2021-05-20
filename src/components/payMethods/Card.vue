@@ -46,7 +46,13 @@
         </button>
       </div>
     </form>
-    <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid :disabled="btnDisabled" />
+    <Btn
+      className="pay-btn"
+      text="ОПЛАТИТЬ"
+      :fluid="fluid"
+      :center="!fluid"
+      :disabled="btnDisabled"
+    />
   </div>
 </template>
 
@@ -59,6 +65,7 @@ export default {
   data() {
     return {
       btnDisabled: true,
+      fluid: true,
       card: "",
       cvv: "",
       date: "",
@@ -78,6 +85,11 @@ export default {
         "enter",
       ],
     };
+  },
+  mounted() {
+    if (window.screen.width <= 480) {
+      this.fluid = false;
+    }
   },
   methods: {
     inputHandler() {
@@ -265,39 +277,11 @@ div {
         min-height: 198px;
         max-width: 226px;
         max-height: 198px;
-        button {
-          &:hover {
-          }
-          &:nth-child(10),
-          &:nth-child(12) {
-          }
-          &:nth-child(10)::before {
-          }
-          &:nth-child(12)::before {
-          }
-        }
       }
       .input-groups {
         max-width: 265px;
-        .row {
-          .input-group {
-            &:nth-child(1) {
-            }
-            &:nth-child(2) {
-            }
-          }
-        }
         .input-group {
-          input#date {
-          }
-          input[type="password"] {
-          }
-          &::focus {
-            label {
-            }
-          }
-          label {
-          }
+          
           input {
             &:hover {
             }
@@ -335,7 +319,11 @@ div {
   div {
     form {
       .input-groups {
+        #date {
+          transform: translateY(0);
+        }
         input {
+          border-radius: 7px !important;
           &::placeholder {
             font-size: 15px !important;
             letter-spacing: 2px !important;

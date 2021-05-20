@@ -22,7 +22,7 @@
         </li>
       </ul>
     </transition>
-    <Btn className="pay-btn" text="ОПЛАТИТЬ" fluid />
+    <Btn className="pay-btn" text="ОПЛАТИТЬ" :fluid="fluid" :center="!fluid" />
   </div>
 </template>
 
@@ -39,6 +39,7 @@ export default {
   data() {
     return {
       btnClicked: false,
+      fluid: true,
       activeOption: {
         name: "ExtraFinTach",
         icon: Extra,
@@ -62,6 +63,11 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    if (window.screen.width <= 480) {
+      this.fluid = false;
+    }
   },
   methods: {
     select(option) {
@@ -125,7 +131,7 @@ export default {
   ul {
     position: absolute;
     left: 0;
-    top: 71px;
+    top: 70px;
     width: calc(100% - 46px);
     list-style-type: none;
     border-bottom-left-radius: 10px;
@@ -151,6 +157,16 @@ export default {
   }
   .pay-btn {
     margin-top: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .dropdown {
+    width: 300px;
+    // width: 100%;
+    .select {
+      width: 100%;
+    }
   }
 }
 </style>

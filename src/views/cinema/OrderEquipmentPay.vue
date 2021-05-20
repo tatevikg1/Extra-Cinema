@@ -42,7 +42,7 @@
             </div>
             <div class="radio-btn">
               <input
-                @click="payMethod = 'saved-card'"
+                @click="payMethod = 'card'"
                 type="radio"
                 id="2"
                 name="radio-group"
@@ -80,7 +80,6 @@
           </transition>
           <card v-if="payMethod == 'card'" />
           <props v-if="payMethod == 'props'" />
-
         </form>
       </div>
     </section>
@@ -262,6 +261,7 @@ export default {
 @media screen and (max-width: 480px) {
   .wrap {
     .container {
+      padding: 66px 15px 56px 15px;
       h1 {
         font-size: 18px;
         margin-bottom: 30px;
@@ -269,15 +269,16 @@ export default {
       }
       form {
         background: transparent;
-        padding: 0 15px;
+        padding: 0 0;
 
         h2 {
           font-size: 16px;
         }
         .radio {
+          margin-bottom: 25px;
           .radio-btn {
             font-size: 14px;
-            margin-top: 10px;
+            margin-top: 15px;
           }
         }
         .pay-btn {

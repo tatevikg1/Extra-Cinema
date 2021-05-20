@@ -76,7 +76,7 @@ export default {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 240px);
   height: 100%;
   overflow: hidden;
   .wrap {

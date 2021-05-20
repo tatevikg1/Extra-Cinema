@@ -10,7 +10,7 @@
           <span>—</span>
           <span class="text-regular-italic">Опережая будущее</span>
         </h1>
-        <div class="round" :class="{round_active: loaded}">
+        <div class="round" :class="{ round_active: loaded }">
           <router-link to="/" class="text-medium text-white"
             >ExtraTrade</router-link
           >
@@ -37,12 +37,12 @@ export default {
   components: { Footer },
   data() {
     return {
-      loaded: false
-    }
+      loaded: false,
+    };
   },
   mounted() {
     document.title = "Extra | Главная";
-    setTimeout(() => this.loaded = true, 500)
+    setTimeout(() => (this.loaded = true), 500);
   },
 };
 </script>
@@ -93,9 +93,9 @@ export default {
       transform: scale(0.8) rotate(-360deg);
       transition: 1.2s;
       &_active {
-      transform: scale(1.3) rotate(0);
-      opacity: 1;
-    }
+        transform: scale(1.3) rotate(0);
+        opacity: 1;
+      }
       a {
         text-decoration: none;
         font-size: 18px;
@@ -169,8 +169,9 @@ export default {
   .home-view {
     background-position: center;
     background-size: 300% 200%;
+    height: 100vh;
     .container {
-      padding: 24px 15px 180px 15px;
+      padding: 40px 15px 0 15px;
 
       h1 {
         span {
@@ -193,16 +194,22 @@ export default {
     }
   }
 }
-@media screen and (max-width: 430px) {
-  @media screen and (max-width: 480px) {
-    .home-view {
-      background-size: 250% 50%;
-      .container {
-        .round_active {
-          transform: scale(0.9) rotate(0);
-          a {
-            transform: scale(1.2);
-          }
+@media screen and (max-width: 480px) {
+  .home-view {
+    background-size: 250% 50%;
+    .container {
+      h1 {
+        position: absolute;
+        top: 25px;
+        span:nth-child(1) {
+          font-size: 32px !important;
+        }
+      }
+      .round_active {
+        transform: scale(0.9) rotate(0);
+        margin-top: -20px;
+        a {
+          transform: scale(1.2);
         }
       }
     }
@@ -218,8 +225,9 @@ export default {
           flex-wrap: wrap;
           text-align: center;
           justify-content: center;
+          align-items: center;
           span:nth-child(1) {
-            font-size: 20px;
+            font-size: 25px !important;
           }
           span:nth-child(2) {
             transform: scaleX(0.5);

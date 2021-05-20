@@ -49,5 +49,14 @@ export default {
 <style lang="scss" scoped>
 .loader {
   transform: scale(2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 370px) {
+  .loader {
+    transform: scale(1) translateX(-20px);
+  }
 }
 </style>

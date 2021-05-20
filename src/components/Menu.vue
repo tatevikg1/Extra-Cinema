@@ -12,7 +12,6 @@
         <router-link
           :to="item.path"
           class="text-white text-semi-bold"
-          active-class="current-page"
           >{{ item.name }}</router-link
         >
       </li>
@@ -170,10 +169,6 @@ export default {
           text-decoration: underline;
         }
       }
-    }
-    .current-page {
-      color: #ffffff;
-      text-decoration: underline;
     }
   }
   hr {

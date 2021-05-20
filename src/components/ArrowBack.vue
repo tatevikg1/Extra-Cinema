@@ -41,7 +41,7 @@ export default {
 }
 @media screen and (max-width: 480px) {
   .arrow-back {
-    font-size: 14px;
+    font-size: 12px;
     img {
       width: 20px;
       height: 20px;
