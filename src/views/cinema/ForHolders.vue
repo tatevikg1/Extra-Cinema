@@ -112,6 +112,9 @@ export default {
         border-radius: 10px;
         text-decoration: none;
         transition: 0.2s;
+        &:nth-child(2) {
+          margin-top: 10px;
+        }
         &:hover {
           background: #279e48;
           .btn-decor {
