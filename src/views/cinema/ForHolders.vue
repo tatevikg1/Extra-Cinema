@@ -42,7 +42,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArrowBack from "@/components/ArrowBack";
-
 import CinemasIcon from "@/assets/images/for-holders-page/cinemas.svg";
 import OnlinePlatformIcon from "@/assets/images/for-holders-page/online-platform.svg";
 import UploadContentIcon from "@/assets/images/for-holders-page/upload-content.svg";
@@ -112,9 +111,6 @@ export default {
         border-radius: 10px;
         text-decoration: none;
         transition: 0.2s;
-        &:nth-child(2) {
-          margin-top: 10px;
-        }
         &:hover {
           background: #279e48;
           .btn-decor {
@@ -147,7 +143,6 @@ export default {
     }
   }
 }
-
 @media screen and (max-width: 834px) {
   .wrap {
     .container {
@@ -189,6 +184,9 @@ export default {
       }
       .buttons {
         margin-top: 50px;
+        .link:nth-child(2) {
+          margin-top: 10px;
+        }
       }
       .links {
         margin-top: 27px;
