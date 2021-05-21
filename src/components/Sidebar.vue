@@ -156,7 +156,7 @@ export default {
         content: "";
         display: block;
         height: 200vh;
-        width: .5px;
+        width: 0.5px;
         background: #777777;
         position: absolute;
         right: -0.5px;
@@ -224,6 +224,14 @@ export default {
 @media screen and (max-width: 480px) {
   .sidebar li {
     padding: 14px 8px;
+    span {
+      color: #9f9f9f;
+    }
+    .active {
+      span {
+        font-family: "Regular";
+      }
+    }
   }
   .sidebar li button .icon,
   .sidebar .arrow div {

@@ -61,7 +61,7 @@ export default {
   margin: 140px auto 45px auto;
   .buttons {
     display: flex;
-    border-radius: 5px;
+    border-radius: 5px  ;
     overflow: hidden;
     button {
       color: #ffffff;
@@ -130,20 +130,21 @@ export default {
 @media screen and (max-width: 630px) {
   .cab-wrap {
     .buttons {
+      
       button {
         padding: 5px !important;
         height: 35px;
         display: flex;
         justify-content: center;
+        flex-direction: row-reverse;
         width: 100%;
-        margin-bottom: 10px;
         &:hover {
           text-decoration: none;
         }
         span {
           display: block !important;
           font-size: 12px;
-          margin-right: 8px;
+          margin-left: 8px;
         }
         img {
           display: block !important;
@@ -166,6 +167,7 @@ export default {
       border-radius: 0;
       border-top: 1px solid #474747;
       padding-top: 26px;
+      margin-top: 25px;
     }
   }
 }
