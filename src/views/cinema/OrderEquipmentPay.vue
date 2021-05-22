@@ -25,14 +25,13 @@
           <h2 class="text-white text-medium">Выберите способ оплаты</h2>
           <div class="line"></div>
           <div class="radio">
-            <div class="radio-btn">
-              <input
-                @click="payMethod = 'system'"
-                type="radio"
-                id="1"
-                name="radio-group"
-                checked
-              />
+            <div class="radio-btn" @click="payMethod = 'system'">
+              <div
+                class="round"
+                :class="{ 'active-round': payMethod == 'system' }"
+              >
+                <div class="dot"></div>
+              </div>
               <label
                 for="1"
                 class="text-white text-regular"
@@ -40,13 +39,13 @@
                 >Платежная система</label
               >
             </div>
-            <div class="radio-btn">
-              <input
-                @click="payMethod = 'card'"
-                type="radio"
-                id="2"
-                name="radio-group"
-              />
+            <div class="radio-btn" @click="payMethod = 'card'">
+              <div
+                class="round"
+                :class="{ 'active-round': payMethod == 'card' }"
+              >
+                <div class="dot"></div>
+              </div>
               <label
                 for="2"
                 class="text-white text-regular"
@@ -57,13 +56,13 @@
                 >Оплата по карте</label
               >
             </div>
-            <div class="radio-btn">
-              <input
-                @click="payMethod = 'props'"
-                type="radio"
-                id="3"
-                name="radio-group"
-              />
+            <div class="radio-btn" @click="payMethod = 'props'">
+               <div
+                class="round"
+                :class="{ 'active-round': payMethod == 'props' }"
+              >
+                <div class="dot"></div>
+              </div>
               <label
                 for="3"
                 class="text-white text-regular"
@@ -175,60 +174,30 @@ export default {
         margin-bottom: 37px;
         .radio-btn {
           margin-top: 20px;
+          display: flex;
+          align-items: center;
           &:first-child {
             margin-top: 0;
           }
-          [type="radio"]:checked,
-          [type="radio"]:not(:checked) {
-            position: absolute;
-            left: -9999px;
-          }
-          [type="radio"]:checked + label,
-          [type="radio"]:not(:checked) + label {
-            position: relative;
-            padding-left: 31px;
-            cursor: pointer;
-            line-height: 20px;
-            display: inline-block;
-          }
-          [type="radio"]:checked + label:before,
-          [type="radio"]:not(:checked) + label:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
+          .round {
             min-width: 15px;
             min-height: 15px;
-            border: 2.5px solid #ddd;
-            border-radius: 100%;
-            background: transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #d8004e !important;           
+            margin-right: 12.5px;
           }
-          [type="radio"]:checked + label:after,
-          [type="radio"]:not(:checked) + label:after {
-            content: "";
-            min-width: 9px;
-            min-height: 9px;
-            background: #d8004e;
-            position: absolute;
-            top: 5.5px;
-            left: 5.5px;
-            border-radius: 100%;
-            -webkit-transition: all 0.2s ease;
-            transition: all 0.2s ease;
-          }
-          [type="radio"]:checked + label:before {
-            background: transparent;
-            border: 2.5px solid #d8004e;
-          }
-          [type="radio"]:not(:checked) + label:after {
-            opacity: 0;
-            -webkit-transform: scale(0);
-            transform: scale(0);
-          }
-          [type="radio"]:checked + label:after {
-            opacity: 1;
-            -webkit-transform: scale(1);
-            transform: scale(1);
+          .active-round {
+            border: 2px solid #d8004e !important;           
+            .dot {
+              display: block;
+              height: 7.5px;
+              width: 7.5px;
+              background: #d8004e;
+              border-radius: 50%;
+            }
           }
         }
       }

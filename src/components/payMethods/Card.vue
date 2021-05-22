@@ -13,6 +13,7 @@
             id="number"
             class="input-secret"
             v-model="card"
+            @click="selectedField = 'card'"
             placeholder="●●●● ●●●● ●●●● ●●●●"
           />
         </div>
@@ -28,6 +29,7 @@
               type="password"
               id="cvv"
               v-model="cvv"
+              @click="selectedField = 'cvv'"
               class="input-secret"
               placeholder="●●●"
             />
@@ -39,7 +41,7 @@
           v-for="(btn, idx) in buttons"
           :key="idx"
           :value="btn"
-          @click.prevent
+          @click.prevent="clickHandler(btn)"
           class="text-white text-semi-bold"
         >
           {{ btn }}
@@ -66,6 +68,7 @@ export default {
     return {
       btnDisabled: true,
       fluid: true,
+      selectedField: "card", //card or cvv
       card: "",
       cvv: "",
       date: "",
@@ -92,7 +95,36 @@ export default {
     }
   },
   methods: {
-    inputHandler() {
+    clickHandler(btn) {
+      //1,2,3,4,5,6,7,8,9,clear,enter
+      if (this.selectedField === "card" && this.card.length < 16) {
+        if (btn !== "clear" && btn != "enter") {
+          this.card += btn;
+        }
+        if (this.card.length == 16) {
+          this.selectedField = "cvv";
+        }
+      }
+      if (this.selectedField === "cvv" && this.cvv.length < 3) {
+        if (btn !== "clear" && btn !== "enter") {
+          this.cvv += btn;
+        }
+      }
+      if (btn === "clear") {
+        if (this.selectedField === "card") {
+          this.card = this.card.substring(this.card.length - 1, 0);
+        }
+        if (this.selectedField === "cvv") {
+          this.cvv = this.cvv.substring(this.cvv.length - 1, 0);
+        }
+      }
+      if (btn === "enter") {
+        if (this.selectedField === "card") {
+          this.selectedField = "cvv";
+        }
+      }
+    },
+    inputHandler(e) {
       if (
         this.card.length >= 16 &&
         this.cvv.length >= 3 &&
@@ -281,7 +313,6 @@ div {
       .input-groups {
         max-width: 265px;
         .input-group {
-          
           input {
             &:hover {
             }
