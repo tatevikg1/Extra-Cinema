@@ -130,7 +130,6 @@ export default {
             font-size: 16px;
           }
           .content {
-            max-width: 358px;
             color: #9a9a9a;
             font-size: 16px;
             p {

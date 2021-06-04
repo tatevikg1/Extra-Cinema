@@ -227,8 +227,9 @@ export default {
           }
           .row {
             flex-direction: column;
+            margin-left: 75px;
             .col {
-              max-width: 150px;
+              max-width: 100% !important;
               p {
                 margin-bottom: 20px;
                 margin-top: 10px;
@@ -269,8 +270,9 @@ export default {
           .row {
             flex-direction: column;
             padding-left: 50px;
+            margin-left: 0;
             .col {
-              max-width: 302px;
+              max-width: 402px !important;
               p {
                 margin-bottom: 20px;
                 margin-top: 10px;

@@ -6,7 +6,7 @@
         <img src="../../assets/images/common/close.svg" alt="Закрыть" />
       </div>
       <h2 class="text-semi-bold text-white">Подробнее о товаре</h2>
-      <carousel />
+      <carousel @closeModal="$emit('closeModal')"/>
       <div class="row">
         <div class="info">
           <ul>

@@ -50,7 +50,7 @@
     </form>
     <Btn
       className="pay-btn"
-      text="ОПЛАТИТЬ"
+      text="Оплатить"
       :fluid="fluid"
       :center="!fluid"
       :disabled="btnDisabled"
@@ -125,7 +125,7 @@ div {
           font-family: "Regular";
           position: absolute;
           top: 38px;
-          right: -35px;
+          right: -40px;
         }
       }
       .input-group {
@@ -210,6 +210,11 @@ div {
     .container {
       .row {
         flex-wrap: wrap;
+        &:nth-child(3) {
+          .input-group {
+            margin-right: 0;
+          }
+        }
         input, div#total {
           border-radius: 7px !important;
         }
@@ -220,12 +225,12 @@ div {
           max-width: 148px;
           margin-left: 0;
           margin-top: 15px;
-          width: 50%;
+          width: calc(50% - 5px);
         }
         .bic {
           max-width: 148px;
           margin-top: 15px;
-          width: 40% !important;
+          width: calc(50% - 5px) !important;
         }
         span {
           margin-left: 0;

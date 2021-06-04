@@ -171,7 +171,7 @@ export default {
       }
       .file {
         width: 100%;
-        max-width: 250px;
+        max-width: 261px;
         margin-left: auto;
         label {
           display: flex;
@@ -212,6 +212,13 @@ export default {
             width: 64px !important;
             margin-right: 10px;
           }
+          
+          &:nth-child(3) {
+            input {
+              margin-right: 0;
+              max-width: 90px !important;
+            }
+          }
           #date {
             width: 113px !important;
           }
@@ -232,8 +239,6 @@ export default {
   .createSession {
     .film-item {
       .row {
-        // flex-direction: column;
-        // align-items: flex-start;
         .time {
           margin-top: 10px;
           margin-left: 0 !important;

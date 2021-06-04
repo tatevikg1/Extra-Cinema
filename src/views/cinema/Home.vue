@@ -311,9 +311,7 @@ export default {
   .wrap {
     padding: 30px 0 45px 0;
     .container {
-      // flex-direction: column;
       .row {
-        // flex-direction: column;
         margin-top: 0 !important;
 
         &:nth-child(2) {
@@ -325,8 +323,6 @@ export default {
           margin-bottom: 0;
           border-bottom: 1px solid #777777;
           border-radius: 0;
-          // max-width: 502px !important;
-          // width: 100%;
           &:hover {
             border: 0;
           }
@@ -343,10 +339,11 @@ export default {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            width: calc(100vw - 30px);
             .btn {
-              padding: 8px 10px !important;
+              padding: 6px 10px !important;
               font-size: 14px;
-              width: 170px !important;
+              // width: 170px !important;
               display: flex;
               justify-content: center;
               img {
@@ -359,9 +356,9 @@ export default {
     }
   }
 }
-@media screen and (max-width: 399px) {
-  .btn:nth-child(2) {
-    margin-top: 10px;
+@media screen and (max-width: 345px) {
+  .btn {
+    font-size: 12px !important;
   }
 }
 </style>

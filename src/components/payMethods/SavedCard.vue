@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <span class="title text-regular">Оплата картой VISA</span>
-    <div class="select" @click="btnClicked = !btnClicked">
+    <div class="select" @click="btnClicked = !btnClicked" :class="{border: btnClicked}">
       <div class="wrap">
         <img
           src="../../assets/images/common/visa.svg"
@@ -63,7 +63,7 @@
         </div>
       </form>
     </transition>
-    <Btn className="pay-btn" text="ОПЛАТИТЬ" :fluid="fluid" :center="!fluid"/>
+    <Btn className="pay-btn" text="Оплатить" :fluid="fluid" :center="!fluid"/>
   </div>
 </template>
 
@@ -121,6 +121,9 @@ export default {
   .title {
     color: #777777;
     font-size: 14px;
+  }
+  .border {
+    border-radius: 10px 10px 10px 0 !important;
   }
   .select {
     display: flex;

@@ -56,7 +56,9 @@
                   <span class="text-semi-bold">{{ item.price }} ₽</span>
                   <button
                     @click.prevent="showModal"
+                    @click="item.seen = true"
                     class="text-regular-italic"
+                    :class="{ green: item.seen }"
                   >
                     Подробно о товаре
                     <div class="arrow"></div>
@@ -121,8 +123,18 @@ export default {
       btnDisabled: true,
       modal: false,
       equipment: [
-        { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
-        { name: "Полотно для киноэкрана", price: 5000, checked: false },
+        {
+          name: "Кинопроектор EIKI EK-Cinema",
+          price: 50000,
+          checked: false,
+          seen: false,
+        },
+        {
+          name: "Полотно для киноэкрана",
+          price: 5000,
+          checked: false,
+          seen: false,
+        },
         {
           name: "Апаратно-программный комплекс кассира",
           price: 30000,
@@ -132,60 +144,91 @@ export default {
           name: "Коммутационная и вспомогательная техника",
           price: 20000,
           checked: false,
+          seen: false,
         },
         {
           name: "Оборудование видеомониторинга зала",
           price: 90000,
           checked: false,
+          seen: false,
         },
         {
           name: "Настройка и пусконаладочные работы",
           price: 10000,
           checked: false,
+          seen: false,
         },
-        { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
-        { name: "Полотно для киноэкрана", price: 5000, checked: false },
+        {
+          name: "Кинопроектор EIKI EK-Cinema",
+          price: 50000,
+          checked: false,
+          seen: false,
+        },
+        {
+          name: "Полотно для киноэкрана",
+          price: 5000,
+          checked: false,
+          seen: false,
+        },
         {
           name: "Апаратно-программный комплекс кассира",
           price: 30000,
           checked: false,
+          seen: false,
         },
         {
           name: "Коммутационная и вспомогательная техника",
           price: 20000,
           checked: false,
+          seen: false,
         },
         {
           name: "Оборудование видеомониторинга зала",
           price: 90000,
           checked: false,
+          seen: false,
         },
         {
           name: "Настройка и пусконаладочные работы",
           price: 10000,
           checked: false,
+          seen: false,
         },
-        { name: "Кинопроектор EIKI EK-Cinema", price: 50000, checked: false },
-        { name: "Полотно для киноэкрана", price: 5000, checked: false },
+        {
+          name: "Кинопроектор EIKI EK-Cinema",
+          price: 50000,
+          checked: false,
+          seen: false,
+        },
+        {
+          name: "Полотно для киноэкрана",
+          price: 5000,
+          checked: false,
+          seen: false,
+        },
         {
           name: "Апаратно-программный комплекс кассира",
           price: 30000,
           checked: false,
+          seen: false,
         },
         {
           name: "Коммутационная и вспомогательная техника",
           price: 20000,
           checked: false,
+          seen: false,
         },
         {
           name: "Оборудование видеомониторинга зала",
           price: 90000,
           checked: false,
+          seen: false,
         },
         {
           name: "Настройка и пусконаладочные работы",
           price: 10000,
           checked: false,
+          seen: false,
         },
       ],
     };
@@ -377,6 +420,9 @@ export default {
                 min-width: 80px;
                 text-align: center;
               }
+              .green {
+                color: #27ae60;
+              }
               button {
                 margin-left: 50px;
                 font-size: 16px;
@@ -440,7 +486,7 @@ export default {
         .btn {
           padding: 10px 21px;
           border-radius: 50px;
-          height: 40px;
+          height: 65px;
           width: 100%;
 
           span {
@@ -465,7 +511,7 @@ export default {
           margin-bottom: 62px;
           border-radius: 15px;
           ul {
-            height: 654px;
+            height: 416px;
 
             li {
               align-items: flex-start;
@@ -541,8 +587,20 @@ export default {
           }
         }
         .active {
-          span {
-            text-decoration: underline;
+          position: relative;
+          display: inline-flex;
+          .radio {
+            display: inline-flex;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            bottom: 10px;
+            left: 27px;
+            width: calc(100% - 50px);
+            height: 3px;
+            background: #ffffff;
           }
         }
       }

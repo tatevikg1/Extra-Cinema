@@ -47,6 +47,11 @@ export default {
   }
 }
 
+@media screen and (max-width: 834px) {
+  .addBtn span {
+    background: #d8004e;
+  }
+}
 @media screen and (max-width: 480px) {
   .addBtn {
     font-size: 14px;

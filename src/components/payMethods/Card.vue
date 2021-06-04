@@ -14,14 +14,21 @@
             class="input-secret"
             v-model="card"
             @click="selectedField = 'card'"
+            @input="cardHandler"
             placeholder="●●●● ●●●● ●●●● ●●●●"
+            maxlength="16"
           />
         </div>
 
         <div class="row">
           <div class="input-group">
             <label for="date" class="text-regular">Срок действия карты</label>
-            <input v-model="date" type="text" id="date" placeholder="ММ/ГГ" />
+            <masked-input
+              v-model="date"
+              id="date"
+              placeholder="ММ/ГГ"
+              mask="11/11"
+            />
           </div>
           <div class="input-group cvc">
             <label for="cvv" class="text-regular">CVV2/CVC2</label>
@@ -30,6 +37,8 @@
               id="cvv"
               v-model="cvv"
               @click="selectedField = 'cvv'"
+              @input="cvvHandler"
+              maxlength="3"
               class="input-secret"
               placeholder="●●●"
             />
@@ -50,7 +59,7 @@
     </form>
     <Btn
       className="pay-btn"
-      text="ОПЛАТИТЬ"
+      text="Оплатить"
       :fluid="fluid"
       :center="!fluid"
       :disabled="btnDisabled"
@@ -60,10 +69,11 @@
 
 <script>
 import Btn from "@/components/Btn";
+import MaskedInput from "vue-masked-input";
 
 export default {
   name: "Card",
-  components: { Btn },
+  components: { Btn, MaskedInput },
   data() {
     return {
       btnDisabled: true,
@@ -122,6 +132,16 @@ export default {
         if (this.selectedField === "card") {
           this.selectedField = "cvv";
         }
+      }
+    },
+    cvvHandler(e) {
+      if (isNaN(e.target.value)) {
+        this.cvv = this.cvv.substring(this.cvv.length - 1, 0);
+      }
+    },
+    cardHandler(e) {
+      if (isNaN(e.target.value)) {
+        this.card = this.card.substring(this.card.length - 1, 0);
       }
     },
     inputHandler(e) {
@@ -364,6 +384,14 @@ div {
           &[type="text"] {
             // font-size: 20px;
             letter-spacing: 2px;
+          }
+        }
+        .cvc{
+          width: 100% !important;
+          max-width: 110px !important;
+          #cvv {
+            display: block;
+            width: 100%;
           }
         }
       }

@@ -45,22 +45,23 @@
           <div class="input-group">
             <label class="text-regular">Количество</label>
             <div class="calc">
-              <button @click="increment">
-                <img src="../../assets/images/common/plus.svg" alt="Добавить" />
-              </button>
-              <div class="screen text-white text-semi-bold">{{ amount }}</div>
               <button @click="decrement">
                 <img src="../../assets/images/common/minus.svg" alt="Убавить" />
+              </button>
+              <div class="screen text-white text-semi-bold">{{ amount }}</div>
+
+              <button @click="increment">
+                <img src="../../assets/images/common/plus.svg" alt="Добавить" />
               </button>
             </div>
           </div>
           <!-- <button class="add-btn text-white text-semi-bold">Добавить</button> -->
-          <Btn class="add-btn" text="Добавить"/>
+          <Btn @click.native="$emit('closeModal')" class="add-btn" text="Добавить" />
         </div>
       </div>
     </div>
     <!-- <button class="add-btn add-btn2 text-white text-semi-bold">Добавить</button> -->
-    <Btn class="add-btn add-btn2" text="Добавить" fluid/>
+    <Btn @click.native="$emit('closeModal')" class="add-btn add-btn2" text="Добавить" fluid />
   </div>
 </template>
 
@@ -116,7 +117,7 @@ export default {
       this.amount++;
     },
     decrement() {
-      if (this.amount == 0) {
+      if (this.amount == 1) {
         return;
       }
       this.amount--;

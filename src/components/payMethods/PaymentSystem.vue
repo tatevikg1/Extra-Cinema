@@ -1,7 +1,11 @@
 <template>
   <div class="dropdown">
     <span class="title text-regular">Выбрать платежную систему</span>
-    <div class="select" @click="btnClicked = !btnClicked">
+    <div
+      class="select"
+      @click="btnClicked = !btnClicked"
+      :class="{border: btnClicked}"
+    >
       <div class="wrap">
         <img :src="activeOption.icon" alt="" />
         <span class="text-white text-semi-bold">{{ activeOption.name }}</span>
@@ -22,7 +26,7 @@
         </li>
       </ul>
     </transition>
-    <Btn className="pay-btn" text="ОПЛАТИТЬ" :fluid="fluid" :center="!fluid" />
+    <Btn className="pay-btn" text="Оплатить" :fluid="fluid" :center="!fluid" />
   </div>
 </template>
 
@@ -71,6 +75,7 @@ export default {
   },
   methods: {
     select(option) {
+      this.border = "0px";
       this.activeOption = option;
       this.btnClicked = !this.btnClicked;
     },
@@ -87,6 +92,9 @@ export default {
     color: #777777;
     font-size: 14px;
   }
+  .border {
+    border-radius: 10px 10px 10px 0 !important;
+  }
   .select {
     display: flex;
     align-items: center;
@@ -96,6 +104,7 @@ export default {
     cursor: pointer;
     margin-top: 10px;
     border-radius: 10px;
+    transition: .2s;
     .wrap {
       display: flex;
       align-items: center;

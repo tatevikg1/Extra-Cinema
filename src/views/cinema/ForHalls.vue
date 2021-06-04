@@ -272,7 +272,7 @@ export default {
           .btn-text {
             text-align: left;
             padding-left: 15px;
-            font-size: 12px;
+            font-size: 12.5px;
           }
         }
       }

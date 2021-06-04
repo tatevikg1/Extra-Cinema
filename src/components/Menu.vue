@@ -70,7 +70,7 @@ export default {
         {
           title: "Для зрителей",
           links: [
-            { name: "Фильмы онлайн", link: { name: "/" } },
+            { name: "Фильмы онлайн", link: { name: "dashboard" } },
             { name: "Купить билет", link: { name: "/" } },
           ],
           active: false,
@@ -78,8 +78,8 @@ export default {
         {
           title: "Для кинозала",
           links: [
-            { name: "Муниципальные кинозалы", link: { name: "for-halls" } },
-            { name: "Частные кинозалы", link: { name: "for-halls" } },
+            { name: "Муниципальные кинозалы", link: { name: "upload-docs" } },
+            { name: "Частные кинозалы", link: { name: "" } },
           ],
           active: false,
         },

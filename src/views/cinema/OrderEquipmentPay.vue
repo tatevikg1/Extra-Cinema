@@ -172,6 +172,7 @@ export default {
       .radio {
         align-self: flex-start;
         margin-bottom: 37px;
+        font-size: 14px;
         .radio-btn {
           margin-top: 20px;
           display: flex;
@@ -186,7 +187,7 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid #d8004e !important;           
+            border: 2px solid #ffffff !important;           
             margin-right: 12.5px;
           }
           .active-round {
