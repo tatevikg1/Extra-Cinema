@@ -13,6 +13,7 @@
             <div class="left">
               <div class="text-regular text-white p-SM">Название фильма</div>
               <div class="text-regular text-white p-SM">Жанр</div>
+              <div class="text-regular text-white p-SM">Загрузить фильм</div>
               <div class="text-regular text-white p-SM">Формат</div>
               <div class="text-regular text-white p-SM">Длительность</div>
               <div class="text-regular text-white p-SM">Описание</div>
@@ -36,6 +37,13 @@
                   class="text-regular text-gray"
                   placeholder="Введите название жанра"
                 />
+              </div>
+              <div class="input-wrap input-wrap-mobile text-regular text-white p-SM">Загрузить фильм</div>
+
+              <div class="input-wrap text-regular text-gray p-SM">
+                <span id="text">{{file}}</span>
+                <img id="file-icon" src="@/assets/images/uploadNew/file.svg" alt="Загрузить файл" />
+                <input @change="setFile" type="file" id="file" />
               </div>
               <div class="input-wrap input-wrap-mobile text-regular text-white p-SM">Формат</div>
 
@@ -127,12 +135,18 @@ export default {
     showDropdown: false,
     name: "",
     genre: "",
+    file: "Выберите фильм",
     time: "",
     overview: "",
     type: "2 D", //or '3 D',
     btnDisabled: true,
   }),
   methods: {
+    setFile(e) {
+      var file = e.target.files || e.dataTransfer.files;
+      if (!file.length) return;
+      this.file = file[0].name
+    },
     validate() {
       if (
         this.name.length > 3 &&
@@ -205,6 +219,7 @@ export default {
               background: #252424;
               border-radius: 5px;
               padding: 7.9px 12px;
+              position: relative;
             }
           }
           .textarea {
@@ -222,13 +237,32 @@ export default {
             justify-content: space-between;
           }
           .input-wrap {
-            padding: 15.4px 0;
+            padding: 16px 0;
             border-bottom: 1px solid #444444;
             display: flex;
-            align-items: flex-start !important;
+            align-items: center !important;
             justify-content: space-between;
+            position: relative;
+            #file {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              opacity: 0;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+            }
+            #file-icon {
+              position: absolute;
+              right: 0;
+              top: 20px;
+            }
             &:last-child {
               border-bottom: 0;
+            }
+            span#text {
+              font-size: 14px;
+              color: #797979;
             }
             input,
             textarea {
@@ -353,6 +387,9 @@ export default {
               input,
               textarea {
                 font-size: 12px !important;
+              }
+              #file-icon {
+                top: 13px !important;
               }
             }
             .dark {

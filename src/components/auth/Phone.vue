@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submit" class="phone">
+  <form @submit.prevent class="phone">
     <div class="wrap">
       <div class="select text-white text-semi-bold">
         <span @click="showAll = !showAll" class="h3" v-if="!showSms">
@@ -47,7 +47,11 @@
         }}
       </div>
     </div>
-    <button :disabled="$v.phone.$error" class="next text-white text-semi-bold">Далее</button>
+    <button
+      @click.once="submit"
+      :disabled="$v.phone.$error"
+      class="next text-white text-semi-bold"
+    >Далее</button>
 
     <div v-if="showSms" class="why text-gray text-regular">
       <span @click="showModal = !showModal">Не приходит код?</span>
@@ -116,13 +120,12 @@ export default {
   },
   mounted() {
     this.selected = countries.find((item) => item.code === "RU");
-    this.phone = countries.find((item) => item.code === "RU").phoneCode;
+    // this.phone = countries.find((item) => item.code === "RU").phoneCode;
   },
   methods: {
     selectItem(item) {
       this.selected = item;
       this.showAll = false;
-      this.phone = this.selected.phoneCode;
     },
     countDownTimer() {
       if (this.seconds > 0 && this.showSms) {

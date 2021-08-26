@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submit" class="email">
+  <form @submit.prevent class="email">
     <div class="wrap">
       <div class="phone">
         <input
@@ -30,7 +30,7 @@
         }}
       </div>
     </div>
-    <button :disabled="$v.email.$error" class="next text-white text-semi-bold">
+    <button @click.once="submit" :disabled="$v.email.$error" class="next text-white text-semi-bold">
       Далее
     </button>
 
