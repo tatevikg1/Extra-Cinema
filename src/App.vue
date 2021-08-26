@@ -69,6 +69,8 @@ export default {
   opacity: 1;
   height: 42px;
 }
+
+
 .dropdown-enter,
 .dropdown-leave-to {
   height: 0;

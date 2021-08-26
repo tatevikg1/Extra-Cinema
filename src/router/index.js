@@ -9,6 +9,9 @@ import ECOrderEquipment from "@/views/cinema/OrderEquipment";
 import ECOrderEquipmentPay from '@/views/cinema/OrderEquipmentPay';
 import ECDashboard from '@/views/cinema/Dashboard';
 import ECForHolders from '@/views/cinema/ForHolders';
+import ECRating from '@/views/cinema/Rating';
+import ECAuth from '@/views/cinema/Auth';
+import ECUploadNew from '@/views/cinema/UploadNew';
 
 Vue.use(VueRouter);
 
@@ -52,6 +55,21 @@ const routes = [
     path: '/cinema/forHolders',
     name: 'for-holders',
     component: ECForHolders
+  },
+  {
+    path: '/cinema/forHolders/rating',
+    name: 'ec-rating',
+    component: ECRating
+  },
+  {
+    path: '/login',
+    name: 'ec-login',
+    component: ECAuth
+  },
+  {
+    path: '/cinema/forHolders/upload-new',
+    name: 'ec-upload',
+    component: ECUploadNew
   }
 ];
 

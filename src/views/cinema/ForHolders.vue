@@ -17,7 +17,7 @@
         </div>
         <for-holders-carousel />
         <div class="buttons">
-          <router-link to="/" class="link text-white text-semi-bold">
+          <router-link :to="{name: 'ec-upload'}" class="link text-white text-semi-bold">
             <div class="btn-decor">
               <img :src="UploadContentIcon" alt="Заказать" />
             </div>
@@ -188,26 +188,26 @@ export default {
           margin-top: 10px;
         }
       }
-      .links {
-        margin-top: 27px;
-        a {
-          background: #000000;
-          text-align: center;
-          width: 148px;
-          height: 128px;
-          &:nth-child(2) {
+        .links {
+          margin-top: 27px;
+          a {
+            background: #000000;
+            text-align: center;
+            width: 148px;
+            height: 128px;
+            &:nth-child(2) {
+              h3 {
+                transform: translateY(-10px);
+              }
+            }
             h3 {
-              transform: translateY(-10px);
+              height: 20px;
+              margin-top: -20px;
+              font-size: 14px;
+              font-family: 'Regular' !important;
             }
           }
-          h3 {
-            height: 20px;
-            margin-top: -20px;
-            font-size: 14px;
-            font-family: 'Regular' !important;
-          }
         }
-      }
     }
   }
 }

@@ -19,7 +19,7 @@
         </li>
       </ul>
       <div class="buttons">
-        <router-link to="/login" class="enter-btn text-semi-bold text-white">
+        <router-link :to="{name: 'ec-login'}" class="enter-btn text-semi-bold text-white">
           Войти
           <img src="../assets/images/header/enter.svg" alt="Login" />
         </router-link>

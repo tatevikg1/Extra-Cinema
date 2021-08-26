@@ -11,7 +11,7 @@
       <router-link
         v-for="(item, idx) in items"
         :key="idx"
-        :to="item.url"
+        :to="{name: item.url}"
         class="item"
       >
         <div class="image">
@@ -65,7 +65,7 @@ export default {
       desktopCarousel: true,
       ArrowIcon,
       items: [
-        { img: item1, title: "Рейтинг Extracinema", url: "/" },
+        { img: item1, title: "Рейтинг Extracinema", url: "ec-rating" },
         { img: item2, title: "Сегодня в прокате", url: "/" },
         { img: item3, title: "Мои фильмы", url: "/" },
         { img: item4, title: "Отчеты и документы", url: "/" },
