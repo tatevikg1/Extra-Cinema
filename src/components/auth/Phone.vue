@@ -47,11 +47,7 @@
         }}
       </div>
     </div>
-    <button
-      @click.once="submit"
-      :disabled="$v.phone.$error"
-      class="next text-white text-semi-bold"
-    >Далее</button>
+    <button @click="submit" :disabled="$v.phone.$error" class="next text-white text-semi-bold">Далее</button>
 
     <div v-if="showSms" class="why text-gray text-regular">
       <span @click="showModal = !showModal">Не приходит код?</span>
@@ -143,13 +139,15 @@ export default {
       this.countDownTimer();
     },
     submit() {
-      this.$v.$touch();
-      if (this.$v.phone.$invalid) {
-        console.log("error");
-      } else {
-        this.$emit("changeTitle", "Подтвердите телефон");
-        this.showSms = true;
-        this.countDownTimer();
+      if (!this.showSms) {
+        this.$v.$touch();
+        if (this.$v.phone.$invalid) {
+          console.log("error");
+        } else {
+          this.$emit("changeTitle", "Подтвердите телефон");
+          this.showSms = true;
+          this.countDownTimer();
+        }
       }
     },
   },
@@ -222,6 +220,7 @@ export default {
   input {
     padding: 3px 10px 10px 10px;
     border: 0;
+    border-radius: 0;
     border-bottom: 1px solid #ffffff;
     background: transparent;
     max-width: 278px;

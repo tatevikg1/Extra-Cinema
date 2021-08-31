@@ -4,7 +4,7 @@
       <div class="phone">
         <input
           v-model="$v.email.$model"
-          type="tel"
+          type="email"
           :disabled="showSms"
           placeholder="email"
           class="phone text-white text-semi-bold h3"
@@ -21,25 +21,23 @@
       />
       <div @click="sendSmsAgain" class="timer text-gray text-regular">
         {{
-          Number(seconds)
-            ? `${Math.floor((seconds / 60) % 60)}:${(
-                "0" +
-                (seconds % 60)
-              ).slice(-2)}`
-            : seconds
+        Number(seconds)
+        ? `${Math.floor((seconds / 60) % 60)}:${(
+        "0" +
+        (seconds % 60)
+        ).slice(-2)}`
+        : seconds
         }}
       </div>
     </div>
-    <button @click.once="submit" :disabled="$v.email.$error" class="next text-white text-semi-bold">
-      Далее
-    </button>
+    <button @click="submit" :disabled="$v.email.$error" class="next text-white text-semi-bold">Далее</button>
 
     <div v-if="showSms" class="why text-gray text-regular">
       <span @click="showModal = !showModal">Не приходит код?</span>
       <transition name="urlChanged">
         <div v-if="showModal" class="why-modal">
           <button @click="showModal = false">
-            <img src="@/assets/images/auth/close.svg" alt="" />
+            <img src="@/assets/images/auth/close.svg" alt />
           </button>
           <h3 class="text-white text-semi-bold">Возможные причины:</h3>
           <ul>
@@ -48,9 +46,9 @@
               2. Вы не изменили в личном кабинете адрес почты на новый, и мы
               отправили код на старый. Обратитесь в службу поддержки через
               электронную почту
-              <a href="mailto:support@extrafintech.com"
-                >support@extrafintech.com</a
-              >
+              <a
+                href="mailto:support@extrafintech.com"
+              >support@extrafintech.com</a>
               или позвоните по номеру
               <a href="tel:+79951317777">+7 995 131 77 77</a>
             </li>
@@ -71,7 +69,7 @@ import {
   minLength,
   maxLength,
   email,
-  numeric
+  numeric,
 } from "vuelidate/lib/validators";
 
 export default {
@@ -111,13 +109,15 @@ export default {
       this.countDownTimer();
     },
     submit() {
-      this.$v.$touch();
-      if (this.$v.email.$invalid) {
-        console.log("error");
-      } else {
-        this.$emit("changeTitle", "Подтвердите E-Mail");
-        this.showSms = true;
-        this.countDownTimer();
+      if (!this.showSms) {
+        this.$v.$touch();
+        if (this.$v.email.$invalid) {
+          console.log("error");
+        } else {
+          this.$emit("changeTitle", "Подтвердите E-Mail");
+          this.showSms = true;
+          this.countDownTimer();
+        }
       }
     },
   },
@@ -138,9 +138,11 @@ export default {
     }
   }
   input {
+    -webkit-appearance: none;
     padding: 3px 10px 10px 10px;
     border: 0;
     border-bottom: 1px solid #ffffff;
+    border-radius: 0;
     background: transparent;
     max-width: 278px;
     outline: 0;
