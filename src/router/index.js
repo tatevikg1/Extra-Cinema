@@ -12,6 +12,7 @@ import ECForHolders from '@/views/cinema/ForHolders';
 import ECRating from '@/views/cinema/Rating';
 import ECAuth from '@/views/cinema/Auth';
 import ECUploadNew from '@/views/cinema/UploadNew';
+import ECЕTodayCinema from '@/views/cinema/TodayCinema';
 
 Vue.use(VueRouter);
 
@@ -70,6 +71,11 @@ const routes = [
     path: '/cinema/forHolders/upload-new',
     name: 'ec-upload',
     component: ECUploadNew
+  },
+  {
+    path: '/cinema/forHolders/today-cinema',
+    name: "ec-today",
+    component: ECЕTodayCinema
   }
 ];
 

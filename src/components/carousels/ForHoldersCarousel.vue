@@ -66,7 +66,7 @@ export default {
       ArrowIcon,
       items: [
         { img: item1, title: "Рейтинг Extracinema", url: "ec-rating" },
-        { img: item2, title: "Сегодня в прокате", url: "/" },
+        { img: item2, title: "Сегодня в прокате", url: "ec-today" },
         { img: item3, title: "Мои фильмы", url: "/" },
         { img: item4, title: "Отчеты и документы", url: "/" },
 

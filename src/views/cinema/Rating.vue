@@ -4,84 +4,51 @@
     <section class="wrap bg-black">
       <div class="container">
         <arrow-back href="for-holders" />
-        <h1 class="text-white text-semi-bold">
-          <img :src="RateIcon" alt="Рейтинг ExtraCinema" />
-          <span>Рейтинг ExtraCinema</span>
-        </h1>
+        <title-decor text="Рейтинг ExtraCinema" :img="RateIcon"/>
         <div class="row">
-          <router-link
-            v-for="(item, idx) in items"
-            :key="idx"
-            to="/"
-            class="item"
-          >
-            <img
-              src="@/assets/images/rating/example.png"
-              :alt="item.title"
-              class="preview"
-            />
+          <router-link v-for="(item, idx) in items" :key="idx" to="/" class="item">
+            <img src="@/assets/images/rating/example.png" :alt="item.title" class="preview" />
             <div class="card">
               <h2 class="text-white text-semi-bold">{{ item.title }}</h2>
               <div class="rating">
                 <span class="text-white text-bold h1">{{ item.rate }}</span>
                 <div class="stars">
-                  <img
-                    src="@/assets/images/rating/gray-stars.svg"
-                    alt="Рейтинг"
-                    class="gray"
-                  />
-                  <div
-                    class="white"
-                    :style="{ width: item.rate * 10 + '%' }"
-                  ></div>
+                  <img src="@/assets/images/rating/gray-stars.svg" alt="Рейтинг" class="gray" />
+                  <div class="white" :style="{ width: item.rate * 10 + '%' }"></div>
                 </div>
               </div>
               <div class="views p-sm text-white text-regular">
-                Количество просмотров: <span>{{ item.views }}</span>
-                <img
-                  src="@/assets/images/rating/flag.svg"
-                  :alt="item.view + просмотров"
-                />
+                Количество просмотров:
+                <span>{{ item.views }}</span>
+                <img src="@/assets/images/rating/flag.svg" :alt="item.view + 'просмотров'" />
               </div>
               <div class="info">
                 <div class="info-item text-regular">
-                  Страна: <span>{{ item.country }}</span>
+                  Страна:
+                  <span>{{ item.country }}</span>
                 </div>
                 <div class="info-item text-regular">
-                  Год: <span>{{ item.year }}</span>
+                  Год:
+                  <span>{{ item.year }}</span>
                 </div>
               </div>
               <div class="info">
                 <div class="info-item text-regular">
-                  Режиссер: <span>{{ item.director }}</span>
+                  Режиссер:
+                  <span>{{ item.director }}</span>
                 </div>
               </div>
               <p class="description text-regular text-gray p-sm">
                 {{
-                  item.description
-                    ? item.description.substring(0, 40) + " ..."
-                    : ""
+                item.description
+                ? item.description.substring(0, 40) + " ..."
+                : ""
                 }}
               </p>
             </div>
           </router-link>
         </div>
-        <div class="buttons">
-          <router-link :to="{name: 'ec-upload'}" class="link text-white text-semi-bold">
-            <div class="btn-decor">
-              <img :src="UploadContentIcon" alt="Заказать" />
-            </div>
-            <span class="btn-text">Загрузить новый контент</span>
-          </router-link>
-          <router-link to="" class="link">
-            <div class="btn-decor">
-              <img :src="SettingsIcon" alt="Служба поддержки" />
-            </div>
-            <div class="btn-text text-white text-semi-bold">
-              Служба поддержки
-            </div>
-          </router-link>
-        </div>
+        <btn-group />
       </div>
     </section>
     <Footer />
@@ -89,19 +56,18 @@
 </template>
 
 <script>
+import BtnGroup from "@/components/BtnGroup";
+import TitleDecor from '@/components/TitleDecor'
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArrowBack from "@/components/ArrowBack";
 import RateIcon from "@/assets/images/for-holders-page/carousel/item1.svg";
-import UploadContentIcon from "@/assets/images/for-holders-page/upload-content.svg";
-import SettingsIcon from "@/assets/images/cinema-for-halls-page/settings_icon.svg";
 
 export default {
-  components: { Header, Footer, ArrowBack },
+  components: { Header, Footer, ArrowBack, BtnGroup, TitleDecor },
   data: () => ({
     RateIcon,
-    UploadContentIcon,
-    SettingsIcon,
     items: [
       {
         title: "Гениальное ограбление",
@@ -176,19 +142,7 @@ export default {
   .container {
     position: relative;
     padding: 87px 15px 121px 15px;
-    h1 {
-      display: flex;
-      align-items: center;
-      img {
-        width: 68px;
-        height: 68px;
-        margin-right: 27px;
-      }
-      span {
-        padding-bottom: 18px;
-        border-bottom: 7px solid #d8004e;
-      }
-    }
+    
     .row {
       margin-top: 88px;
       .item {
@@ -219,6 +173,7 @@ export default {
         }
         .card {
           padding: 30px 50px;
+          max-width: 447px;
           h2 {
             margin-bottom: 20px;
           }
@@ -264,7 +219,7 @@ export default {
                 left: 0;
                 background: url("../../assets/images/rating/white-stars.svg")
                   no-repeat left;
-                background-size: cover;
+                // background-size: cover;
                 display: block;
                 height: 22px;
               }
@@ -317,102 +272,49 @@ export default {
         }
       }
     }
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 82px;
-      .link {
-        max-width: calc(50% - 10.5px);
-        width: 100%;
-        height: 86px;
-        display: flex;
-        align-items: center;
-        background: #27ae60;
-        border-radius: 10px;
-        text-decoration: none;
-        transition: 0.2s;
-        &:hover {
-          background: #279e48;
-          .btn-decor {
-            background: #ffffff;
-            img {
-              filter: brightness(0%);
-            }
-          }
-        }
-        .btn-decor {
-          border-radius: 10px;
-          background: #444444;
-          box-shadow: 10px 13px 25px rgba(0, 0, 0, 0.26);
-          height: 86px;
-          width: 86px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transition: 0.2s;
-          img {
-            transition: 0.2s;
-          }
-        }
-        .btn-text {
-          width: calc(100% - 86px);
-          text-align: center;
-          font-size: 18px;
-        }
-      }
-    }
   }
 }
-@media screen and (max-width: 834px) {
+@media screen and (max-width: 1000px) {
   .wrap {
     .container {
       .row {
         .item {
           img.preview {
             max-width: 317px;
-            max-height: 222px;
+            max-height: 222;
+            width: 100%;
+            height: auto !important;
           }
           .card {
             padding: 15px 20px 30px 20px;
-          }
-        }
-      }
-      .buttons {
-        justify-content: center;
-        flex-wrap: wrap;
-        .link {
-          max-width: 269px;
-          width: 100%;
-          border-radius: 0;
-          height: 50px;
-          margin: 0 5px;
-          .btn-decor {
-            height: 50px;
-            width: 50px;
-            border-radius: 0;
-            img {
-              width: 30px;
-              height: 30px;
+            .rating {
+              span {
+                font-size: 18px;
+                height: 27px;
+                width: calc(142px - 47px);
+                &::before {
+                  height: 27px;
+                  width: 47px;
+                  left: -47px;
+                }
+                &::after {
+                  border-width: 12.5px 15px 16.5px 0;
+                }
+              }
+            }
+            .stars {
+              transform: scale(0.7) translateX(-55px);
+            }
+            .views {
+              span {
+                font-size: 20px;
+              }
+              img {
+                width: 17px;
+                height: 17px;
+              }
             }
           }
-          .btn-text {
-            text-align: left;
-            padding-left: 15px;
-            font-size: 12px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 572px) {
-  .wrap {
-    .container {
-      .buttons {
-        margin-top: 50px;
-        .link:nth-child(2) {
-          margin-top: 10px;
         }
       }
     }
