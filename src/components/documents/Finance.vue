@@ -49,7 +49,6 @@ export default {
       this.formDisabled = true;
       this.btnDisabled = true;
       const films = this.items.map((el) => el.name);
-      // this.$emit("onRequest", films, "Отчет по фильму");
       this.items.length > 1
         ? this.$emit("onRequest", films, "Отчет по фильмам")
         : this.$emit("onRequest", films, "Отчет по фильму");
@@ -96,6 +95,36 @@ export default {
   .btn {
     margin-top: 56px;
     align-self: center;
+  }
+}
+
+@media (max-width:834px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    input {
+      margin-top: 15px;
+    }
+  }
+  .addBtn {
+    margin-top: 30px !important;
+  }
+}
+
+@media (max-width:490px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    margin-top: 10px !important;
+    &:first-child {
+      margin-top: 0 !important;
+    }
+    input {
+      margin-top: 10px;
+    }
+  }
+  .addBtn {
+    margin-top: 24px !important;
   }
 }
 </style>

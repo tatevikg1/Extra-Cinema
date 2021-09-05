@@ -16,9 +16,7 @@
       <div class="desc">
         <img src="@/assets/images/rating/example.png" :alt="desc.title" class="preview" />
         <div class="card">
-          <p class="description text-regular text-gray p-sm">
-            {{ desc.description }}
-          </p>
+          <p class="description text-regular text-gray p-sm">{{ desc.description }}</p>
           <div class="info">
             <div class="info-item text-regular">
               Страна:
@@ -125,7 +123,7 @@ export default {
 <style lang="scss" scoped>
 .today-single-wrap {
   .container {
-    padding: 87px 0 121px 0;
+    padding: 87px 15px 121px 15px;
     position: relative;
     .heading {
       display: flex;
@@ -262,6 +260,194 @@ export default {
     }
     .buttons {
       margin-top: 80px;
+    }
+  }
+}
+
+@media (max-width: 1045px) {
+  .today-single-wrap {
+    .container {
+      .desc {
+        img {
+          max-width: 350px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 834px) {
+  .today-single-wrap {
+    .container {
+      padding: 87px 15px 81px 15px;
+      .heading {
+        .rating {
+          max-width: 350px;
+          margin-left: 40px;
+        }
+      }
+      .desc {
+        background: #151515;
+        border-radius: 22px;
+        overflow: hidden;
+        margin-top: 22.82px;
+
+        img {
+          max-width: 350px;
+          border-radius: 0;
+        }
+        .card {
+          padding: 20px 20px 25px 20px;
+          * {
+            font-size: 14px !important;
+          }
+
+          .description {
+            margin-bottom: 30px;
+            margin-left: 20px;
+            &::before {
+              width: 16px;
+              height: 16px;
+              background-size: contain;
+              top: 0;
+              left: -20px;
+            }
+          }
+          .info {
+            margin-top: 20px;
+          }
+        }
+      }
+      .row {
+        margin-top: 40px;
+        padding: 27px 33px;
+        .item {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 774px) {
+  .today-single-wrap {
+    .container {
+      .heading {
+        flex-wrap: wrap;
+        .rating {
+          max-width: 350px;
+          margin-left: 15px;
+          margin: 20px;
+        }
+      }
+      .desc {
+        background: transparent;
+        border-radius: 22px;
+        overflow: hidden;
+        flex-direction: column;
+        img {
+          max-width: 480px;
+          border-radius: 18px;
+          margin: auto;
+        }
+        .card {
+          padding: 20px 0 0 0;
+          max-width: 480px;
+          margin: auto;
+          * {
+            font-size: 14px !important;
+          }
+
+          .description {
+            margin-bottom: 30px;
+            margin-left: 20px;
+            &::before {
+              width: 16px;
+              height: 16px;
+              background-size: contain;
+              top: 0;
+              left: -20px;
+            }
+          }
+          .info {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .today-single-wrap {
+    .container {
+      padding: 48px 15px 25px 15px;
+
+      .heading {
+        flex-wrap: wrap;
+        .rating {
+          max-width: 350px;
+          margin-left: 15px;
+          margin: 20px;
+        }
+      }
+      .desc {
+        background: transparent;
+        border-radius: 22px;
+        overflow: hidden;
+        flex-direction: column;
+        margin-top: 0;
+        img {
+          max-width: 480px;
+          border-radius: 18px;
+          margin: auto;
+        }
+        .card {
+          padding: 20px 0 0 0;
+          max-width: 480px;
+          margin: auto;
+          * {
+            font-size: 12px !important;
+          }
+          .info {
+            .info-item {
+              padding-left: 9px !important;
+              padding-right: 9px;
+            }
+          }
+          .description {
+            margin-bottom: 30px;
+            margin-left: 20px;
+            &::before {
+              width: 16px;
+              height: 16px;
+              background-size: contain;
+              top: 0;
+              left: -20px;
+            }
+          }
+          .info {
+            margin-top: 20px;
+          }
+        }
+      }
+      .row {
+        padding: 20px 15px;
+        .actors-wrap {
+          .actors {
+            &-item {
+              max-width: 132px;
+              margin-right: 15px;
+              img {
+              max-width: 132px;
+                
+              }
+            }
+          }
+        }
+      }
+      .buttons {
+        margin-top: 40px;
+      }
     }
   }
 }

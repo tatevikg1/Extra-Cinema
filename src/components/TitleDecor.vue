@@ -24,4 +24,30 @@ h1 {
     border-bottom: 7px solid #d8004e;
   }
 }
+
+@media (max-width: 834px) {
+  h1 {
+    img {
+      width: 46px;
+      height: 46px;
+    }
+    span {
+      padding-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 5px;
+    }
+    span {
+      padding-bottom: 7px;
+      border-bottom: 5px solid #d8004e;
+    }
+  }
+}
 </style>

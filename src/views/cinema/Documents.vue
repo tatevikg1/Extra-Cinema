@@ -151,11 +151,16 @@ export default {
   .container {
     position: relative;
     padding: 90px 15px 120px 15px;
+
     .toggler {
       margin-top: 66px;
+      overflow-y: hidden;
       .buttons {
         margin-top: 20px;
         display: flex;
+        overflow-x: scroll;
+        padding-bottom: 28px;
+
         button {
           background: transparent;
           border: 1px solid #7c7c7c;
@@ -163,6 +168,7 @@ export default {
           align-items: center;
           padding: 17px 23px;
           cursor: pointer;
+          white-space: nowrap;
           transition: 0.2s;
           svg {
             margin-left: 10px;
@@ -258,6 +264,100 @@ export default {
           }
           .btn {
             margin-top: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 834px) {
+  .documents-wrap {
+    .container {
+      padding: 87px 15px 81px 15px;
+    }
+    form {
+      .form-item {
+        margin-top: 46px;
+        padding-top: 46px;
+        border-top: 1px solid #7c7c7c;
+        .heading {
+          display: flex;
+          align-items: center;
+          img {
+            margin-right: 10px;
+          }
+          span {
+            text-decoration: underline;
+          }
+        }
+        .buttons {
+          align-items: flex-start !important;
+
+          .email {
+            flex-wrap: wrap;
+            span {
+              margin-left: 0 !important;
+              padding-left: 0 !important;
+              margin-top: 15px;
+            }
+          }
+          button {
+            padding: 10px 0;
+            width: calc(100% - 10px);
+            text-align: center;
+            justify-content: center;
+            img {
+              margin-right: 5px !important;
+              // width: 18px;
+            }
+          }
+        }
+        .input {
+          margin-top: 35px;
+        }
+        .btn {
+          margin-top: 35px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .documents-wrap {
+    .container {
+      padding: 48px 15px 25px 15px;
+      .toggler {
+        margin-top: 48px;
+        .buttons {
+          button {
+            font-size: 12px !important;
+            padding: 10px;
+          }
+        }
+      }
+      .row {
+        form {
+          padding: 23px 23px 35px 23px;
+          .form-item {
+            margin-top: 30px;
+            padding-top: 30px;
+            .buttons {
+              flex-direction: column;
+              margin-top: 30px;
+              .email {
+                margin-bottom: 15px;
+              }
+              button {
+                padding: 7px;
+                border: 1px solid #27ae60;
+                font-size: 14px !important;
+              }
+            }
+            .input {
+              margin-top: 30px;
+            }
           }
         }
       }

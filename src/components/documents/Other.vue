@@ -98,4 +98,33 @@ export default {
     margin-bottom: 30px;
   }
 }
+
+@media (max-width:834px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    textarea {
+      margin-top: 15px;
+    }
+  }
+  .addBtn {
+    margin-top: 30px !important;
+  }
+}
+@media (max-width:490px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    margin-top: 10px !important;
+    &:first-child {
+      margin-top: 0 !important;
+    }
+    textarea {
+      margin-top: 10px;
+    }
+  }
+  .addBtn {
+    margin-top: 24px !important;
+  }
+}
 </style>

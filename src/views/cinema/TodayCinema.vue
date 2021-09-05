@@ -11,7 +11,12 @@
         </div>
       </div>
       <div class="row">
-        <router-link :to="{name: 'ec-today-item'}" v-for="(item, idx) in filteredList" :key="idx" class="item">
+        <router-link
+          :to="{name: 'ec-today-item'}"
+          v-for="(item, idx) in filteredList"
+          :key="idx"
+          class="item"
+        >
           <img src="@/assets/images/rating/example.png" alt />
           <h3 class="text-white text-semi-bold">{{item.name}}</h3>
         </router-link>
@@ -145,6 +150,68 @@ export default {
         h3 {
           width: 100%;
           padding: 10px 20px 15px 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 834px) {
+  .today-wrap {
+    .container {
+      padding: 85px 15px 81px 15px;
+      .heading {
+        .search {
+          display: none;
+        }
+      }
+      .row {
+        justify-content: center;
+        margin-top: 60px;
+        .item {
+          max-width: 317px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .today-wrap {
+    .container {
+      padding: 48px 15px 25px 15px;
+
+      .heading {
+        .search {
+          display: none;
+        }
+      }
+      .row {
+        justify-content: center;
+        margin-top: 40px;
+        .item {
+          max-width: 169px;
+          margin: 3.5px;
+          border-radius: 10px;
+          h3 {
+            font-size: 11px;
+            padding: 7px;
+          }
+        }
+      }
+      .buttons {
+        margin-top: 34px;
+      }
+    }
+  }
+}
+
+@media (max-width:382px) {
+  .today-wrap{
+    .container{
+      .row {
+        .item {
+          max-width: 135px;
         }
       }
     }

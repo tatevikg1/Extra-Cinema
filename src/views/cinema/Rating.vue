@@ -43,13 +43,12 @@
                   <span>{{ item.director }}</span>
                 </div>
               </div>
-              <p class="description text-regular text-gray p-sm">
-                {{
-                item.description
-                ? item.description.substring(0, 40) + " ..."
-                : ""
-                }}
-              </p>
+              <p
+                class="description text-regular text-gray p-sm"
+                v-html="item.description
+                ? `<span class='text'>${item.description.substring(0, 40)}</span>` + ' ...'
+                : ''"
+              ></p>
             </div>
           </router-link>
         </div>
@@ -144,187 +143,267 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.wrap {
-  .container {
-    position: relative;
-    padding: 87px 15px 121px 15px;
+<style lang="scss">
+.rating-wrap {
+  .wrap {
+    .container {
+      position: relative;
+      padding: 87px 15px 121px 15px;
 
-    .row {
-      margin-top: 88px;
-      .item {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        border-radius: 22px;
-        overflow: hidden;
-        background: #151515;
-        margin-bottom: 20px;
-        transition: 0.35s;
-        text-decoration: none;
-        &:hover {
-          background: #000000;
-          box-shadow: 0 0 60px rgba(216, 0, 78, 0.57);
-          .card .rating span::after {
-            border-color: transparent #000000 transparent transparent;
-          }
-        }
-        &:last-child {
-          margin-bottom: 0;
-        }
-        img.preview {
-          max-width: 521px;
-          max-height: 311px;
+      .row {
+        margin-top: 88px;
+        .item {
           width: 100%;
-          height: auto;
-        }
-        .card {
-          padding: 30px 50px;
-          max-width: 447px;
-          h2 {
-            margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+          border-radius: 22px;
+          overflow: hidden;
+          background: #151515;
+          margin-bottom: 20px;
+          transition: 0.35s;
+          text-decoration: none;
+          &:hover {
+            background: #000000;
+            box-shadow: 0 0 60px rgba(216, 0, 78, 0.57);
+            .card .rating span::after {
+              border-color: transparent #000000 transparent transparent;
+            }
           }
-          .rating {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            span {
-              background: #d8004e;
-              height: 43px;
-              width: calc(224px - 77px);
+          &:last-child {
+            margin-bottom: 0;
+          }
+          img.preview {
+            max-width: 521px;
+            max-height: 311px;
+            width: 100%;
+            height: auto;
+          }
+          .card {
+            padding: 30px 50px;
+            max-width: 500px;
+            h2 {
+              margin-bottom: 20px;
+            }
+            .rating {
+              display: flex;
+              align-items: center;
+              margin-bottom: 10px;
+              span {
+                background: #d8004e;
+                height: 43px;
+                width: calc(224px - 77px);
+                position: relative;
+                margin-left: -15px;
+                margin-right: 2px;
+                &::before {
+                  content: "";
+                  height: 43px;
+                  width: 77px;
+                  background: #d8004e;
+                  display: block;
+                  position: absolute;
+                  top: 0;
+                  left: -77px;
+                }
+                &::after {
+                  content: "";
+                  transition: 0.35s;
+                  width: 0;
+                  height: 0;
+                  border-style: solid;
+                  border-width: 21.5px 15px 21.5px 0;
+                  border-color: transparent #151515 transparent transparent;
+                  position: absolute;
+                  right: -1px;
+                  top: 0;
+                }
+              }
+              .stars {
+                position: relative;
+                .white {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background: url("../../assets/images/rating/white-stars.svg")
+                    no-repeat left;
+                  // background-size: cover;
+                  display: block;
+                  height: 22px;
+                }
+              }
+            }
+            .views {
+              display: flex;
+              align-items: center;
+              span {
+                font-size: 30px;
+                margin-left: 15px;
+              }
+              img {
+                width: 24px;
+                height: 24px;
+              }
+            }
+            .info {
+              display: flex;
+              align-items: center;
+              margin-top: 10px;
+              .info-item {
+                font-size: 12px;
+                color: #9a9a9a;
+                padding-right: 18px;
+
+                &:nth-child(2) {
+                  padding-left: 18px;
+                  border-left: 1px solid #9a9a9a;
+                }
+                span {
+                  color: #ffffff;
+                }
+              }
+            }
+            .description {
+              margin-top: 22px;
               position: relative;
-              margin-left: -15px;
-              margin-right: 2px;
+              max-width: 100%;
+
+              span {
+                max-width: 100%;
+              }
               &::before {
                 content: "";
-                height: 43px;
-                width: 77px;
-                background: #d8004e;
-                display: block;
                 position: absolute;
-                top: 0;
-                left: -77px;
-              }
-              &::after {
-                content: "";
-                transition: 0.35s;
-                width: 0;
-                height: 0;
-                border-style: solid;
-                border-width: 21.5px 15px 21.5px 0;
-                border-color: transparent #151515 transparent transparent;
-                position: absolute;
-                right: -1px;
-                top: 0;
-              }
-            }
-            .stars {
-              position: relative;
-              .white {
-                position: absolute;
-                top: 0;
-                left: 0;
-                background: url("../../assets/images/rating/white-stars.svg")
-                  no-repeat left;
-                // background-size: cover;
-                display: block;
-                height: 22px;
+                top: -10px;
+                left: -30px;
+                width: 23px;
+                height: 33px;
+                background: url("../../assets/images/rating/quote.svg")
+                  no-repeat center;
               }
             }
           }
-          .views {
-            display: flex;
-            align-items: center;
-            span {
-              font-size: 30px;
-              margin-left: 15px;
-            }
-            img {
-              width: 24px;
-              height: 24px;
-            }
-          }
-          .info {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-            .info-item {
-              font-size: 12px;
-              color: #9a9a9a;
-              padding-right: 18px;
+        }
+      }
+      .loader {
+        margin-top: 60px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .rating-wrap {
+    .wrap {
+      .container {
+        padding: 87px 15px 81px 15px;
 
-              &:nth-child(2) {
-                padding-left: 18px;
-                border-left: 1px solid #9a9a9a;
-              }
-              span {
-                color: #ffffff;
-              }
+        .row {
+          margin-top: 60px;
+          .item {
+            margin-bottom: 15px;
+            img.preview {
+              max-width: 370px;
+              max-height: 100%;
+              width: 100%;
+              height: 130% !important;
             }
-          }
-          .description {
-            margin-top: 22px;
-            position: relative;
-            &::before {
-              content: "";
-              position: absolute;
-              top: -10px;
-              left: -30px;
-              width: 23px;
-              height: 33px;
-              background: url("../../assets/images/rating/quote.svg") no-repeat
-                center;
+            .card {
+              padding: 15px 20px 15px 20px;
+              .rating {
+                span {
+                  font-size: 18px;
+                  height: 27px;
+                  width: calc(142px - 47px);
+                  &::before {
+                    height: 27px;
+                    width: 47px;
+                    left: -47px;
+                  }
+                  &::after {
+                    border-width: 12.5px 15px 16.5px 0;
+                  }
+                }
+              }
+              .stars {
+                transform: scale(0.7) translateX(-55px);
+              }
+              .views {
+                span {
+                  font-size: 20px;
+                }
+                img {
+                  width: 17px;
+                  height: 17px;
+                }
+              }
+              .description {
+                margin-left: 20px;
+                display: flex;
+                .text {
+                  display: block;
+                  max-width: 268px;
+                  height: 16px;
+                  overflow: hidden;
+                }
+                &::before {
+                  top: 0;
+                  left: -20px;
+                  width: 16px;
+                  height: 16px;
+                  background-size: contain;
+                }
+              }
             }
           }
         }
       }
     }
-    .loader {
-      margin-top: 60px;
-    }
   }
 }
-@media screen and (max-width: 1000px) {
-  .wrap {
-    .container {
-      .row {
-        .item {
-          img.preview {
-            max-width: 317px;
-            max-height: 222;
+
+@media (max-width: 710px) {
+  .rating-wrap {
+    .wrap {
+      .container {
+        padding: 48px 15px 25px 15px;
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-top: 25px;
+          .item {
+            max-width: 315px;
+            min-width: 280px;
             width: 100%;
-            height: auto !important;
-          }
-          .card {
-            padding: 15px 20px 30px 20px;
-            .rating {
-              span {
-                font-size: 18px;
-                height: 27px;
-                width: calc(142px - 47px);
-                &::before {
-                  height: 27px;
-                  width: 47px;
-                  left: -47px;
+            margin: 7.5px;
+            display: flex;
+            flex-direction: column;
+            top: 0;
+            .card {
+              padding: 14px;
+              max-width: 315px;
+              position: relative;
+
+              .rating {
+                position: absolute;
+                top: -27px;
+                left: 15px;
+                .text-white {
+                  padding-left: 20px;
+                  display: flex;
+                  align-items: center;
+                  // &::before {
+                  //   display: none;
+                  // }
                 }
-                &::after {
-                  border-width: 12.5px 15px 16.5px 0;
-                }
-              }
-            }
-            .stars {
-              transform: scale(0.7) translateX(-55px);
-            }
-            .views {
-              span {
-                font-size: 20px;
-              }
-              img {
-                width: 17px;
-                height: 17px;
               }
             }
           }
+        }
+        .loader {
+          margin-top: 21px;
+        }
+        .buttons {
+          margin-top: 34px;
         }
       }
     }

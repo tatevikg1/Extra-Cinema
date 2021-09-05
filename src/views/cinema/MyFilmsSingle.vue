@@ -14,7 +14,7 @@
       <div class="row">
         <div class="row-heading">
           <div class="item">
-            <div class="info p-sm text-white text-regular" >
+            <div class="info p-sm text-white text-regular">
               <img src="@/assets/images/my-films/days.svg" alt />
               Дней в прокате
             </div>
@@ -263,6 +263,148 @@ export default {
             }
           }
         }
+      }
+    }
+  }
+}
+@media (max-width: 1050px) {
+  .myfilms-single-wrap {
+    .container {
+      .row {
+        .desc {
+          img {
+            max-width: 400px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 902px) {
+  .myfilms-single-wrap {
+    .container {
+      .row {
+        &-heading {
+          padding: 26px 23px;
+          .item {
+            flex-direction: column;
+            .output {
+              width: 100%;
+              text-align: center;
+              margin-top: 13px;
+            }
+          }
+        }
+        .desc {
+          background: #151515;
+          border-radius: 22px;
+          overflow: hidden;
+          img {
+            max-width: 317px;
+            border-radius: 0;
+          }
+          .card {
+            padding: 30px 22px;
+            * {
+              font-size: 14px !important;
+            }
+            .rating {
+              span {
+                font-size: 18px;
+                height: 27px;
+                width: calc(142px - 47px);
+                display: flex;
+                align-items: center;
+                &::before {
+                  height: 27px;
+                  width: 47px;
+                  left: -47px;
+                }
+                &::after {
+                  border-width: 12.5px 15px 16.5px 0;
+                }
+              }
+              .stars {
+                transform: scale(0.7) translateX(-40px);
+              }
+            }
+            .info {
+              margin-top: 15px;
+            }
+          }
+        }
+      }
+      .buttons {
+        margin-top: 300px;
+      }
+    }
+  }
+}
+
+@media (max-width: 730px) {
+  .myfilms-single-wrap {
+    .container {
+      padding: 48px 15px 25px 15px;
+      .row {
+        &-heading {
+          flex-direction: column;
+          .item {
+            flex-direction: row;
+            justify-content: space-between;
+            .output {
+              max-width: 120px !important;
+              // min-width: 146px;
+              margin-top: 15px;
+              padding: 10px 15px;
+            }
+          }
+        }
+        .desc {
+          background: transparent;
+          border-radius: 0;
+          flex-direction: column;
+          margin-top: 50px;
+          position: relative;
+          overflow: unset;
+          img {
+            max-width: 100%;
+            border-radius: 18px;
+          }
+          .card {
+            padding: 30px 0;
+            .rating {
+              position: absolute;
+              top: -40px;
+              left: 0;
+              overflow: hidden;
+              span {
+                font-size: 18px;
+                height: 27px;
+                width: calc(142px - 47px);
+                display: flex;
+                align-items: center;
+                padding-left: 30px;
+                margin-left: 0;
+                &::before {
+                  display: none;
+                }
+                &::after {
+                  border-color: transparent #000000 transparent transparent;
+                }
+              }
+              .stars {
+                width: 250px;
+                transform: scale(0.7) translateX(-40px);
+              }
+            }
+            .info {
+              margin-top: 15px;
+            }
+          }
+        }
+      }
+      .buttons {
+        margin-top: 60px;
       }
     }
   }

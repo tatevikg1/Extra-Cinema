@@ -34,7 +34,7 @@
         <router-link
           v-for="(item, idx) in items"
           :key="idx"
-          :to="item.url"
+          :to="{name: item.url}"
           class="item"
         >
           <div class="image">

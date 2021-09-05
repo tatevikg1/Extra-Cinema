@@ -51,9 +51,6 @@ export default {
         justify-content: center;
         a {
           text-align: center;
-          // position: absolute;
-          // top: 50px;
-          // left: 50%;
           transform: translateX(64px);
           height: 59px;
           z-index: 10;
@@ -89,6 +86,99 @@ export default {
     }
     .buttons {
       margin-top: 100px;
+    }
+  }
+}
+@media (max-width: 1250px) {
+  .myfilms-empty-wrap {
+    .wrap {
+      .container {
+        .row {
+          .laptop {
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 834px) {
+  .myfilms-empty-wrap {
+    .wrap {
+      .container {
+        .row {
+          .laptop {
+            height: 400px;
+            transform: none;
+            a {
+              text-align: center;
+              transform: none;
+              height: 49px;
+              &::before {
+                border-top: 24px solid transparent;
+                border-right: 20px solid #ffffff;
+                border-bottom: 25px solid transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 650px) {
+  .myfilms-empty-wrap {
+    .wrap {
+      .container {
+        .row {
+          .laptop {
+            height: 200px;
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
+  .myfilms-empty-wrap {
+    .wrap {
+      .container {
+        padding: 48px 0 25px 0;
+        h1, .buttons {
+          padding: 0 15px;
+        }
+        .row {
+          margin-top: 50px;
+          .laptop {
+            background: url("../../assets/images/my-films/bg2.svg") no-repeat
+              center;
+            height: 300px;
+            transform: none;
+            a {
+              text-align: center;
+              transform: none;
+              height: 39px;
+              margin-top: 60px;
+              &::before {
+                border-top: 20px solid transparent;
+                border-right: 15px solid #ffffff;
+                border-bottom: 19px solid transparent;
+                left: -15px;
+              }
+              &::after {
+                left: -30px;
+                width: 12px;
+                height: 12px;
+                filter: blur(2px);
+              }
+            }
+          }
+        }
+        .buttons {
+          margin-top: 40px;
+        }
+      }
     }
   }
 }
