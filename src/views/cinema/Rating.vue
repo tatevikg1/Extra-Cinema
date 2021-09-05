@@ -4,9 +4,14 @@
     <section class="wrap bg-black">
       <div class="container">
         <arrow-back href="for-holders" />
-        <title-decor text="Рейтинг ExtraCinema" :img="RateIcon"/>
+        <title-decor text="Рейтинг ExtraCinema" :img="RateIcon" />
         <div class="row">
-          <router-link v-for="(item, idx) in items" :key="idx" to="/" class="item">
+          <router-link
+            v-for="(item, idx) in items"
+            :key="idx"
+            :to="{name: 'ec-today-item'}"
+            class="item"
+          >
             <img src="@/assets/images/rating/example.png" :alt="item.title" class="preview" />
             <div class="card">
               <h2 class="text-white text-semi-bold">{{ item.title }}</h2>
@@ -48,6 +53,7 @@
             </div>
           </router-link>
         </div>
+        <dot-loader />
         <btn-group />
       </div>
     </section>
@@ -57,15 +63,16 @@
 
 <script>
 import BtnGroup from "@/components/BtnGroup";
-import TitleDecor from '@/components/TitleDecor'
+import TitleDecor from "@/components/TitleDecor";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArrowBack from "@/components/ArrowBack";
+import DotLoader from "@/components/DotLoader";
 import RateIcon from "@/assets/images/for-holders-page/carousel/item1.svg";
 
 export default {
-  components: { Header, Footer, ArrowBack, BtnGroup, TitleDecor },
+  components: { Header, Footer, ArrowBack, BtnGroup, TitleDecor, DotLoader },
   data: () => ({
     RateIcon,
     items: [
@@ -142,7 +149,7 @@ export default {
   .container {
     position: relative;
     padding: 87px 15px 121px 15px;
-    
+
     .row {
       margin-top: 88px;
       .item {
@@ -157,7 +164,7 @@ export default {
         text-decoration: none;
         &:hover {
           background: #000000;
-          box-shadow: 0 0 80px rgba(216, 0, 78, 0.57);
+          box-shadow: 0 0 60px rgba(216, 0, 78, 0.57);
           .card .rating span::after {
             border-color: transparent #000000 transparent transparent;
           }
@@ -271,6 +278,9 @@ export default {
           }
         }
       }
+    }
+    .loader {
+      margin-top: 60px;
     }
   }
 }

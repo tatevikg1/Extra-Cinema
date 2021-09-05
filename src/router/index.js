@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home";
+
 // EC - Extra Cinema
 import ECHome from "@/views/cinema/Home";
 import ECForHalls from "@/views/cinema/ForHalls";
@@ -13,6 +14,9 @@ import ECRating from '@/views/cinema/Rating';
 import ECAuth from '@/views/cinema/Auth';
 import ECUploadNew from '@/views/cinema/UploadNew';
 import ECЕTodayCinema from '@/views/cinema/TodayCinema';
+import ECЕTodayCinemaSingle from '@/views/cinema/TodayCinemaSingle';
+import ECMyFilmsEmpty from '@/views/cinema/MyFilmsEmpty'
+import ECMyFilms from '@/views/cinema/MyFilms'
 
 Vue.use(VueRouter);
 
@@ -76,7 +80,22 @@ const routes = [
     path: '/cinema/forHolders/today-cinema',
     name: "ec-today",
     component: ECЕTodayCinema
-  }
+  },
+  {
+    path: '/cinema/forHolders/today-cinema/info',
+    name: 'ec-today-item',
+    component: ECЕTodayCinemaSingle
+  },
+  {
+    path: '/cinema/forHolders/add-film',
+    name: 'ec-myfilms-add',
+    component: ECMyFilmsEmpty
+  },
+  {
+    path: '/cinema/forHolders/my-films',
+    name: 'ec-myfilms',
+    component: ECMyFilms
+  },
 ];
 
 const router = new VueRouter({

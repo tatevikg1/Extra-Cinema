@@ -67,10 +67,10 @@ export default {
       items: [
         { img: item1, title: "Рейтинг Extracinema", url: "ec-rating" },
         { img: item2, title: "Сегодня в прокате", url: "ec-today" },
-        { img: item3, title: "Мои фильмы", url: "/" },
+        { img: item3, title: "Мои фильмы", url: "ec-myfilms" },
         { img: item4, title: "Отчеты и документы", url: "/" },
 
-        { img: item1, title: "Рейтинг Extracinema", url: "/" },
+        { img: item1, title: "Мои фильмы (когда фильмов нет)", url: "ec-myfilms-add" },
         { img: item2, title: "Сегодня в прокате", url: "/" },
         { img: item3, title: "Мои фильмы", url: "/" },
         { img: item4, title: "Отчеты и документы", url: "/" },
@@ -173,9 +173,6 @@ export default {
         text-align: center;
         transition: 0.2s;
         text-decoration: none;
-        &:first-child {
-          // margin-left: 90px;
-        }
         &:last-child {
           margin-right: 90px !important;
         }

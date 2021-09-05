@@ -4,18 +4,40 @@
     <div class="container">
       <arrow-back href="for-holders" />
       <div class="heading">
-        <title-decor text="Сегодня в прокате" :img="TitleIcon" />
+        <title-decor text="Мои фильмы" :img="TitleIcon" />
         <div class="search">
-          <input v-model="search" placeholder="Поиск" class="t-white text-medium" />
+          <input
+            v-model="search"
+            placeholder="Поиск по названию фильма"
+            class="t-white text-medium"
+          />
           <img @click="search = ''" src="@/assets/images/close.svg" alt="Отменить" />
         </div>
       </div>
+      <div class="buttons">
+        <button
+          @click="showActive = true"
+          class="h3 text-white text-semi-bold"
+          :class="{'active': showActive}"
+        >В прокате</button>
+        <button
+          @click="showActive = false"
+          class="h3 text-white text-semi-bold"
+          :class="{'active': !showActive}"
+        >Вышли из проката</button>
+      </div>
       <div class="row">
-        <router-link :to="{name: 'ec-today-item'}" v-for="(item, idx) in filteredList" :key="idx" class="item">
+        <router-link
+          :to="{name: 'ec-today-item'}"
+          v-for="(item, idx) in filteredList"
+          :key="idx"
+          class="item"
+        >
           <img src="@/assets/images/rating/example.png" alt />
           <h3 class="text-white text-semi-bold">{{item.name}}</h3>
         </router-link>
       </div>
+      <dot-loader />
       <btn-group />
     </div>
     <Footer />
@@ -28,45 +50,65 @@ import TitleDecor from "@/components/TitleDecor";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArrowBack from "@/components/ArrowBack";
+import DotLoader from "@/components/DotLoader";
 
-import TitleIcon from "@/assets/images/today-cinema/item.svg";
+import TitleIcon from "@/assets/images/for-holders-page/carousel/item3.svg";
 
 export default {
-  components: { BtnGroup, TitleDecor, Header, Footer, ArrowBack },
+  components: { BtnGroup, TitleDecor, Header, Footer, ArrowBack, DotLoader },
   computed: {
     filteredList() {
       return this.items.filter((item) => {
-        return item.name.toLowerCase().includes(this.search.toLowerCase());
+        if (this.showActive) {
+          return (
+            item.name.toLowerCase().includes(this.search.toLowerCase()) &&
+            item.active
+          );
+        } else {
+          return (
+            item.name.toLowerCase().includes(this.search.toLowerCase()) &&
+            !item.active
+          );
+        }
       });
     },
   },
   data: () => ({
     search: "",
+    showActive: true,
     TitleIcon,
     items: [
       {
         name: "Гениальное ограбление",
+        active: true,
       },
       {
         name: "Лига справедливости Зака Снайдера",
+        active: false,
       },
       {
         name: "Гнев человеческий",
+        active: true,
       },
       {
         name: "Гениальное ограбление",
+        active: false,
       },
       {
         name: "Лига справедливости Зака Снайдера",
+        active: true,
       },
       {
         name: "Гнев человеческий",
+        active: false,
       },
       {
         name: "Гениальное ограбление",
+        active: true,
       },
       {
         name: "Лига справедливости Зака Снайдера",
+        active: false,
       },
     ],
   }),
@@ -118,12 +160,30 @@ export default {
         }
       }
     }
+    .buttons {
+      margin-top: 64px;
+      button {
+        padding: 8px 15px;
+        border: 1px solid #7c7c7c;
+        background: transparent;
+        outline: 0;
+        border-radius: 0;
+        color: #7c7c7c;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .active {
+        border: 1px solid #ffffff;
+        color: #ffffff;
+      }
+    }
     .row {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: flex-start;
-      margin-top: 90px;
+      margin-top: 80px;
+      margin-bottom: 50px;
       .item {
         max-width: 350px;
         width: 100%;
