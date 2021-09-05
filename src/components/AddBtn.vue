@@ -1,8 +1,8 @@
 <template>
-  <div class="addBtn text-white text-semi-bold">
+  <button @click.prevent :disabled="disabled" class="addBtn text-white text-semi-bold p-sm">
     {{ text }}
     <span><img :src="PlusIcon" alt="" /></span>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -20,6 +20,10 @@ export default {
       required: true,
       type: String,
     },
+    disabled: {
+      required: false,
+      type: Boolean
+    }
   },
 };
 </script>
@@ -29,6 +33,10 @@ export default {
   display: flex;
   align-items: center;
   cursor: pointer;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  outline: 0;
   &:hover {
     text-decoration: underline;
     span {

@@ -68,12 +68,12 @@ export default {
         { img: item1, title: "Рейтинг Extracinema", url: "ec-rating" },
         { img: item2, title: "Сегодня в прокате", url: "ec-today" },
         { img: item3, title: "Мои фильмы", url: "ec-myfilms" },
-        { img: item4, title: "Отчеты и документы", url: "/" },
+        { img: item4, title: "Отчеты и документы", url: "ec-documents" },
 
         { img: item1, title: "Мои фильмы (когда фильмов нет)", url: "ec-myfilms-add" },
-        { img: item2, title: "Сегодня в прокате", url: "/" },
-        { img: item3, title: "Мои фильмы", url: "/" },
-        { img: item4, title: "Отчеты и документы", url: "/" },
+        { img: item2, title: "Сегодня в прокате", url: "ec-today" },
+        { img: item3, title: "Мои фильмы", url: "ec-myfilms" },
+        { img: item4, title: "Отчеты и документы", url: "ec-documents" },
       ],
     };
   },

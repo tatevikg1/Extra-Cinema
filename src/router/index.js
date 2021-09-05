@@ -18,6 +18,7 @@ import ECЕTodayCinemaSingle from '@/views/cinema/TodayCinemaSingle';
 import ECMyFilmsEmpty from '@/views/cinema/MyFilmsEmpty'
 import ECMyFilms from '@/views/cinema/MyFilms'
 import ECMyFilmsSingle from '@/views/cinema/MyFilmsSingle'
+import ECDocuments from '@/views/cinema/Documents'
 
 Vue.use(VueRouter);
 
@@ -106,6 +107,11 @@ const routes = [
     path: '/cinema/forHolders/my-films/info/retired',
     name: 'ec-myfilms-single-retired',
     component: ECMyFilmsSingle
+  },
+  {
+    path: "/cinema/forHolders/documents",
+    name: "ec-documents",
+    component: ECDocuments
   }
 ];
 
