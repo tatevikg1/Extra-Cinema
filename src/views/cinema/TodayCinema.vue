@@ -2,7 +2,7 @@
   <div class="today-wrap">
     <Header />
     <div class="container">
-      <arrow-back href="for-holders" />
+      <arrow-back />
       <div class="heading">
         <title-decor text="Сегодня в прокате" :img="TitleIcon" />
         <div class="search">

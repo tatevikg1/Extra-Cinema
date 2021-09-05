@@ -3,7 +3,7 @@
     <Header />
     <div class="wrap bg-black">
       <div class="container">
-        <arrow-back href="for-holders" />
+        <arrow-back />
         <title-decor text="Мои фильмы" :img="Icon" />
         <div class="row">
           <div class="laptop">

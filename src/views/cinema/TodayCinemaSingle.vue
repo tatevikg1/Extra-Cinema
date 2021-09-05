@@ -2,7 +2,7 @@
   <div class="today-single-wrap">
     <Header />
     <div class="container">
-      <arrow-back href="for-holders" />
+      <arrow-back />
       <div class="heading">
         <h1 class="h1 text-semi-bold text-white">Гениальное ограбление</h1>
         <div class="rating">
@@ -152,7 +152,7 @@ export default {
             height: 0;
             border-style: solid;
             border-width: 12.5px 15px 16.5px 0;
-            border-color: transparent #151515 transparent transparent;
+            border-color: transparent #000000 transparent transparent;
             position: absolute;
             right: -1px;
             top: 0;

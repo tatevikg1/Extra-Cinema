@@ -3,7 +3,7 @@
     <Header />
     <div class="wrap bg-black">
       <div class="container">
-        <arrow-back href="ec-home" />
+        <arrow-back />
         <h1 class="text-white text-semi-bold">Для правообладателей контента</h1>
         <div class="links">
           <router-link to="/">

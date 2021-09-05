@@ -3,7 +3,7 @@
     <Header />
     <section class="wrap">
       <div class="container">
-        <arrow-back href="for-halls"/>
+        <arrow-back />
         <h1 class="text-white text-regular">
           Введите данные и прикрепите фото
         </h1>

@@ -8,7 +8,7 @@
     <Header />
     <section class="wrap bg-black">
       <div class="container">
-        <arrow-back href="for-halls" />
+        <arrow-back />
         <h1 class="text-white text-semi-bold">
           Заказать оборудование для кинозала
         </h1>

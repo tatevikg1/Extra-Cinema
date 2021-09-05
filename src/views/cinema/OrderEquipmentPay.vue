@@ -3,7 +3,7 @@
     <Header />
     <section class="wrap">
       <div class="container">
-        <arrow-back href="order-equipment" />
+        <arrow-back />
         <h1 class="text-white text-semi-bold">
           Заказать оборудование для кинозала
         </h1>

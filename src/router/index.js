@@ -17,6 +17,7 @@ import ECЕTodayCinema from '@/views/cinema/TodayCinema';
 import ECЕTodayCinemaSingle from '@/views/cinema/TodayCinemaSingle';
 import ECMyFilmsEmpty from '@/views/cinema/MyFilmsEmpty'
 import ECMyFilms from '@/views/cinema/MyFilms'
+import ECMyFilmsSingle from '@/views/cinema/MyFilmsSingle'
 
 Vue.use(VueRouter);
 
@@ -96,6 +97,16 @@ const routes = [
     name: 'ec-myfilms',
     component: ECMyFilms
   },
+  {
+    path: '/cinema/forHolders/my-films/info',
+    name: 'ec-myfilms-single',
+    component: ECMyFilmsSingle
+  },
+  {
+    path: '/cinema/forHolders/my-films/info/retired',
+    name: 'ec-myfilms-single-retired',
+    component: ECMyFilmsSingle
+  }
 ];
 
 const router = new VueRouter({

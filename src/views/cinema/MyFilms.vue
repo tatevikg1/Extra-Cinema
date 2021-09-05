@@ -2,7 +2,7 @@
   <div class="today-wrap">
     <Header />
     <div class="container">
-      <arrow-back href="for-holders" />
+      <arrow-back />
       <div class="heading">
         <title-decor text="Мои фильмы" :img="TitleIcon" />
         <div class="search">
@@ -28,7 +28,7 @@
       </div>
       <div class="row">
         <router-link
-          :to="{name: 'ec-today-item'}"
+          :to="item.active ? { name: 'ec-myfilms-single'} : { name: 'ec-myfilms-single-retired'}"
           v-for="(item, idx) in filteredList"
           :key="idx"
           class="item"
@@ -84,7 +84,7 @@ export default {
       },
       {
         name: "Лига справедливости Зака Снайдера",
-        active: false,
+        active: true,
       },
       {
         name: "Гнев человеческий",

@@ -5,7 +5,7 @@
       <Sidebar @sidebarClick="toggleView" />
       <section class="wrap">
         <div class="container">
-          <arrow-back href="ec-home" class="arrow" />
+          <arrow-back class="arrow" />
           <Cabinet v-if="currentView == 'cabinet'" />
           <Company v-if="currentView == 'company'" />
           <Projector v-if="currentView == 'projector'" />

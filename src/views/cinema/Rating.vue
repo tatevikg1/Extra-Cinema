@@ -3,7 +3,7 @@
     <Header />
     <section class="wrap bg-black">
       <div class="container">
-        <arrow-back href="for-holders" />
+        <arrow-back />
         <title-decor text="Рейтинг ExtraCinema" :img="RateIcon" />
         <div class="row">
           <router-link

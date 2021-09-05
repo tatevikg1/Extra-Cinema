@@ -3,7 +3,7 @@
     <Header />
     <section class="wrap bg-black">
       <div class="container">
-        <arrow-back href="ec-home" />
+        <arrow-back />
         <div class="row">
           <div class="card">
             <h2 class="text-white text-medium">Муниципальный кинозал</h2>
