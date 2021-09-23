@@ -17,12 +17,11 @@ export default {
   methods: {
     logout() {
       axios
-        .post("/api/logout/", {
+        .post(process.env.VUE_APP_API_URL + "/api/logout/", {
           token: this.getAuthToken,
         })
         .then((res) => {
-          this.$store.commit("setAuthToken", null);
-          localStorage.removeItem("user-token");
+          this.$store.commit("deleteAuthToken");
           this.$router.push("/login").catch(() => {});
         })
         .catch((err) => {

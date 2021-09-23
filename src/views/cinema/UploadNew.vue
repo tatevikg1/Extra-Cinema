@@ -296,7 +296,9 @@ export default {
     },
     getGenres() {
       axios
-        .post("/api/genres")
+        .post(process.env.VUE_APP_API_URL + "/api/genres", {
+          token: this.$store.getters.getAuthToken,
+        })
         .then((res) => {
           this.genres = res.data;
         })
@@ -318,7 +320,7 @@ export default {
       fData.append("genres_id", this.genres_id);
 
       axios
-        .post("/api/films/store", fData)
+        .post(process.env.VUE_APP_API_URL + "/api/films/store", fData)
         .then((res) => {
           this.$router.push("/cinema").catch(() => {});
         })

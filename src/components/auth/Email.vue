@@ -119,7 +119,7 @@ export default {
     },
     sendSmsAgain() {
       axios
-        .post("/api/auth/step-1", {
+        .post(process.env.VUE_APP_API_URL + "/api/auth/step-1", {
           email: this.email,
         })
         .then((res) => {
@@ -144,7 +144,7 @@ export default {
         }
       } else {
         axios
-          .post("/api/auth/step-2", {
+          .post(process.env.VUE_APP_API_URL + "/api/auth/step-2", {
             sms: this.sms,
             email: this.email,
           })
@@ -152,7 +152,7 @@ export default {
             this.login(res);
           })
           .catch((err) => {
-            localStorage.removeItem("user-token");
+             this.$store.commit("deleteAuthToken");
             if (err.response.status == 401) {
               this.larerrors = err.response.data.errors;
             } else if (err.response.status == 422) {
@@ -163,7 +163,7 @@ export default {
     },
     login(res) {
       this.$store.commit("setAuthToken", res.data.token);
-      localStorage.setItem("user-token", res.data.token);
+      sessionStorage.setItem("user-token", res.data.token);
       this.$router.push("/cinema").catch(() => {});
     },
   },
