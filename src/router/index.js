@@ -12,6 +12,7 @@ import ECDashboard from '@/views/cinema/Dashboard';
 import ECForHolders from '@/views/cinema/ForHolders';
 import ECRating from '@/views/cinema/Rating';
 import ECAuth from '@/views/cinema/Auth';
+import ECRegister from '@/views/cinema/Register';
 import ECUploadNew from '@/views/cinema/UploadNew';
 import ECЕTodayCinema from '@/views/cinema/TodayCinema';
 import ECЕTodayCinemaSingle from '@/views/cinema/TodayCinemaSingle';
@@ -19,6 +20,11 @@ import ECMyFilmsEmpty from '@/views/cinema/MyFilmsEmpty'
 import ECMyFilms from '@/views/cinema/MyFilms'
 import ECMyFilmsSingle from '@/views/cinema/MyFilmsSingle'
 import ECDocuments from '@/views/cinema/Documents'
+import ECSeance from '@/views/cinema/Seance';
+// middleware
+import auth from '@/middleware/auth';
+import guest from '@/middleware/guest';
+
 
 Vue.use(VueRouter);
 
@@ -56,8 +62,29 @@ const routes = [
   {
     path: "/cinema/dashboard",
     name: "dashboard",
-    component: ECDashboard
+    component: ECDashboard,
+    meta: {
+      middleware: [auth],
+    },
+
   },
+  {
+    path: '/cinema/seance/:id',
+    name: 'ec-seance',
+    component: ECSeance,
+    meta: {
+      middleware: [auth],
+    },
+  },
+  {
+    path: '/cinema/test-seance/:id',
+    name: 'ec-test-seance',
+    component: ECSeance,
+    meta: {
+      middleware: [auth],
+    },
+  },
+
   {
     path: '/cinema/forHolders',
     name: 'for-holders',
@@ -71,12 +98,26 @@ const routes = [
   {
     path: '/login',
     name: 'ec-login',
-    component: ECAuth
+    component: ECAuth,
+    meta: {
+      middleware: [guest],
+    },
+  },
+  {
+    path: '/register',
+    name: 'ec-register',
+    component: ECRegister,
+    meta: {
+      middleware: [guest],
+    },
   },
   {
     path: '/cinema/forHolders/upload-new',
     name: 'ec-upload',
-    component: ECUploadNew
+    component: ECUploadNew,
+    meta: {
+      middleware: [auth],
+    },
   },
   {
     path: '/cinema/forHolders/today-cinema',
@@ -118,6 +159,33 @@ const routes = [
 const router = new VueRouter({
   routes,
   mode: "history",
+});
+
+function nextFactory(context, middleware, index) {
+  const subsequentMiddleware = middleware[index];
+  if (!subsequentMiddleware) return context.next;
+
+  return (...parameters) => {
+    context.next(...parameters);
+    const nextMiddleware = nextFactory(context, middleware, index + 1);
+    subsequentMiddleware({ ...context, next: nextMiddleware });
+  };
+}
+router.beforeEach((to, from, next) => {
+  if (to.meta.middleware) {
+    const middleware = Array.isArray(to.meta.middleware)
+      ? to.meta.middleware
+      : [to.meta.middleware];
+    const context = {
+      from,
+      next,
+      router,
+      to,
+    };
+    const nextMiddleware = nextFactory(context, middleware, 1);
+    return middleware[0]({ ...context, next: nextMiddleware });
+  }
+  return next();
 });
 
 export default router;
