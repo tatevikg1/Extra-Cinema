@@ -5,20 +5,39 @@
         <img :src="CloseIcon" alt="" />
       </button>
       <div class="items">
-        <div v-for="(film, idx) in films" :key="idx" class="item">
+        <div v-for="(hall, idx) in halls" :key="idx" class="item">
           <div class="row">
-            <span class="text-white text-medium">Фильм</span>
-            <div class="text-regular info">{{ film.title }}</div>
+            <div class="col">
+              <span class="text-white text-medium">Зал</span>
+              <div class="text-regular info">{{ hall.title }}</div>
+            </div>
+            <div class="col">
+              <span class="text-white text-medium">Места</span>
+              <div class="text-regular info">{{ hall.seats }}</div>
+            </div>
           </div>
           <div class="row">
-            <span class="text-white text-medium">Год</span>
-            <div class="text-regular info">{{ film.created_at | moment("YYYY") }}</div>
+            <div class="col">
+              <span class="text-white text-medium">Start</span>
+              <div class="text-regular info">{{ hall.start }}</div>
+            </div>
+            <div class="col">
+              <span class="text-white text-medium">End</span>
+              <div class="text-regular info">{{ hall.end }}</div>
+            </div>
           </div>
           <div class="row">
-            <span class="text-white text-medium">Длительность</span>
-            <div class="text-regular info">{{ film.duration }} минут</div>
+            <div class="col">
+              <span class="text-white text-medium">Audio</span>
+              <div class="text-regular info">{{ hall.mark_audio }}</div>
+            </div>
+            <div class="col">
+              <span class="text-white text-medium">Video</span>
+              <div class="text-regular info">{{ hall.mark_video }}</div>
+            </div>
           </div>
-          <div class="row" @click="clickHandler(film)">
+
+          <div class="row" @click="clickHandler(hall)">
             <Btn text="Выбрать" />
           </div>
         </div>
@@ -32,31 +51,31 @@ import CloseIcon from "@/assets/images/common/close.svg";
 import Btn from "@/components/Btn";
 import axios from "axios";
 
-
 export default {
-  name: "FilmsModal",
+  name: "HallsModal",
   components: { Btn },
   data() {
     return {
       CloseIcon,
-      films: [],
+      halls: [],
     };
   },
   mounted() {
-    this.getFilms();
+    this.getHalls();
   },
+
   methods: {
-    clickHandler(film) {
-      this.$emit("onModalClick", film);
+    clickHandler(hall) {
+      this.$emit("onModalClick", hall);
       this.$emit("onModalClose");
     },
-    getFilms() {
+    getHalls() {
       axios
-        .post(process.env.VUE_APP_API_URL + "/api/films/", {
+        .post(process.env.VUE_APP_API_URL + "/api/halls/", {
           token: this.$store.getters.getAuthToken,
         })
         .then((res) => {
-          this.films = res.data;
+          this.halls = res.data;
         })
         .catch((err) => {
           console.log(err);
@@ -78,7 +97,7 @@ export default {
   left: 0;
   z-index: 200;
   background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   padding: 15px;
   .wrapper {
     max-width: 539px;
@@ -117,6 +136,8 @@ export default {
           display: flex;
           align-items: center;
           margin-top: 20px;
+          justify-content: space-between;
+
           &:first-child {
             margin-top: 0;
           }
@@ -136,6 +157,10 @@ export default {
             border-radius: 10px;
             padding: 7px 15px;
           }
+          .col {
+            display: flex;
+            align-items: center;
+          }
         }
       }
     }
@@ -147,12 +172,12 @@ export default {
     .wrapper {
       padding: 41px 30px 30px 30px;
       .item {
-          padding-right: 15px;
-          .row {
-              .info {
-                  font-size: 12px !important;
-              }
+        padding-right: 15px;
+        .row {
+          .info {
+            font-size: 12px !important;
           }
+        }
       }
     }
   }

@@ -1,23 +1,23 @@
 <template>
   <div class="currentSession">
-    <div v-for="(film, idx) in films" :key="idx" class="item">
+    <div v-for="(seance, idx) in seances" :key="idx" class="item">
       <div class="row">
         <span class="text-white text-medium">Фильм</span>
-        <div class="text-regular info">{{ film.name }}</div>
+        <div class="text-regular info">{{ seance.film.title }}</div>
       </div>
       <div class="row">
         <span class="text-white text-medium">Дата</span>
-        <div class="text-regular info" id="date">{{ film.date }}</div>
+        <div class="text-regular info" id="date">{{ seance.day }}</div>
 
         <div class="row-inside">
           <span class="text-white text-medium">Время</span>
-          <div class="text-regular info" id="time">{{ film.time }}</div>
+          <div class="text-regular info" id="time">{{ seance.start }}</div>
         </div>
       </div>
       <div class="row">
         <span class="text-white text-medium">Количество зрителей</span>
         <div class="text-regular info" style="max-width: 200px; width: 100%">
-          <img :src="Icon" alt="" /> {{ film.watchers }}
+          <img :src="Icon" alt="" /> {{ seance.visitors }}
         </div>
       </div>
     </div>
@@ -26,63 +26,81 @@
 
 <script>
 import Icon from "@/assets/images/common/local_activity.svg";
+import axios from 'axios';
 
 export default {
   name: "currentSession",
   data() {
     return {
       Icon,
-      films: [
+      seances: [
         {
-          name: "Искусственный интелект",
-          watchers: "10 000",
-          time: "14:50",
-          date: "01.02.2021",
+          film: {title: "Искусственный интелект"},
+          visitors: "10 000",
+          start: "11:10",
+          day: "01.02.2021",
         },
         {
-          name: "Искусственный интелект 2",
-          watchers: "9 000",
-          time: "14:50",
-          date: "01.02.2021",
+          film:{title: "Искусственный интелект 2"},
+          visitors: "9 000",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Искусственный интелект 3",
-          watchers: "2 000",
-          time: "14:50",
-          date: "01.02.2021",
+          film:{title: "Искусственный интелект 3"},
+          visitors: "2 000",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Искусственный интелект 4",
-          watchers: "1 000",
-          time: "14:50",
-          date: "01.02.2021",
+          film:{title: "Искусственный интелект 4"},
+          visitors: "1 000",
+          start: "14:20",
+          day: "01.02.2021",
         },
         {
-          name: "Искусственный интелект",
-          watchers: "10 000",
-          time: "14:50",
-          date: "01.02.2021",
+          film:{title: "Искусственный интелект 5"},
+          visitors: "10 000",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Искусственный интелект 2",
-          watchers: "9 000",
-          time: "14:50",
-          date: "01.02.2021",
+          film:{title: "Искусственный интелект 6"},
+          visitors: "9 000",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Искусственный интелект 3",
-          watchers: "2 000",
-          time: "14:50",
-          date: "01.02.2021",
+          film:{title: "Искусственный интелект 2"},
+          visitors: "2 000",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Искусственный интелект 4",
-          watchers: "1 000",
-          time: "14:50",
-          date: "01.02.2021",
+          film:{title: "Искусственный интелект 2"},
+          visitors: "1 000",
+          start: "14:50",
+          day: "01.02.2021",
         },
       ],
     };
+  },
+  mounted() {
+    this.getSeances();
+  },
+  methods: {
+    getSeances() {
+      axios
+        .post(process.env.VUE_APP_API_URL + "/api/seances/present", {
+          token: this.$store.getters.getAuthToken,
+        })
+        .then((res) => {
+          this.seances = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>

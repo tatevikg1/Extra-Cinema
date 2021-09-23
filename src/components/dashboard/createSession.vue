@@ -2,45 +2,66 @@
   <div class="createSession">
     <transition name="urlChanged">
       <films-modal
-        v-if="modal"
+        v-if="modalFilm"
         @onModalClick="selectFilm"
-        @onModalClose="modal = !modal"
+        @onModalClose="modalFilm = !modalFilm"
       />
     </transition>
+    <transition name="urlChanged">
+      <halls-modal
+        v-if="modalHall"
+        @onModalClick="selectHall"
+        @onModalClose="modalHall = !modalHall"
+      />
+    </transition>
+
     <div v-for="(film, idx) in films" :key="idx" class="film-item">
-      <button @click="showModal(film)" class="text-semi-bold text-white select">
+      <button
+        @click="showFilmModal(film)"
+        class="text-semi-bold text-white select"
+      >
         {{ film.name }}
+      </button>
+      <hr style="margin:10px;visibility:hidden">
+      <button
+        @click="showHallModal(hall)"
+        class="text-semi-bold text-white select"
+      >
+        {{ hall.title }}
       </button>
       <div class="row">
         <span class="text-white text-semi-bold">Назначить</span>
         <div class="time text-white text-regular">
           Время:
-          <input v-model="newFilm.time" type="text" placeholder="00:00" />
+          <input v-model="newSeance.time" type="time" />
         </div>
         <div class="time text-white text-regular">
           Дату:
-          <input
-            :v-model="newFilm.date"
-            id="date"
-            type="text"
-            placeholder="01.01.2021"
-          />
+          <input v-model="newSeance.date" id="date" type="date" />
         </div>
       </div>
       <div class="row">
-        <span class="text-white text-semi-bold adv">Заказать рекламу</span>
-        <div class="file">
-          <label for="advert" class="text-regular"
+        <span class="text-white text-semi-bold adv">Рекламный блок </span>
+        <div class="time text-white text-regular">
+          Mинут:
+          <!-- <label for="advert" class="text-regular"
             >Прикрепить файл
             <img :src="AttachmentIcon" alt="" />
-          </label>
-          <input type="file" id="advert" />
+          </label> -->
+          <input v-model="newSeance.advertTime" type="number" />
         </div>
       </div>
-      <add-btn text="Добавить сеанс" @click.native="createSessionHandler" />
+      <div class="row">
+        <span class="text-white text-semi-bold adv">Обслуживание зала </span>
+        <div class="time text-white text-regular">
+          Mинут:
+          <input v-model="newSeance.serviceTime" type="number" />
+        </div>
+      </div>
     </div>
+    <!-- <add-btn text="Добавить сеанс" @click.native="createSessionHandler" /> -->
     <Btn
-      @click="createSessionHandler"
+      @click.native="createSessionHandler"
       text="Создать сеанс"
       fluid
       class="createBtn"
@@ -52,56 +73,89 @@
 import Btn from "@/components/Btn";
 import AddBtn from "@/components/AddBtn";
 import FilmsModal from "@/components/modals/FilmsModal";
-
+import HallsModal from "@/components/modals/HallsModal";
+import axios from "axios";
 import AttachmentIcon from "@/assets/images/common/attachment.svg";
 
 export default {
   name: "createSession",
-  components: { Btn, FilmsModal, AddBtn },
+  components: { Btn, FilmsModal, HallsModal, AddBtn },
   data() {
     return {
-      modal: false,
-      selectedItem: null,
+      modalFilm: false,
+      selectedFilm: null,
+      modalHall: false,
+      selectedHall: null,
       films: [
         {
           name: "Выбрать фильм",
           time: "",
           date: "",
-          advertDoc: "",
+          advertTime: "",
         },
       ],
-      newFilm: {
-        name: "Выбрать фильм",
+      hall: {
+        title: "Выбрать зал",
+      },
+      newSeance: {
+        film_id: "",
+        hall_id: "",
         time: "",
         date: "",
-        advertDoc: "",
+        advertTime: "",
+        serviceTime: "",
       },
       AttachmentIcon,
     };
   },
   methods: {
-    showModal(film) {
-      this.modal = !this.modal;
-      this.selectedItem = film;
+    showFilmModal(film) {
+      this.modalFilm = !this.modalFilm;
+      this.selectedFilm = film;
     },
     selectFilm(film) {
-      this.selectedItem.name = film;
+      this.selectedFilm.name = film.title;
+      this.newSeance.film_id = film.id;
 
       this.films = this.films.map((el) =>
-        el === this.selectedItem ? (el = this.selectedItem) : el
+        el === this.selectedFilm ? (el = this.selectedFilm) : el
       );
 
-      this.selectedItem = null;
+      this.selectedFilm = null;
     },
+    showHallModal(hall) {
+      this.modalHall = !this.modalHall;
+      this.selectedHall = hall;
+    },
+    selectHall(hall) {
+      this.selectedHall.title = hall.title;
+      this.selectedHall.id = hall.id;
+      this.hall = hall;
+    },
+
     createSessionHandler() {
-      //work on it later....
-      const newFilm = {
-        name: "Выбрать фильм",
-        time: "",
-        date: "",
-        advertDoc: "",
-      };
-      this.films.push(newFilm);
+      var fData = new FormData();
+
+      fData.append("film_id", this.newSeance.film_id);
+      fData.append("hall_id", this.selectedHall.id);
+      fData.append("token", this.$store.getters.getAuthToken);
+      fData.append("day", this.newSeance.date);
+      fData.append("start", this.newSeance.time);
+      fData.append("duration_advertising", this.newSeance.advertTime);
+      fData.append("duration_service", this.newSeance.serviceTime);
+
+      console.log("this.newSeance");
+      axios
+        .post(process.env.VUE_APP_API_URL + "/api/seances/store", fData)
+        .then((res) => {
+          this.$router.push("/cinema").catch(() => {});
+        })
+        .catch((err) => {
+          if (err.response.status == 422) {
+            console.log("validaion error");
+          }
+          console.log(err);
+        });
     },
   },
 };
@@ -163,7 +217,7 @@ export default {
           & {
             text-align: center;
             font-family: "Regular";
-            font-size: 14px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.6);
           }
           color: #ffffff !important;
@@ -212,7 +266,7 @@ export default {
             width: 64px !important;
             margin-right: 10px;
           }
-          
+
           &:nth-child(3) {
             input {
               margin-right: 0;

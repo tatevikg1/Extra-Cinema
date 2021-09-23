@@ -1,24 +1,24 @@
 <template>
   <div class="currentSession">
-    <div v-for="(film, idx) in films" :key="idx" class="item">
+    <div v-for="(seance, idx) in seances" :key="idx" class="item">
       <div class="row">
         <span class="text-white text-medium">Фильм</span>
-        <div class="text-regular info">{{ film.name }}</div>
+        <div class="text-regular info">{{ seance.film.title }}</div>
       </div>
       <div class="row">
         <span class="text-white text-medium">Время</span>
-        <div class="text-regular info time">{{ film.time }}</div>
+        <div class="text-regular info time">{{ seance.start }}</div>
         <div class="inside-row">
           <span class="text-white text-medium">Дата</span>
           <div class="text-regular info">
-            {{ film.date }}
+            {{ seance.day }}
           </div>
         </div>
       </div>
       <div class="row">
         <span class="text-white text-medium">Количество проданных мест</span>
         <div class="text-regular info amount">
-          {{ film.watchers }}
+          {{ seance.watchers }}
         </div>
       </div>
     </div>
@@ -27,63 +27,81 @@
 
 <script>
 import Icon from "@/assets/images/common/local_activity.svg";
+import axios from "axios";
 
 export default {
   name: "currentSession",
   data() {
     return {
       Icon,
-      films: [
+      seances: [
         {
-          name: "Крылья урагана",
+          film: {title: "Крыло"},
           watchers: "10 000",
-          time: "14:50",
-          date: "01.02.2021",
+          start: "11:10",
+          day: "01.02.2021",
         },
         {
-          name: "Крылья",
+          film:{title: "Искусственный интелект 2"},
           watchers: "9 000",
-          time: "14:50",
-          date: "01.02.2021",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Крылья урагана",
+          film:{title: "Интелект 3"},
           watchers: "2 000",
-          time: "14:50",
-          date: "01.02.2021",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Крылья урагана",
+          film:{title: "Искусство 4"},
           watchers: "1 000",
-          time: "14:50",
-          date: "01.02.2021",
+          start: "14:20",
+          day: "01.02.2021",
         },
         {
-          name: "Крылья урагана",
+          film:{title: "Искусственный интелект 5"},
           watchers: "10 000",
-          time: "14:50",
-          date: "01.02.2021",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Крылья урагана",
+          film:{title: "Искусственный интелект 6"},
           watchers: "9 000",
-          time: "14:50",
-          date: "01.02.2021",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Крылья урагана",
+          film:{title: "Искусственный интелект 2"},
           watchers: "2 000",
-          time: "14:50",
-          date: "01.02.2021",
+          start: "14:50",
+          day: "01.02.2021",
         },
         {
-          name: "Крылья урагана",
+          film:{title: "Искусственный интелект 2"},
           watchers: "1 000",
-          time: "14:50",
-          date: "01.02.2021",
+          start: "14:50",
+          day: "01.02.2021",
         },
       ],
     };
+  },
+  mounted() {
+    this.getSeances();
+  },
+  methods: {
+    getSeances() {
+      axios
+        .post(process.env.VUE_APP_API_URL + "/api/seances/past", {
+          token: this.$store.getters.getAuthToken,
+        })
+        .then((res) => {
+          this.seances = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
