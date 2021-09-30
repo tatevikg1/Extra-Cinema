@@ -12,7 +12,6 @@ import ECDashboard from '@/views/cinema/Dashboard';
 import ECForHolders from '@/views/cinema/ForHolders';
 import ECRating from '@/views/cinema/Rating';
 import ECAuth from '@/views/cinema/Auth';
-import ECRegister from '@/views/cinema/Register';
 import ECUploadNew from '@/views/cinema/UploadNew';
 import ECЕTodayCinema from '@/views/cinema/TodayCinema';
 import ECЕTodayCinemaSingle from '@/views/cinema/TodayCinemaSingle';
@@ -104,14 +103,6 @@ const routes = [
     },
   },
   {
-    path: '/register',
-    name: 'ec-register',
-    component: ECRegister,
-    meta: {
-      middleware: [guest],
-    },
-  },
-  {
     path: '/cinema/forHolders/upload-new',
     name: 'ec-upload',
     component: ECUploadNew,
@@ -140,12 +131,12 @@ const routes = [
     component: ECMyFilms
   },
   {
-    path: '/cinema/forHolders/my-films/info',
+    path: '/cinema/forHolders/my-films/info/:id',
     name: 'ec-myfilms-single',
     component: ECMyFilmsSingle
   },
   {
-    path: '/cinema/forHolders/my-films/info/retired',
+    path: '/cinema/forHolders/my-films/info/retired/:id',
     name: 'ec-myfilms-single-retired',
     component: ECMyFilmsSingle
   },

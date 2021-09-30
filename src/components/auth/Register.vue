@@ -1,8 +1,35 @@
 <template>
   <form @submit.prevent class="phone">
     <div class="wrap">
+      <div class="phone">
+        <input
+          v-model="name"
+          type="text"
+          placeholder="Имя"
+          class="phone text-white text-semi-bold h3"
+        />
+        <small class="error" v-if="larerrors.name">
+          <i>{{ larerrors.name }}</i>
+        </small>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="phone">
+        <input
+          v-model="email"
+          type="email"
+          placeholder="Эл. адрес"
+          class="phone text-white text-semi-bold h3"
+        />
+        <small class="error" v-if="larerrors.email">
+          <i>{{ larerrors.email }}</i>
+        </small>
+      </div>
+    </div>
+
+    <div class="wrap">
       <div class="select text-white text-semi-bold">
-        <span @click="showAll = !showAll" class="h3" v-if="!showSms">
+        <span @click="showAll = !showAll" class="h3">
           <template v-if="selected">{{ selected.code }}</template>
           <img
             src="@/assets/images/auth/arrow.svg"
@@ -28,37 +55,14 @@
         <input
           v-model="$v.phone.$model"
           type="tel"
-          :disabled="showSms"
-          class="phone text-white text-semi-bold h3"
+          placeholder="Телефон"
+          class="phone text-white text-semi-bold h3 smaller"
         />
         <small class="error" v-if="larerrors.login">
           <i>{{ larerrors.login }}</i>
         </small>
       </div>
     </div>
-
-    <div class="sms-wrap" v-if="showSms">
-      <input
-        v-model="$v.sms.$model"
-        placeholder="sms-код"
-        type="tel"
-        class="sms text-white text-semi-bold h3"
-      />
-      <div @click="sendSmsAgain" class="timer text-gray text-regular">
-        {{
-          Number(seconds)
-            ? `${Math.floor((seconds / 60) % 60)}:${(
-                "0" +
-                (seconds % 60)
-              ).slice(-2)}`
-            : seconds
-        }}
-      </div>
-    </div>
-    <small class="error" v-if="larerrors.sms">
-      <i>{{ larerrors.sms }}</i>
-    </small>
-
     <button
       @click="submit"
       :disabled="$v.phone.$error"
@@ -66,35 +70,6 @@
     >
       Далее
     </button>
-
-    <div v-if="showSms" class="why text-gray text-regular">
-      <span @click="showModal = !showModal">Не приходит код?</span>
-      <transition name="urlChanged">
-        <div v-if="showModal" class="why-modal">
-          <button @click="showModal = false">
-            <img src="@/assets/images/auth/close.svg" alt />
-          </button>
-          <h3 class="text-white text-semi-bold">Возможные причины:</h3>
-          <ul>
-            <li>1. Номер телефона введён неверно</li>
-            <li>
-              2. Вы не изменили в личном кабинете номер мобильного телефона на
-              новый, и мы отправили код на старый. Обратитесь в службу поддержки
-              через электронную почту
-              <a href="mailto:support@extrafintech.com"
-                >support@extrafintech.com</a
-              >
-              или позвоните по номеру
-              <a href="tel:+79951317777">+7 995 131 77 77</a>
-            </li>
-            <li>
-              3. Проблемы могут быть со стороны вашего сотового оператора.
-              Обратитесь в их службу поддержки
-            </li>
-          </ul>
-        </div>
-      </transition>
-    </div>
   </form>
 </template>
 
@@ -114,9 +89,8 @@ export default {
     showAll: false,
     selected: null,
     phone: null,
-    sms: null,
-    showSms: false,
-    seconds: 180,
+    name: "",
+    email: "",
     showModal: false,
     larerrors: "",
   }),
@@ -143,63 +117,24 @@ export default {
       this.selected = item;
       this.showAll = false;
     },
-    countDownTimer() {
-      if (this.seconds > 0 && this.showSms) {
-        setTimeout(() => {
-          this.seconds = this.seconds - 1;
-          this.countDownTimer();
-        }, 1000);
-      } else {
-        this.seconds = "Отправить снова";
-      }
-    },
-    sendSmsAgain() {
+    submit() {
       axios
-        .post(process.env.VUE_APP_API_URL + "/api/auth/step-1", {
-          code: this.selected.phoneCode,
+        .post(process.env.VUE_APP_API_URL + "/api/register", {
+          name: this.name,
+          email: this.email,
+          country_code: this.selected.phoneCode,
           phone: this.phone,
         })
         .then((res) => {
-          this.$emit("changeTitle", "Подтвердите телефон");
           this.larerrors = "";
-          this.showSms = true;
-          this.countDownTimer();
+          this.login(res);
         })
         .catch((err) => {
-          if (err.response.status == 422) {
+          this.$store.commit("deleteAuthToken");
+          if (err.response.status == 401 || err.response.status == 422) {
             this.larerrors = err.response.data.errors;
-          }else if(err.response.status == 401){
-            this.$emit("registration");
           }
         });
-      this.seconds = 180;
-    },
-    submit() {
-      if (!this.showSms) {
-        this.$v.$touch();
-        if (this.$v.phone.$invalid) {
-          console.log("error");
-        } else {
-          this.sendSmsAgain();
-        }
-      } else {
-        axios
-          .post(process.env.VUE_APP_API_URL + "/api/auth/step-2", {
-            sms: this.sms,
-            phone: this.phone,
-            code: this.selected.phoneCode,
-          })
-          .then((res) => {
-            this.larerrors = "";
-            this.login(res);
-          })
-          .catch((err) => {
-            this.$store.commit("deleteAuthToken");
-            if (err.response.status == 401 || err.response.status == 422) {
-              this.larerrors = err.response.data.errors;
-            }
-          });
-      }
     },
     login(res) {
       this.$store.commit("setAuthToken", res.data.token);
@@ -267,7 +202,7 @@ export default {
         padding-left: 15px;
       }
       &:after {
-        content: "+";
+        content: "";
         position: absolute;
         left: 0;
         top: 3px;
@@ -287,18 +222,9 @@ export default {
     outline: 0;
     position: relative;
   }
-  .sms-wrap {
-    margin-top: 22px;
-    position: relative;
-    .timer {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      font-size: 12px;
-      cursor: pointer;
-    }
+  .smaller {
+    width: 178px;
   }
-
   .next {
     padding: 18px 25px;
     border: 1px solid #fff;
@@ -395,6 +321,9 @@ export default {
       .phone {
         max-width: 255px !important;
         width: 100% !important;
+      }
+      .smaller {
+        width: 178px !important;
       }
     }
     .next {

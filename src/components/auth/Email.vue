@@ -9,9 +9,9 @@
           placeholder="email"
           class="phone text-white text-semi-bold h3"
         />
-        <!-- <small class="error" v-if="larerrors.login">
+        <small class="error" v-if="larerrors.login">
           <i>{{ larerrors.login }}</i>
-        </small> -->
+        </small>
       </div>
     </div>
 
@@ -22,9 +22,6 @@
         type="tel"
         class="sms text-white text-semi-bold h3"
       />
-      <!-- <small class="error" v-if="larerrors.sms">
-        <i>{{ larerrors.sms }}</i>
-      </small> -->
       <div @click="sendSmsAgain" class="timer text-gray text-regular">
         {{
           Number(seconds)
@@ -35,7 +32,11 @@
             : seconds
         }}
       </div>
+
     </div>
+    <small class="error" v-if="larerrors.sms">
+        <i>{{ larerrors.sms }}</i>
+      </small>
     <button
       @click="submit"
       :disabled="$v.email.$error"
@@ -126,9 +127,12 @@ export default {
           this.$emit("changeTitle", "Подтвердите Эл. адрес");
           this.showSms = true;
           this.countDownTimer();
+          this.larerrors = '';
         })
         .catch((err) => {
-          if (err.response.status == 422) {
+          if ( err.response.status == 401) {
+            this.$emit("registration");
+          }else if(err.response.status == 422){
             this.larerrors = err.response.data.errors;
           }
         });
@@ -150,12 +154,11 @@ export default {
           })
           .then((res) => {
             this.login(res);
+            this.larerrors = '';
           })
           .catch((err) => {
              this.$store.commit("deleteAuthToken");
-            if (err.response.status == 401) {
-              this.larerrors = err.response.data.errors;
-            } else if (err.response.status == 422) {
+            if (err.response.status == 401 || err.response.status == 422) {
               this.larerrors = err.response.data.errors;
             }
           });
@@ -163,7 +166,7 @@ export default {
     },
     login(res) {
       this.$store.commit("setAuthToken", res.data.token);
-      sessionStorage.setItem("user-token", res.data.token);
+      // sessionStorage.setItem("user-token", res.data.token);
       this.$router.push("/cinema").catch(() => {});
     },
   },
@@ -171,6 +174,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.error{
+  color: #d7004d;
+  margin: 10px;
+}
 .email {
   display: flex;
   flex-direction: column;

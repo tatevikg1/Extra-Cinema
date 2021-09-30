@@ -25,6 +25,8 @@ export default {
           this.$router.push("/login").catch(() => {});
         })
         .catch((err) => {
+          this.$store.commit("deleteAuthToken");
+          this.$router.push("/login").catch(() => {});
           console.log(err);
         });
     },
@@ -50,7 +52,6 @@ export default {
     background: #ffffff;
     img {
       filter: brightness(0%);
-
     }
   }
   img {

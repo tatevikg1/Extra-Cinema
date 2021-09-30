@@ -1,6 +1,6 @@
 export default [
   {
-    code: 'RU', map: '🇷🇺', phoneCode: 70, value: 'Russia',
+    code: 'RU', map: '🇷🇺', phoneCode: 7, value: 'Russia',
   },
   {
     code: 'AF', map: '🇦🇫', phoneCode: 93, value: 'Afghanistan',

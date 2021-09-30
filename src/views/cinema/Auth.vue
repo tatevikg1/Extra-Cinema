@@ -20,9 +20,10 @@
             Email
           </button>
         </div>
-        <component :is="method" @changeTitle="changeTitle" />
+        <component :is="method" @changeTitle="changeTitle" @registration="registration"/>
       </div>
     </div>
+
     <Footer />
   </div>
 </template>
@@ -32,16 +33,22 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Phone from "@/components/auth/Phone";
 import Email from "@/components/auth/Email";
+import Register from "@/components/auth/Register";
 
 export default {
-  components: { Header, Footer, Phone, Email },
+  components: { Header, Footer, Phone, Email, Register },
   data: () => ({
     method: "phone",
     title: "Войти",
+    reg: false,
   }),
   methods: {
     changeTitle(title) {
-      this.title =title;
+      this.title = title;
+    },
+    registration() {
+      this.title = "Регистрация";
+      this.method = "Register";
     },
   },
 };
@@ -102,5 +109,4 @@ export default {
     }
   }
 }
-
 </style>

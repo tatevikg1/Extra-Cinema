@@ -5,27 +5,33 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // user: null,
-    token: sessionStorage.getItem('user-token') || ''
+    token: localStorage.getItem('user-token') || ''
   },
   mutations: {
-    // setAuthUser(state, user) {
-    //   state.user = user;
-    // },
     setAuthToken(state, token) {
+      var object = { value: token, timestamp: new Date().getTime() }
+      localStorage.setItem("user-token", JSON.stringify(object));
       state.token = token;
     },
     deleteAuthToken(state) {
       state.token = '';
-      sessionStorage.removeItem("user-token");
+      localStorage.removeItem("user-token");
     }
   },
   getters: {
-    // isLoggedIn(state) {
-    //   return state.user !== null;
-    // },
-    getAuthToken(state){
-      return state.token;
+    getAuthToken(state) {
+      if (state.token) {
+        var object = JSON.parse(localStorage.getItem("user-token")),
+          dateString = object.timestamp,
+          now = new Date().getTime().toString();
+        // delete token after 2 weeks
+        if ((now - dateString) < 60 * 60 * 60 * 24 * 7) {
+          return object.value;
+        };
+        state.token = '';
+        localStorage.removeItem("user-token");
+      }
+      return null;
     }
   },
   actions: {},
