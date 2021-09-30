@@ -24,7 +24,7 @@
       </button>
     </div>
     <div class="form">
-      <create-session v-if="currentView == 'createSession'" />
+      <create-session v-if="currentView == 'createSession'" @changeCurrentView="changeCurrentView" />
       <current-session v-if="currentView == 'currentSession'" />
       <last-sessions v-if="currentView == 'lastSessions'" />
     </div>
@@ -51,6 +51,11 @@ export default {
       CurrentSessionIcon,
     };
   },
+  methods:{
+    changeCurrentView(currentView) {
+       this.$emit("changeCurrentView", currentView);
+    },
+  }
 };
 </script>
 

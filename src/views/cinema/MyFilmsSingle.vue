@@ -4,11 +4,15 @@
     <div class="container">
       <arrow-back />
       <div class="heading">
-        <h1 class="h1 text-white text-semi-bold">{{desc.title}}</h1>
+        <h1 class="h1 text-white text-semi-bold">{{ desc.title }}</h1>
         <div class="status positive">
-          <div class="dot" :class="{'dot-gray': retired}"></div>
-          <span v-if="!retired" class="p-SM text-regular text-red">В прокате</span>
-          <span v-if="retired" class="p-SM text-regular text-gray">Вышел из проката</span>
+          <div class="dot" :class="{ 'dot-gray': retired }"></div>
+          <span v-if="!retired" class="p-SM text-regular text-red"
+            >В прокате</span
+          >
+          <span v-if="retired" class="p-SM text-regular text-gray"
+            >Вышел из проката</span
+          >
         </div>
       </div>
       <div class="row">
@@ -18,32 +22,58 @@
               <img src="@/assets/images/my-films/days.svg" alt />
               Дней в прокате
             </div>
-            <div class="output h3 text-red text-semi-bold" :class="{'gray': retired}">{{desc.days}}</div>
+            <div
+              class="output h3 text-red text-semi-bold"
+              :class="{ gray: retired }"
+            >
+              {{ desc.days }}
+            </div>
           </div>
           <div class="item">
             <div class="info p-sm text-white text-regular">
               <img src="@/assets/images/my-films/money.svg" alt />
               Денежные сборы
             </div>
-            <div class="output h3 text-red text-semi-bold" :class="{'gray': retired}">{{desc.money}}</div>
+            <div
+              class="output h3 text-red text-semi-bold"
+              :class="{ gray: retired }"
+            >
+              {{ desc.money }}
+            </div>
           </div>
           <div class="item">
             <div class="info p-sm text-white text-regular">
               <img src="@/assets/images/my-films/views.svg" alt />
               Просмотров
             </div>
-            <div class="output h3 text-red text-semi-bold" :class="{'gray': retired}">{{desc.views}}</div>
+            <div
+              class="output h3 text-red text-semi-bold"
+              :class="{ gray: retired }"
+            >
+              {{ desc.views }}
+            </div>
           </div>
         </div>
 
         <div class="desc">
-          <img src="@/assets/images/rating/example.png" :alt="desc.title" class="preview" />
+          <img
+            :src="`${baseUrl}/storage/${desc.image}`"
+            :alt="desc.title"
+            class="preview"
+          />
           <div class="card text-white">
             <div class="rating">
               <span class="text-white text-bold h1">{{ desc.rate }}</span>
               <div class="stars">
-                <img src="@/assets/images/rating/gray-stars.svg" alt="Рейтинг" class="gray" />
-                <div class="white" :style="{ width: desc.rate * 10 + '%' }"></div>
+                <img
+                  src="@/assets/images/rating/gray-stars.svg"
+                  alt="Рейтинг"
+                  class="gray"
+                />
+                <div
+                  class="white"
+                  :style="{ width: desc.rate * 10 + '%' }"
+                ></div>
               </div>
             </div>
             <div class="info h3 text-semi-bold">
@@ -53,7 +83,7 @@
               </div>
               <div class="info-item">
                 Год:
-                <span>{{ desc.year }}</span>
+                <span>{{ desc.year | moment("YYYY") }}</span>
               </div>
               <div class="info-item">
                 <span>{{ desc.time }} мин.</span>
@@ -68,7 +98,7 @@
             <div class="info h3 text-semi-bold">
               <div class="info-item text-gray">
                 Жанр:
-                <span class="text-white">{{ desc.jangre }}</span>
+                <span class="text-white">{{ desc.ganre }}</span>
               </div>
             </div>
           </div>
@@ -85,6 +115,7 @@ import BtnGroup from "@/components/BtnGroup";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArrowBack from "@/components/ArrowBack";
+import axios from "axios";
 
 export default {
   components: { BtnGroup, Header, Footer, ArrowBack },
@@ -95,19 +126,46 @@ export default {
   },
   data: () => ({
     retired: false,
+    baseUrl: process.env.VUE_APP_API_URL,
+
     desc: {
       rate: 9.15,
-      title: "Гениальное ограбление",
+      title: "",
       money: "987 987",
       days: 21,
       views: "1 987 789",
       country: "Италия",
-      time: 118,
-      year: "2021",
-      jangre: "Боевик, Триллер",
-      director: "Жауме Балагеро",
+      time: "",
+      year: "",
+      ganre: "Боевик, Триллер",
+      director: "",
+      image: ""
     },
   }),
+  mounted() {
+    this.getFilm();
+  },
+  methods: {
+    getFilm() {
+      axios
+        .post(
+          process.env.VUE_APP_API_URL + "/api/films/" + this.$route.params.id,
+          {
+            token: this.$store.getters.getAuthToken,
+          }
+        )
+        .then((res) => {
+          this.desc.title = res.data.title;
+          this.desc.time = res.data.duration;
+          this.desc.year = res.data.created_at;
+          this.desc.image = res.data.image;
+          this.desc.director = res.data.user.name;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 

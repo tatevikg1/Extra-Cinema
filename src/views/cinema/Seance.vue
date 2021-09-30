@@ -37,7 +37,7 @@ export default {
     getUrl() {
       axios
         .post(
-          process.env.VUE_APP_API_URL + "/api/films/" + this.$route.params.id,
+          process.env.VUE_APP_API_URL + "/api/seances/" + this.$route.params.id,
           { token: this.$store.getters.getAuthToken }
         )
         .then((res) => {
@@ -47,14 +47,16 @@ export default {
         .catch((err) => {
           if (err.response.status == 401) {
             this.$store.commit("deleteAuthToken");
+            alert("Ошибка аутентификации. Пожалуйста, войдите снова.");
+            this.$router.push("/login").catch(() => {});
           }
+          console.log(err);
         });
     },
     playPart() {
       const media = document.querySelector("video");
       media.currentTime = Math.floor(Math.random() * (this.duration - 1)) * 60;
       this.countDownTimer();
-      // console.log(Math.floor(Math.random() * (this.duration - 1)) * 60, this.duration)
     },
     countDownTimer() {
       if (this.seconds > 0) {

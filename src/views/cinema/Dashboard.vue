@@ -6,7 +6,7 @@
       <section class="wrap">
         <div class="container">
           <arrow-back class="arrow" />
-          <Cabinet v-if="currentView == 'cabinet'" />
+          <Cabinet v-if="currentView == 'cabinet'" @changeCurrentView="toggleView"/>
           <Company v-if="currentView == 'company'" />
           <Projector v-if="currentView == 'projector'" />
           <my-halls

@@ -22,7 +22,7 @@
       >
         {{ film.name }}
       </button>
-      <hr style="margin:10px;visibility:hidden">
+      <hr style="margin: 10px; visibility: hidden" />
       <button
         @click="showHallModal(hall)"
         class="text-semi-bold text-white select"
@@ -144,15 +144,19 @@ export default {
       fData.append("duration_advertising", this.newSeance.advertTime);
       fData.append("duration_service", this.newSeance.serviceTime);
 
-      console.log("this.newSeance");
       axios
         .post(process.env.VUE_APP_API_URL + "/api/seances/store", fData)
         .then((res) => {
-          this.$router.push("/cinema").catch(() => {});
+          this.$emit("changeCurrentView", "startSession");
         })
         .catch((err) => {
           if (err.response.status == 422) {
+            alert("Ошибка!!!! данные не прошли валидацию!");
             console.log("validaion error");
+          } else if (err.response.status == 401) {
+            this.$store.commit("deleteAuthToken");
+            alert("Ошибка аутентификации. Пожалуйста, войдите снова.");
+            this.$router.push("/login").catch(() => {});
           }
           console.log(err);
         });
@@ -162,6 +166,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.error {
+  color: #d7004d;
+  margin: 10px;
+}
 .createSession {
   .film-item {
     margin-bottom: 25px;

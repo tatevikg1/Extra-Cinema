@@ -41,6 +41,9 @@
                   class="text-regular text-gray"
                   placeholder="Введите название"
                 />
+                <small class="error" v-if="larerrors.title">
+                  <i>{{ larerrors.title }}</i>
+                </small>
               </div>
               <div
                 class="
@@ -84,6 +87,9 @@
                   ref="video"
                   accept="video/*"
                 />
+                <small class="error" v-if="larerrors.file">
+                  <i>{{ larerrors.file }}</i>
+                </small>
               </div>
 
               <div
@@ -109,6 +115,9 @@
                   ref="image"
                   accept="image/*"
                 />
+                <small class="error" v-if="larerrors.image">
+                  <i>{{ larerrors.image }}</i>
+                </small>
               </div>
 
               <div
@@ -220,6 +229,9 @@
                     class="text-regular text-gray"
                     placeholder="Краткое описание фильма"
                   />
+                  <small class="error" v-if="larerrors.description">
+                    <i>{{ larerrors.description }}</i>
+                  </small>
                 </div>
               </div>
             </div>
@@ -267,6 +279,7 @@ export default {
     // genre should be multiple select with genres.title as option, genres.id as option value, genres_id as model
     genres_id: [],
     genres: [],
+    larerrors: "",
   }),
   mounted() {
     this.getGenres();
@@ -284,7 +297,7 @@ export default {
     },
     validate() {
       if (
-        this.name.length > 3 &&
+        this.name.length > 2 &&
         this.genre.length > 3 &&
         this.time &&
         this.overview.length > 3
@@ -309,6 +322,11 @@ export default {
     saveToDB() {
       var format_id = this.type == "2 D" ? "1" : "2";
       var fData = new FormData();
+      var options = {
+        header: {
+          Origin: "google"
+        }
+      }
 
       fData.append("image", this.$refs.image.files[0]);
       fData.append("file", this.$refs.video.files[0]);
@@ -320,13 +338,23 @@ export default {
       fData.append("genres_id", this.genres_id);
 
       axios
-        .post(process.env.VUE_APP_API_URL + "/api/films/store", fData)
+        .post(process.env.VUE_APP_API_URL + "/api/films/store", fData, options)
         .then((res) => {
-          this.$router.push("/cinema").catch(() => {});
+          this.larerrors = "";
+          this.$router.push("/cinema/dashboard").catch(() => {});
         })
         .catch((err) => {
           if (err.response.status == 422) {
-            console.log("validaion error");
+            this.larerrors = err.response.data.errors;
+          } else if (err.response.status == 401) {
+            this.$store.commit("deleteAuthToken");
+            alert("Ошибка аутентификации. Пожалуйста, войдите снова.");
+            this.$router.push("/login").catch(() => {});
+          } else if (err.response.status == 413) {
+            this.larerrors = "";
+            alert("Объект запроса превышает пределы, определенные сервером.");
+          }else{
+            alert("Ошибка на сервере. Фильм не сохранен.");
           }
           console.log(err);
         });
@@ -336,6 +364,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.error{
+  color: #d7004d;
+  margin: 10px;
+}
 .wrap {
   .container {
     position: relative;

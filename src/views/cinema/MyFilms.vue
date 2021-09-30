@@ -11,29 +11,41 @@
             placeholder="Поиск по названию фильма"
             class="t-white text-medium"
           />
-          <img @click="search = ''" src="@/assets/images/close.svg" alt="Отменить" />
+          <img
+            @click="search = ''"
+            src="@/assets/images/close.svg"
+            alt="Отменить"
+          />
         </div>
       </div>
       <div class="buttons">
         <button
           @click="showActive = true"
           class="h3 text-white text-semi-bold"
-          :class="{'active': showActive}"
-        >В прокате</button>
+          :class="{ active: showActive }"
+        >
+          В прокате
+        </button>
         <button
           @click="showActive = false"
           class="h3 text-white text-semi-bold"
-          :class="{'active': !showActive}"
-        >Вышли из проката</button>
+          :class="{ active: !showActive }"
+        >
+          Вышли из проката
+        </button>
       </div>
       <div class="row">
         <router-link
-          :to="item.active ? { name: 'ec-myfilms-single'} : { name: 'ec-myfilms-single-retired'}"
-          v-for="(item, idx) in filteredList"
+          :to="
+            item.active
+              ? `/cinema/forHolders/my-films/info/retired/${item.id}`
+              : `/cinema/forHolders/my-films/info/${item.id}`
+          "
+          v-for="(item, idx) in items"
           :key="idx"
           class="item"
         >
-          <img src="@/assets/images/rating/example.png" alt />
+          <img :src="`${baseUrl}/storage/${item.image}`" alt />
           <h3 class="text-white text-semi-bold">{{item.name}}</h3>
         </router-link>
       </div>
@@ -51,6 +63,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArrowBack from "@/components/ArrowBack";
 import DotLoader from "@/components/DotLoader";
+import axios from "axios";
 
 import TitleIcon from "@/assets/images/for-holders-page/carousel/item3.svg";
 
@@ -77,41 +90,26 @@ export default {
     search: "",
     showActive: true,
     TitleIcon,
-    items: [
-      {
-        name: "Гениальное ограбление",
-        active: true,
-      },
-      {
-        name: "Лига справедливости Зака Снайдера",
-        active: true,
-      },
-      {
-        name: "Гнев человеческий",
-        active: true,
-      },
-      {
-        name: "Гениальное ограбление",
-        active: false,
-      },
-      {
-        name: "Лига справедливости Зака Снайдера",
-        active: true,
-      },
-      {
-        name: "Гнев человеческий",
-        active: false,
-      },
-      {
-        name: "Гениальное ограбление",
-        active: true,
-      },
-      {
-        name: "Лига справедливости Зака Снайдера",
-        active: false,
-      },
-    ],
+    baseUrl: process.env.VUE_APP_API_URL,
+    items: [],
   }),
+  mounted() {
+    this.getFilms();
+  },
+  methods: {
+    getFilms() {
+      axios
+        .post(process.env.VUE_APP_API_URL + "/api/films/", {
+          token: this.$store.getters.getAuthToken,
+        })
+        .then((res) => {
+          this.items = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 
