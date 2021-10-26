@@ -136,7 +136,6 @@ export default {
   },
   mounted() {
     this.selected = countries.find((item) => item.code === "RU");
-    // this.phone = countries.find((item) => item.code === "RU").phoneCode;
   },
   methods: {
     selectItem(item) {

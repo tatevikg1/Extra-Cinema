@@ -55,13 +55,28 @@
                 Жанр
               </div>
 
-              <div class="input-wrap">
-                <input
-                  v-model="genre"
-                  type="text"
-                  class="text-regular text-gray"
-                  placeholder="Введите название жанра"
-                />
+              <div class="input-wrap" style="max-height: 50px">
+                <select id="genre" ref="genre" :style="color" @change="changeColor">
+                  <option
+                    value=""
+                    disabled
+                    selected
+                    class="
+                      input-wrap input-wrap-mobile
+                      text-regular text-gray
+                      p-SM
+                    "
+                  >
+                    Выберите жанр
+                  </option>
+                  <option
+                    v-for="genre in genres"
+                    :key="genre.id"
+                    :value="genre.id"
+                  >
+                    {{ genre.title }}
+                  </option>
+                </select>
               </div>
               <div
                 class="
@@ -236,7 +251,10 @@
               </div>
             </div>
           </form>
+          <dot-loader v-if="loading" />
+
           <Btn
+            v-else
             fluid
             text="Загрузить"
             :disabled="btnDisabled"
@@ -262,29 +280,33 @@ import ArrowBack from "@/components/ArrowBack";
 import Btn from "@/components/Btn";
 import SettingsIcon from "@/assets/images/cinema-for-halls-page/settings_icon.svg";
 import axios from "axios";
-
+import Multiselect from "vue-multiselect";
+import DotLoader from "@/components/DotLoader";
 export default {
-  components: { Header, Footer, ArrowBack, Btn },
+  components: { Header, Footer, ArrowBack, Btn, Multiselect, DotLoader },
   data: () => ({
     SettingsIcon,
     showDropdown: false,
     name: "",
-    genre: "",
     file: "Выберите фильм",
     image: "Выберите картину",
     time: "",
     overview: "",
     type: "2 D", //or '3 D',
     btnDisabled: true,
-    // genre should be multiple select with genres.title as option, genres.id as option value, genres_id as model
+    loading: false,
     genres_id: [],
     genres: [],
     larerrors: "",
+    color: "color:grey",
   }),
   mounted() {
     this.getGenres();
   },
   methods: {
+    changeColor(){
+      this.color = "color:white";
+    },
     setFile(e) {
       var file = e.target.files || e.dataTransfer.files;
       if (!file.length) return;
@@ -296,12 +318,7 @@ export default {
       this.image = image[0].name;
     },
     validate() {
-      if (
-        this.name.length > 2 &&
-        this.genre.length > 3 &&
-        this.time &&
-        this.overview.length > 3
-      ) {
+      if (this.name.length > 2 && this.time && this.overview.length > 3) {
         this.btnDisabled = false;
       } else {
         this.btnDisabled = true;
@@ -319,14 +336,12 @@ export default {
           console.log(err);
         });
     },
+
     saveToDB() {
       var format_id = this.type == "2 D" ? "1" : "2";
       var fData = new FormData();
-      var options = {
-        header: {
-          Origin: "google"
-        }
-      }
+      console.log(this.$refs.genre.value)
+      this.genres_id.push(this.$refs.genre.value);
 
       fData.append("image", this.$refs.image.files[0]);
       fData.append("file", this.$refs.video.files[0]);
@@ -337,13 +352,19 @@ export default {
       fData.append("format_id", format_id);
       fData.append("genres_id", this.genres_id);
 
+      this.btnDisabled = true;
+      this.loading = true;
+
       axios
-        .post(process.env.VUE_APP_API_URL + "/api/films/store", fData, options)
+        .post(process.env.VUE_APP_API_URL + "/api/films/store", fData)
         .then((res) => {
           this.larerrors = "";
           this.$router.push("/cinema/dashboard").catch(() => {});
         })
         .catch((err) => {
+          this.btnDisabled = false;
+          this.loading = false;
+
           if (err.response.status == 422) {
             this.larerrors = err.response.data.errors;
           } else if (err.response.status == 401) {
@@ -353,7 +374,7 @@ export default {
           } else if (err.response.status == 413) {
             this.larerrors = "";
             alert("Объект запроса превышает пределы, определенные сервером.");
-          }else{
+          } else {
             alert("Ошибка на сервере. Фильм не сохранен.");
           }
           console.log(err);
@@ -364,10 +385,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.error{
+select {
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+.error {
   color: #d7004d;
   margin: 10px;
 }
+
 .wrap {
   .container {
     position: relative;

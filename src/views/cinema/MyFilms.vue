@@ -34,7 +34,7 @@
           Вышли из проката
         </button>
       </div>
-      <div class="row">
+      <div class="row" v-if="loaded">
         <router-link
           :to="
             item.active
@@ -45,11 +45,11 @@
           :key="idx"
           class="item"
         >
-          <img :src="`${baseUrl}/storage/${item.image}`" alt />
-          <h3 class="text-white text-semi-bold">{{item.name}}</h3>
+          <img :src="`${baseUrl}/storage/${item.image}`" alt=". not found" />
+          <h3 class="text-white text-semi-bold">{{ item.name }}</h3>
         </router-link>
       </div>
-      <dot-loader />
+      <dot-loader v-else />
       <btn-group />
     </div>
     <Footer />
@@ -64,11 +64,17 @@ import Footer from "@/components/Footer";
 import ArrowBack from "@/components/ArrowBack";
 import DotLoader from "@/components/DotLoader";
 import axios from "axios";
-
 import TitleIcon from "@/assets/images/for-holders-page/carousel/item3.svg";
 
 export default {
-  components: { BtnGroup, TitleDecor, Header, Footer, ArrowBack, DotLoader },
+  components: {
+    BtnGroup,
+    TitleDecor,
+    Header,
+    Footer,
+    ArrowBack,
+    DotLoader,
+  },
   computed: {
     filteredList() {
       return this.items.filter((item) => {
@@ -90,6 +96,7 @@ export default {
     search: "",
     showActive: true,
     TitleIcon,
+    loaded: false,
     baseUrl: process.env.VUE_APP_API_URL,
     items: [],
   }),
@@ -104,6 +111,7 @@ export default {
         })
         .then((res) => {
           this.items = res.data;
+          this.loaded = true;
         })
         .catch((err) => {
           console.log(err);

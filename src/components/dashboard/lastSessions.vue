@@ -87,7 +87,7 @@ export default {
     };
   },
   mounted() {
-    this.getSeances();
+    // this.getSeances();
   },
   methods: {
     getSeances() {

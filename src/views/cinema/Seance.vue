@@ -11,6 +11,7 @@
     mozallowfullscreen
     allowfullscreen
   ></video>
+  <h1 v-else class="text-red loader">{{ message }}</h1>
 </template>
 
 <script>
@@ -23,6 +24,7 @@ export default {
       videoUrl: null,
       duration: null,
       seconds: 60,
+      message: "",
     };
   },
   created() {
@@ -37,18 +39,21 @@ export default {
     getUrl() {
       axios
         .post(
-          process.env.VUE_APP_API_URL + "/api/seances/" + this.$route.params.id,
-          { token: this.$store.getters.getAuthToken }
+          `${process.env.VUE_APP_API_URL}/api/seances/${this.$route.params.id}`,
+          { token: this.$store.getters.getAuthToken, type: this.$route.name }
         )
         .then((res) => {
-          this.videoUrl = res.data.file;
-          this.duration = res.data.duration;
+          this.videoUrl = res.data.film.file;
+          this.duration = res.data.film.duration;
         })
         .catch((err) => {
           if (err.response.status == 401) {
             this.$store.commit("deleteAuthToken");
             alert("Ошибка аутентификации. Пожалуйста, войдите снова.");
             this.$router.push("/login").catch(() => {});
+          } else if (err.response.status == 423) {
+            this.message = err.response.data;
+            // this.$router.push("/cinema/dashboard").catch(() => {});
           }
           console.log(err);
         });
@@ -86,6 +91,12 @@ video {
   padding: 0;
   overflow: hidden;
   z-index: 999999;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30%;
 }
 </style>
 
